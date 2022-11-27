@@ -1,6 +1,6 @@
 <template>
   <NavActionGroup>
-    <NavActionItem>
+    <NavActionItem v-if="showBackButton">
       <NavActionButton
         v-auth="ACTION_BACK"
         :disabled="disabled"
@@ -13,7 +13,7 @@
         @click="() => $emit('back')"
       />
     </NavActionItem>
-    <NavActionItem>
+    <NavActionItem v-if="showSaveButton">
       <NavActionButton
         v-auth="ACTION_SAVE"
         :disabled="disabled"
@@ -44,7 +44,15 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false
-    }
+    },
+    showBackButton: {
+      type: Boolean,
+      default: true
+    },
+    showSaveButton: {
+      type: Boolean,
+      default: true
+    },
   },
   emits: [
     'back',

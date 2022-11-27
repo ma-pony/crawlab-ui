@@ -34,6 +34,8 @@
       </NavTabs>
       <NavActions ref="navActions" :collapsed="actionsCollapsed" class="nav-actions">
         <NavActionGroupDetailCommon
+          :show-back-button="showBackButton"
+          :show-save-button="showSaveButton"
           @back="onBack"
           @save="onSave"
         />
@@ -80,7 +82,15 @@ export default defineComponent({
     navItemNameKey: {
       type: String,
       default: 'name',
-    }
+    },
+    showBackButton: {
+      type: Boolean,
+      default: true,
+    },
+    showSaveButton: {
+      type: Boolean,
+      default: true,
+    },
   },
   setup(props: DetailLayoutProps, {emit}) {
     const {t} = useI18n();

@@ -26,3 +26,4 @@ export * from './router';
 export * from './package';
 export * from './services';
 export * from './store';
+export * from './echarts';

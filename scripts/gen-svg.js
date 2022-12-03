@@ -3,12 +3,17 @@ import fs from 'fs'
 import klawSync from 'klaw-sync'
 import base64Img from 'base64-img'
 
+import {dirname} from 'path';
+import {fileURLToPath} from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 const includedFiles = [
   '.svg',
 ]
 const include = (path) => includedFiles.some(f => path.includes(f))
 
-const genSvg = async() => {
+const genSvg = async () => {
   const root = path.resolve(__dirname, '../src/assets')
   const filePaths = klawSync(root, {
     nodir: true,

@@ -3,6 +3,11 @@ import fs from 'fs'
 import rd from 'rd'
 import chalk from 'chalk'
 
+import {dirname} from 'path';
+import {fileURLToPath} from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 const genInterfaces = (moduleName) => {
   if (!moduleName) {
     moduleName = 'interfaces';

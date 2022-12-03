@@ -5,6 +5,11 @@ import vueCompiler from '@vue/compiler-sfc'
 import klawSync from 'klaw-sync'
 import chalk from 'chalk'
 
+import {dirname} from 'path';
+import {fileURLToPath} from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 const TSCONFIG_PATH = path.resolve(__dirname, '../tsconfig.dts.json')
 const DEMO_RE = /\/demo\/\w+\.vue$/
 const TEST_RE = /__test__|__tests__/

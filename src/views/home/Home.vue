@@ -6,7 +6,7 @@
         :key="i"
         :span="24 / Math.min(metrics.length, 4)"
       >
-        <Metric
+        <cl-metric
           v-track="{
               code: 'click_home',
               params: {
@@ -23,7 +23,7 @@
       </el-col>
     </el-row>
     <el-row class="row-line-chart">
-      <LineChart
+      <cl-line-chart
         :config="dailyConfig"
         is-time-series
         label-key="date"
@@ -31,21 +31,21 @@
     </el-row>
     <el-row class="row-pie-chart">
       <el-col :span="8">
-        <PieChart
+        <cl-pie-chart
           :config="tasksByStatusConfig"
           label-key="status"
           value-key="tasks"
         />
       </el-col>
       <el-col :span="8">
-        <PieChart
+        <cl-pie-chart
           :config="tasksByNodeConfig"
           label-key="node_name"
           value-key="tasks"
         />
       </el-col>
       <el-col :span="8">
-        <PieChart
+        <cl-pie-chart
           :config="tasksBySpiderConfig"
           label-key="spider_name"
           value-key="tasks"
@@ -58,13 +58,9 @@
 <script lang="ts">
 import {defineComponent, onMounted, ref} from 'vue';
 import useRequest from '@/services/request';
-import LineChart from '@/components/chart/LineChart.vue';
 import dayjs from 'dayjs';
 import {spanDateRange} from '@/utils/stats';
-import Metric from '@/components/chart/Metric.vue';
-import variables from '@/styles/variables.scss';
 import {useRouter} from 'vue-router';
-import PieChart from '@/components/chart/PieChart.vue';
 import {
   TASK_STATUS_CANCELLED,
   TASK_STATUS_ERROR,
@@ -72,6 +68,7 @@ import {
   TASK_STATUS_PENDING,
   TASK_STATUS_RUNNING
 } from '@/constants/task';
+import {getColorByKey} from '@/utils';
 
 const {
   get,
@@ -79,7 +76,6 @@ const {
 
 export default defineComponent({
   name: 'Home',
-  components: {PieChart, Metric, LineChart},
   setup() {
     const router = useRouter();
 
@@ -130,14 +126,14 @@ export default defineComponent({
         key: 'error_tasks',
         value: 0,
         path: '/tasks',
-        color: (m: MetricMeta) => m.value > 0 ? variables.dangerColor : variables.successColor,
+        color: (m: MetricMeta) => m.value > 0 ? getColorByKey('danger') : getColorByKey('success'),
       },
       {
         name: 'views.home.metrics.results',
         icon: ['fa', 'table'],
         key: 'results',
         value: 0,
-        color: (m: MetricMeta) => m.value > 0 ? variables.successColor : variables.infoMediumColor,
+        color: (m: MetricMeta) => m.value > 0 ? getColorByKey('success') : getColorByKey('info-medium'),
       },
       {
         name: 'views.home.metrics.users',
@@ -171,8 +167,8 @@ export default defineComponent({
           {name: 'views.home.metrics.results', position: 'right'},
         ],
         color: [
-          variables.primaryColor,
-          variables.successColor,
+          getColorByKey('primary'),
+          getColorByKey('success'),
         ],
       }
     });
@@ -188,15 +184,15 @@ export default defineComponent({
         const {name} = data;
         switch (name) {
           case TASK_STATUS_PENDING:
-            return variables.primaryColor;
+            return getColorByKey('primary');
           case TASK_STATUS_RUNNING:
-            return variables.warningColor;
+            return getColorByKey('warning');
           case TASK_STATUS_FINISHED:
-            return variables.successColor;
+            return getColorByKey('success');
           case TASK_STATUS_ERROR:
-            return variables.dangerColor;
+            return getColorByKey('danger');
           case TASK_STATUS_CANCELLED:
-            return variables.infoMediumColor;
+            return getColorByKey('info-medium');
           default:
             return 'red';
         }
@@ -262,17 +258,17 @@ export default defineComponent({
       if (typeof value === 'number') {
         // number
         if (value === 0) {
-          return variables.infoMediumColor;
+          return getColorByKey('info-medium');
         } else {
-          return variables.primaryColor;
+          return getColorByKey('primary');
         }
       } else {
         // string
         const v = Number(value);
         if (isNaN(v) || v == 0) {
-          return variables.infoMediumColor;
+          return getColorByKey('info-medium');
         } else {
-          return variables.primaryColor;
+          return getColorByKey('primary');
         }
       }
     };
@@ -305,11 +301,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .home {
   background: white;
-  min-height: calc(100vh - #{$headerHeight} - #{$tabsViewHeight});
+  min-height: calc(100vh - var(--cl-header-height) - var(--cl-tabs-view-height));
   padding: 20px;
 
   .row-overview-metrics {

@@ -1,5 +1,5 @@
 <template>
-  <Tag
+  <cl-tag
       :icon="data.icon"
       :label="data.label"
       :tooltip="data.tooltip"
@@ -12,13 +12,9 @@
 <script lang="ts">
 import {computed, defineComponent, PropType} from 'vue';
 import {SPIDER_TYPE_CONFIGURABLE, SPIDER_TYPE_CUSTOMIZED} from '@/constants/spider';
-import Tag from '@/components/tag/Tag.vue';
 
 export default defineComponent({
   name: 'SpiderType',
-  components: {
-    Tag,
-  },
   props: {
     type: {
       type: String as PropType<SpiderType>,

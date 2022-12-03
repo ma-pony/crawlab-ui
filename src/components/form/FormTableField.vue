@@ -38,7 +38,7 @@
           :value="op.value"
         />
       </el-select>
-      <InputWithButton
+      <cl-input-with-button
         v-else-if="fieldType === FORM_FIELD_TYPE_INPUT_WITH_BUTTON"
         v-model="internalValue"
         :placeholder="t(placeholder)"
@@ -46,13 +46,13 @@
         :disabled="disabled"
         @input="onInputChange"
       />
-      <TagInput
+      <cl-tag-input
         v-else-if="fieldType === FORM_FIELD_TYPE_TAG_INPUT"
         v-model="internalValue"
         :disabled="disabled"
         @change="onInputChange"
       />
-      <Switch
+      <cl-switch
         v-else-if="fieldType === FORM_FIELD_TYPE_SWITCH"
         v-model="internalValue"
         :disabled="disabled"
@@ -87,19 +87,11 @@ import {
   FORM_FIELD_TYPE_TAG_INPUT,
   FORM_FIELD_TYPE_TAG_SELECT,
 } from '@/constants/form';
-import TagInput from '@/components/input/TagInput.vue';
 import {emptyArrayFunc, voidFunc} from '@/utils/func';
-import InputWithButton from '@/components/input/InputWithButton.vue';
-import Switch from '@/components/switch/Switch.vue';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'FormTableField',
-  components: {
-    Switch,
-    InputWithButton,
-    TagInput,
-  },
   props: {
     form: {
       type: Object as PropType<any>,

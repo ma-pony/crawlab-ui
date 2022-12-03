@@ -1,23 +1,21 @@
 <template>
-  <ContextMenu :clicking="clicking" :placement="placement" :visible="visible" @hide="$emit('hide')">
+  <cl-context-menu :clicking="clicking" :placement="placement" :visible="visible" @hide="$emit('hide')">
     <template #default>
-      <ContextMenuList :items="items" @hide="$emit('hide')"/>
+      <cl-context-menu-list :items="items" @hide="$emit('hide')"/>
     </template>
     <template #reference>
       <slot></slot>
     </template>
-  </ContextMenu>
+  </cl-context-menu>
 </template>
 
 <script lang="ts">
 import {defineComponent, readonly} from 'vue';
-import ContextMenu, {contextMenuDefaultProps} from '@/components/context-menu/ContextMenu.vue';
-import ContextMenuList from '@/components/context-menu/ContextMenuList.vue';
+import {contextMenuDefaultProps} from '@/components/context-menu/ContextMenu.vue';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'FileEditorNavTabsContextMenu',
-  components: {ContextMenuList, ContextMenu},
   props: contextMenuDefaultProps,
   emits: [
     'hide',

@@ -1,6 +1,6 @@
 <template>
   <div class="user-detail-tab-overview">
-    <UserForm/>
+    <cl-user-form/>
   </div>
 </template>
 <script lang="ts">
@@ -9,9 +9,6 @@ import UserForm from '@/components/user/UserForm.vue';
 
 export default defineComponent({
   name: 'ProjectDetailTabOverview',
-  components: {
-    UserForm,
-  },
   setup() {
     return {};
   },

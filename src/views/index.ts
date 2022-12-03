@@ -1,4 +1,15 @@
 import ResultList from './data/list/ResultList.vue';
+import InstallForm from './env/deps/components/form/InstallForm.vue';
+import UninstallForm from './env/deps/components/form/UninstallForm.vue';
+import DependencyLang from './env/deps/components/lang/DependencyLang.vue';
+import DependencyNode from './env/deps/node/DependencyNode.vue';
+import DependencyPython from './env/deps/python/DependencyPython.vue';
+import DependencySettingForm from './env/deps/setting/DependencySettingForm.vue';
+import DependencySettings from './env/deps/setting/DependencySettings.vue';
+import DependencySpiderTab from './env/deps/spider/DependencySpiderTab.vue';
+import DependencyTaskList from './env/deps/task/DependencyTaskList.vue';
+import LogsView from './env/deps/task/LogsView.vue';
+import TaskAction from './env/deps/task/TaskAction.vue';
 import Home from './home/Home.vue';
 import Login from './login/Login.vue';
 import Disclaimer from './misc/Disclaimer.vue';
@@ -7,27 +18,27 @@ import NodeDetail from './node/detail/NodeDetail.vue';
 import NodeDetailTabOverview from './node/detail/tabs/NodeDetailTabOverview.vue';
 import NodeDetailTabTasks from './node/detail/tabs/NodeDetailTabTasks.vue';
 import NodeList from './node/list/NodeList.vue';
-import nodeList from './node/list/nodeList';
+import NotificationDetail from './notification/detail/NotificationDetail.vue';
+import NotificationDetailTabOverview from './notification/detail/tabs/NotificationDetailTabOverview.vue';
+import NotificationDetailTabTemplate from './notification/detail/tabs/NotificationDetailTabTemplate.vue';
+import NotificationDetailTabTriggers from './notification/detail/tabs/NotificationDetailTabTriggers.vue';
+import NotificationList from './notification/list/NotificationList.vue';
 import PluginDetail from './plugin/detail/PluginDetail.vue';
 import PluginDetailTabOverview from './plugin/detail/tabs/PluginDetailTabOverview.vue';
 import PluginList from './plugin/list/PluginList.vue';
-import pluginList from './plugin/list/pluginList';
 import ProjectDetail from './project/detail/ProjectDetail.vue';
 import ProjectDetailTabOverview from './project/detail/tabs/ProjectDetailTabOverview.vue';
 import ProjectDetailTabSpiders from './project/detail/tabs/ProjectDetailTabSpiders.vue';
 import ProjectList from './project/list/ProjectList.vue';
-import projectList from './project/list/useProjectList';
 import ScheduleDetail from './schedule/detail/ScheduleDetail.vue';
-import scheduleDetail from './schedule/detail/scheduleDetail';
 import ScheduleDetailTabOverview from './schedule/detail/tabs/ScheduleDetailTabOverview.vue';
 import ScheduleDetailTabTasks from './schedule/detail/tabs/ScheduleDetailTabTasks.vue';
 import ScheduleList from './schedule/list/ScheduleList.vue';
-import scheduleList from './schedule/list/scheduleList';
 import SpiderDetail from './spider/detail/SpiderDetail.vue';
 import SpiderDetailActionsCommon from './spider/detail/actions/SpiderDetailActionsCommon.vue';
+import SpiderDetailActionsData from './spider/detail/actions/SpiderDetailActionsData.vue';
 import SpiderDetailActionsFiles from './spider/detail/actions/SpiderDetailActionsFiles.vue';
 import SpiderDetailActionsGit from './spider/detail/actions/SpiderDetailActionsGit.vue';
-import useSpiderDetail from './spider/detail/useSpiderDetail';
 import SpiderDetailTabData from './spider/detail/tabs/SpiderDetailTabData.vue';
 import SpiderDetailTabFiles from './spider/detail/tabs/SpiderDetailTabFiles.vue';
 import SpiderDetailTabGit from './spider/detail/tabs/SpiderDetailTabGit.vue';
@@ -41,30 +52,35 @@ import SpiderDetailTabGitLogs from './spider/detail/tabs/git/SpiderDetailTabGitL
 import SpiderDetailTabGitReferences from './spider/detail/tabs/git/SpiderDetailTabGitReferences.vue';
 import SpiderDetailTabGitRemote from './spider/detail/tabs/git/SpiderDetailTabGitRemote.vue';
 import SpiderList from './spider/list/SpiderList.vue';
-import useSpiderList from './spider/list/useSpiderList';
 import TagDetail from './tag/detail/TagDetail.vue';
 import TagDetailTabOverview from './tag/detail/tabs/TagDetailTabOverview.vue';
-import TagList from './tag/list/TagList.vue';
-import tagList from './tag/list/tagList';
+import TagViewList from './tag/list/TagViewList.vue';
 import TaskDetail from './task/detail/TaskDetail.vue';
 import TaskDetailActionsCommon from './task/detail/actions/TaskDetailActionsCommon.vue';
+import TaskDetailActionsData from './task/detail/actions/TaskDetailActionsData.vue';
 import TaskDetailActionsLogs from './task/detail/actions/TaskDetailActionsLogs.vue';
 import TaskDetailTabData from './task/detail/tabs/TaskDetailTabData.vue';
 import TaskDetailTabLogs from './task/detail/tabs/TaskDetailTabLogs.vue';
 import TaskDetailTabOverview from './task/detail/tabs/TaskDetailTabOverview.vue';
-import taskDetail from './task/detail/taskDetail';
 import TaskList from './task/list/TaskList.vue';
-import taskList from './task/list/taskList';
 import TokenList from './token/list/TokenList.vue';
-import tokenList from './token/list/tokenList';
 import UserDetail from './user/detail/UserDetail.vue';
 import UserDetailTabOverview from './user/detail/tabs/UserDetailTabOverview.vue';
-import userDetail from './user/detail/userDetail';
 import UserList from './user/list/UserList.vue';
-import userList from './user/list/userList';
 
 export {
   ResultList as ClResultList,
+  InstallForm as ClInstallForm,
+  UninstallForm as ClUninstallForm,
+  DependencyLang as ClDependencyLang,
+  DependencyNode as ClDependencyNode,
+  DependencyPython as ClDependencyPython,
+  DependencySettingForm as ClDependencySettingForm,
+  DependencySettings as ClDependencySettings,
+  DependencySpiderTab as ClDependencySpiderTab,
+  DependencyTaskList as ClDependencyTaskList,
+  LogsView as ClLogsView,
+  TaskAction as ClTaskAction,
   Home as ClHome,
   Login as ClLogin,
   Disclaimer as ClDisclaimer,
@@ -73,27 +89,27 @@ export {
   NodeDetailTabOverview as ClNodeDetailTabOverview,
   NodeDetailTabTasks as ClNodeDetailTabTasks,
   NodeList as ClNodeList,
-  nodeList as nodeList,
+  NotificationDetail as ClNotificationDetail,
+  NotificationDetailTabOverview as ClNotificationDetailTabOverview,
+  NotificationDetailTabTemplate as ClNotificationDetailTabTemplate,
+  NotificationDetailTabTriggers as ClNotificationDetailTabTriggers,
+  NotificationList as ClNotificationList,
   PluginDetail as ClPluginDetail,
   PluginDetailTabOverview as ClPluginDetailTabOverview,
   PluginList as ClPluginList,
-  pluginList as pluginList,
   ProjectDetail as ClProjectDetail,
   ProjectDetailTabOverview as ClProjectDetailTabOverview,
   ProjectDetailTabSpiders as ClProjectDetailTabSpiders,
   ProjectList as ClProjectList,
-  projectList as projectList,
   ScheduleDetail as ClScheduleDetail,
-  scheduleDetail as scheduleDetail,
   ScheduleDetailTabOverview as ClScheduleDetailTabOverview,
   ScheduleDetailTabTasks as ClScheduleDetailTabTasks,
   ScheduleList as ClScheduleList,
-  scheduleList as scheduleList,
   SpiderDetail as ClSpiderDetail,
   SpiderDetailActionsCommon as ClSpiderDetailActionsCommon,
+  SpiderDetailActionsData as ClSpiderDetailActionsData,
   SpiderDetailActionsFiles as ClSpiderDetailActionsFiles,
   SpiderDetailActionsGit as ClSpiderDetailActionsGit,
-  useSpiderDetail as useSpiderDetail,
   SpiderDetailTabData as ClSpiderDetailTabData,
   SpiderDetailTabFiles as ClSpiderDetailTabFiles,
   SpiderDetailTabGit as ClSpiderDetailTabGit,
@@ -107,25 +123,19 @@ export {
   SpiderDetailTabGitReferences as ClSpiderDetailTabGitReferences,
   SpiderDetailTabGitRemote as ClSpiderDetailTabGitRemote,
   SpiderList as ClSpiderList,
-  useSpiderList as useSpiderList,
   TagDetail as ClTagDetail,
   TagDetailTabOverview as ClTagDetailTabOverview,
-  TagList as ClTagList,
-  tagList as tagList,
+  TagViewList as ClTagViewList,
   TaskDetail as ClTaskDetail,
   TaskDetailActionsCommon as ClTaskDetailActionsCommon,
+  TaskDetailActionsData as ClTaskDetailActionsData,
   TaskDetailActionsLogs as ClTaskDetailActionsLogs,
   TaskDetailTabData as ClTaskDetailTabData,
   TaskDetailTabLogs as ClTaskDetailTabLogs,
   TaskDetailTabOverview as ClTaskDetailTabOverview,
-  taskDetail as taskDetail,
   TaskList as ClTaskList,
-  taskList as taskList,
   TokenList as ClTokenList,
-  tokenList as tokenList,
   UserDetail as ClUserDetail,
   UserDetailTabOverview as ClUserDetailTabOverview,
-  userDetail as userDetail,
   UserList as ClUserList,
-  userList as userList,
 };

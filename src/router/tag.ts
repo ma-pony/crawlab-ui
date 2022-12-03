@@ -1,6 +1,6 @@
 import {RouteRecordRaw} from 'vue-router';
 import {TAB_NAME_OVERVIEW} from '@/constants/tab';
-import TagList from '@/views/tag/list/TagList.vue';
+import TagList from '@/views/tag/list/TagViewList.vue';
 import TagDetail from '@/views/tag/detail/TagDetail.vue';
 import TagDetailTabOverview from '@/views/tag/detail/tabs/TagDetailTabOverview.vue';
 

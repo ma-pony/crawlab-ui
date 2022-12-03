@@ -1,6 +1,6 @@
 <template>
   <div class="git-remote">
-    <GitForm
+    <cl-git-form
       :branch-select-options="gitBranchSelectOptions"
       @change="onChange"
     />
@@ -9,15 +9,11 @@
 
 <script lang="ts">
 import {computed, defineComponent} from 'vue';
-import GitForm from '@/components/git/GitForm.vue';
 import useSpiderDetail from '@/views/spider/detail/useSpiderDetail';
 import {useStore} from 'vuex';
 
 export default defineComponent({
   name: 'SpiderDetailTabGitRemote',
-  components: {
-    GitForm,
-  },
   setup() {
     // store
     const ns = 'spider';

@@ -1,13 +1,13 @@
 <template>
-  <DemoLayout :active-name="activeTabName" @tab-click="onTabClick">
+  <cl-demo-layout :active-name="activeTabName" @tab-click="onTabClick">
     <el-tab-pane name="metric-dashboard" label="Metric Dashboard">
-      <MetricDashboard
+      <cl-metric-dashboard
         :metric-data-func="metricDashboardFunc"
         @row-click="onMetricDashboardRowClick"
       />
     </el-tab-pane>
     <el-tab-pane name="metric-list" label="Metric List">
-      <MetricList
+      <cl-metric-list
         :metrics="metrics"
         :metric-data-func="metricListDataFunc"
         :metric-title-func="metricListTitleFunc"
@@ -20,16 +20,13 @@
         @metric-snapshot-change="onMetricSnapshotChange"
       />
     </el-tab-pane>
-  </DemoLayout>
+  </cl-demo-layout>
 </template>
 
 <script lang="ts">
 import {defineComponent, ref, onBeforeMount} from 'vue';
-import DemoLayout from '@/demo/layouts/DemoLayout.vue';
-import MetricList from '@/components/metric/MetricList.vue';
 import useRequest from '@/services/request';
 import dayjs from 'dayjs';
-import MetricDashboard from '@/components/metric/MetricDashboard.vue';
 import {useI18n} from 'vue-i18n';
 
 const {
@@ -38,11 +35,6 @@ const {
 
 export default defineComponent({
   name: 'DemoMetric',
-  components: {
-    MetricDashboard,
-    DemoLayout,
-    MetricList,
-  },
   setup() {
     const {t} = useI18n();
 

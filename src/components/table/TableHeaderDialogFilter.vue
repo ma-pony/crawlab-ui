@@ -35,7 +35,7 @@
         </el-checkbox-group>
       </template>
       <template v-else>
-        <Empty/>
+        <cl-empty/>
       </template>
     </div>
   </div>
@@ -43,19 +43,13 @@
 
 <script lang="ts">
 import {computed, defineComponent, PropType, ref, watch} from 'vue';
-import Empty from '@/components/empty/Empty.vue';
 import {getDefaultFilterCondition} from '@/components/filter/FilterCondition.vue';
-// import FilterConditionList from '@/components/filter/FilterConditionList.vue';
 import {debounce} from '@/utils/debounce';
 import {useI18n} from 'vue-i18n';
 import {Search} from '@element-plus/icons';
 
 export default defineComponent({
   name: 'TableHeaderDialogFilter',
-  components: {
-    // FilterConditionList,
-    Empty,
-  },
   props: {
     column: {
       type: Object as PropType<TableColumn>,
@@ -190,8 +184,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .table-header-dialog-filter {
   flex: 1;
   display: flex;
@@ -201,7 +193,7 @@ export default defineComponent({
     font-size: 14px;
     font-weight: 900;
     margin-bottom: 10px;
-    color: $infoMediumColor;
+    color: var(--cl-info-medium-color);
     display: flex;
     align-items: center;
 
@@ -219,7 +211,7 @@ export default defineComponent({
   .items {
     overflow: auto;
     flex: 1;
-    border: 1px solid $infoBorderColor;
+    border: 1px solid var(--cl-info-border-color);
     padding: 10px;
 
     .item-list {

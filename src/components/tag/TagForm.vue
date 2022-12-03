@@ -1,12 +1,12 @@
 <template>
-  <Form
+  <cl-form
       v-if="form"
       ref="formRef"
       :model="form"
       :rules="formRules"
       :selective="isSelectiveForm"
   >
-    <FormItem
+    <cl-form-item
         :span="2"
         :label="t('components.tag.form.name')"
         not-editable
@@ -18,21 +18,21 @@
           :disabled="isFormItemDisabled('name')"
           :placeholder="t('components.tag.form.name')"
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
         :span="2"
         :label="t('components.tag.form.color')"
         prop="color"
         required
     >
-      <ColorPicker
+      <cl-color-picker
           v-model="form.color"
           :predefine="predefinedColors"
           class="color-picker"
           show-alpha
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
         :span="4"
         :label="t('components.tag.form.description')"
         prop="description"
@@ -43,23 +43,19 @@
           :placeholder="t('components.tag.form.description')"
           type="textarea"
       />
-    </FormItem>
-  </Form>
+    </cl-form-item>
+  </cl-form>
 </template>
 
 <script lang="ts">
 import {defineComponent, readonly} from 'vue';
 import {useStore} from 'vuex';
 import useTag from '@/components/tag/tag';
-import Form from '@/components/form/Form.vue';
-import FormItem from '@/components/form/FormItem.vue';
 import {getPredefinedColors} from '@/utils/color';
-import ColorPicker from '@/components/color/ColorPicker.vue';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'TagForm',
-  components: {ColorPicker, FormItem, Form},
   setup() {
     // i18n
     const {t} = useI18n();

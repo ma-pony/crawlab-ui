@@ -1,5 +1,5 @@
 <template>
-  <Form
+  <cl-form
     v-if="form"
     ref="formRef"
     :model="form"
@@ -7,17 +7,17 @@
   >
     <template v-if="isDialog">
       <!--Row-->
-      <FormItem
+      <cl-form-item
         :span="2"
         :label="t('components.plugin.form.autoStart')"
       >
-        <Switch v-model="form.auto_start"/>
-      </FormItem>
+        <cl-switch v-model="form.auto_start"/>
+      </cl-form-item>
       <!--./Row-->
 
       <!--Row-->
       <template v-if="installType === PLUGIN_INSTALL_TYPE_GIT">
-        <FormItem
+        <cl-form-item
           :span="4"
           :label="t('components.plugin.form.installUrl')"
           prop="install_url"
@@ -27,10 +27,10 @@
             v-model="form.install_url"
             :placeholder="t('components.plugin.form.installUrl')"
           />
-        </FormItem>
+        </cl-form-item>
       </template>
       <template v-else-if="installType === PLUGIN_INSTALL_TYPE_LOCAL">
-        <FormItem
+        <cl-form-item
           :span="4"
           :label="t('components.plugin.form.installPath')"
           prop="install_url"
@@ -40,14 +40,14 @@
             v-model="form.install_url"
             :placeholder="t('components.plugin.form.installPath')"
           />
-        </FormItem>
+        </cl-form-item>
       </template>
       <!--./Row-->
     </template>
 
     <template v-else>
       <!--Row-->
-      <FormItem
+      <cl-form-item
         :span="2"
         :offset="2"
         :label="t('components.plugin.form.name')"
@@ -60,11 +60,11 @@
           disabled
           :placeholder="t('components.plugin.form.name')"
         />
-      </FormItem>
+      </cl-form-item>
       <!--./Row-->
 
       <!--Row-->
-      <FormItem
+      <cl-form-item
         :span="2"
         :label="t('components.plugin.form.command')"
         prop="cmd"
@@ -74,11 +74,11 @@
           disabled
           :placeholder="t('components.plugin.form.command')"
         />
-      </FormItem>
+      </cl-form-item>
       <!--./Row-->
 
       <!--Row-->
-      <FormItem
+      <cl-form-item
         :span="4"
         :label="t('components.plugin.form.description')"
         prop="description"
@@ -89,10 +89,10 @@
           :placeholder="t('components.plugin.form.description')"
           type="textarea"
         />
-      </FormItem>
+      </cl-form-item>
     </template>
 
-  </Form>
+  </cl-form>
   <!--./Row-->
 </template>
 
@@ -100,15 +100,12 @@
 import {computed, defineComponent, ref} from 'vue';
 import {useStore} from 'vuex';
 import usePlugin from '@/components/plugin/plugin';
-import Form from '@/components/form/Form.vue';
-import FormItem from '@/components/form/FormItem.vue';
 import {
   PLUGIN_INSTALL_TYPE_PUBLIC,
   PLUGIN_INSTALL_TYPE_GIT,
   PLUGIN_INSTALL_TYPE_LOCAL,
 } from '@/constants/plugin';
 import {useI18n} from 'vue-i18n';
-import Switch from '@/components/switch/Switch.vue';
 
 export default defineComponent({
   name: 'PluginForm',
@@ -116,11 +113,6 @@ export default defineComponent({
     readonly: {
       type: Boolean,
     }
-  },
-  components: {
-    Switch,
-    Form,
-    FormItem,
   },
   setup(props, {emit}) {
     // i18n

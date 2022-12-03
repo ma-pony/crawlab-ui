@@ -1,7 +1,7 @@
 <template>
   <div class="tag-input">
     <template v-for="(item, $index) in selectedValue" :key="$index">
-      <TagInputItem
+      <cl-tag-input-item
         v-if="item.isEdit"
         ref="inputItemRef"
         v-model="selectedValue[$index]"
@@ -13,7 +13,7 @@
         @delete="onDelete($index, $event)"
         @focus="onFocus($index, $event)"
       />
-      <Tag
+      <cl-tag
         v-else
         :closable="!disabled"
         :color="item.color"
@@ -27,7 +27,7 @@
     </template>
 
     <el-tooltip :content="addButtonTooltip" :disabled="!addButtonTooltip">
-      <Tab
+      <cl-tab
         :icon="['fa', 'plus']"
         :show-close="false"
         :show-title="false"
@@ -41,8 +41,6 @@
 
 <script lang="ts">
 import {computed, defineComponent, PropType, ref, watch} from 'vue';
-import TagComp from '@/components/tag/Tag.vue';
-import Tab from '@/components/tab/Tab.vue';
 import TagInputItem from '@/components/input/TagInputItem.vue';
 import {cloneArray} from '@/utils/object';
 import {useStore} from 'vuex';
@@ -50,11 +48,6 @@ import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'TagInput',
-  components: {
-    TagInputItem,
-    Tag: TagComp,
-    Tab,
-  },
   props: {
     modelValue: {
       type: Array as PropType<Tag[]>,
@@ -203,8 +196,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .tag-input {
   display: flex;
   flex-wrap: wrap;
@@ -231,8 +222,8 @@ export default defineComponent({
     justify-content: center;
 
     &:not(.disabled) {
-      background-color: $white;
-      color: $infoMediumColor;
+      background-color: var(--cl-white);
+      color: var(--cl-info-medium-light-color);
     }
   }
 }

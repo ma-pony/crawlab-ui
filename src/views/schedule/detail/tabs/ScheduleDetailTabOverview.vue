@@ -1,17 +1,13 @@
 <template>
   <div class="schedule-detail-tab-overview">
-    <ScheduleForm/>
+    <cl-schedule-form/>
   </div>
 </template>
 <script lang="ts">
 import {defineComponent} from 'vue';
-import ScheduleForm from '@/components/schedule/ScheduleForm.vue';
 
 export default defineComponent({
   name: 'ProjectDetailTabOverview',
-  components: {
-    ScheduleForm,
-  },
   setup() {
     return {};
   },

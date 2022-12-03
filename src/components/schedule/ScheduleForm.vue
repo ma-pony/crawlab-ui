@@ -1,5 +1,5 @@
 <template>
-  <Form
+  <cl-form
     v-if="form"
     ref="formRef"
     :model="form"
@@ -8,7 +8,7 @@
     class="schedule-form"
   >
     <!-- Row -->
-    <FormItem
+    <cl-form-item
       :span="2"
       :label="t('components.schedule.form.name')"
       prop="name"
@@ -20,8 +20,8 @@
         :disabled="isFormItemDisabled('name')"
         :placeholder="t('components.schedule.form.name')"
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :span="2"
       :label="t('components.schedule.form.spider')"
       prop="spider_id"
@@ -40,11 +40,11 @@
           :value="op.value"
         />
       </el-select>
-    </FormItem>
+    </cl-form-item>
     <!-- ./Row -->
 
     <!-- Row -->
-    <FormItem
+    <cl-form-item
       :span="2"
       :label="t('components.schedule.form.cron')"
       prop="cron"
@@ -56,25 +56,25 @@
         :disabled="isFormItemDisabled('cron')"
         :placeholder="t('components.schedule.form.cron')"
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :not-editable="isSelectiveForm"
       :span="2"
       :label="t('components.schedule.form.cronInfo')"
     >
       <div class="nav-btn">
-        <ScheduleCron :cron="form.cron" icon-only/>
+        <cl-schedule-cron :cron="form.cron" icon-only/>
       </div>
-    </FormItem>
+    </cl-form-item>
     <!-- ./Row -->
 
     <!-- Row -->
-    <FormItem
+    <cl-form-item
       :span="2"
       :label="t('components.schedule.form.command')"
       prop="cmd"
     >
-      <InputWithButton
+      <cl-input-with-button
         v-locate="'cmd'"
         v-model="form.cmd"
         :button-icon="['fa', 'edit']"
@@ -82,13 +82,13 @@
         :button-label="t('common.actions.edit')"
         :placeholder="t('components.schedule.form.command')"
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :span="2"
       :label="t('components.schedule.form.param')"
       prop="param"
     >
-      <InputWithButton
+      <cl-input-with-button
         v-locate="'param'"
         v-model="form.param"
         :button-icon="['fa', 'edit']"
@@ -96,11 +96,11 @@
         :button-label="t('common.actions.edit')"
         :placeholder="t('components.schedule.form.param')"
       />
-    </FormItem>
+    </cl-form-item>
     <!-- ./Row -->
 
     <!-- Row -->
-    <FormItem
+    <cl-form-item
       :span="2"
       :label="t('components.schedule.form.defaultMode')"
       prop="mode"
@@ -117,51 +117,51 @@
           :value="op.value"
         />
       </el-select>
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :span="2"
       :label="t('components.schedule.form.enabled')"
       prop="enabled"
       required
     >
-      <Switch
+      <cl-switch
         v-locate="'enabled'"
         v-model="form.enabled" @change="onEnabledChange"
       />
-    </FormItem>
+    </cl-form-item>
     <!-- ./Row -->
 
-    <FormItem
+    <cl-form-item
       v-if="form.mode === TASK_MODE_SELECTED_NODE_TAGS"
       :span="4"
       :label="t('components.schedule.form.selectedTags')"
       prop="node_tags"
       required
     >
-      <CheckTagGroup
+      <cl-check-tag-group
         v-locate="'node_tags'"
         v-model="form.node_tags"
         :disabled="isFormItemDisabled('node_tags')"
         :options="allNodeTags"
       />
-    </FormItem>
+    </cl-form-item>
 
-    <FormItem
+    <cl-form-item
       v-if="[TASK_MODE_SELECTED_NODES, TASK_MODE_SELECTED_NODE_TAGS].includes(form.mode)"
       :span="4"
       :label="t('components.schedule.form.selectedNodes')"
       required
     >
-      <CheckTagGroup
+      <cl-check-tag-group
         v-locate="'node_ids'"
         v-model="form.node_ids"
         :disabled="form.mode === TASK_MODE_SELECTED_NODE_TAGS && isFormItemDisabled('node_ids')"
         :options="allNodeSelectOptions"
       />
-    </FormItem>
+    </cl-form-item>
 
     <!-- Row -->
-    <FormItem
+    <cl-form-item
       :span="4"
       :label="t('components.schedule.form.description')"
       prop="description"
@@ -173,38 +173,24 @@
         :placeholder="t('components.schedule.form.description')"
         type="textarea"
       />
-    </FormItem>
+    </cl-form-item>
     <!-- ./Row -->
-  </Form>
+  </cl-form>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
 import useSchedule from '@/components/schedule/schedule';
-import Form from '@/components/form/Form.vue';
-import FormItem from '@/components/form/FormItem.vue';
 import useSpider from '@/components/spider/spider';
 import {TASK_MODE_SELECTED_NODE_TAGS, TASK_MODE_SELECTED_NODES} from '@/constants/task';
 import useNode from '@/components/node/node';
-import CheckTagGroup from '@/components/tag/CheckTagGroup.vue';
-import InputWithButton from '@/components/input/InputWithButton.vue';
-import Switch from '@/components/switch/Switch.vue';
 import {ElMessage} from 'element-plus';
-import ScheduleCron from '@/components/schedule/ScheduleCron.vue';
 import {useI18n} from 'vue-i18n';
 import {sendEvent} from '@/admin/umeng';
 
 export default defineComponent({
   name: 'ScheduleForm',
-  components: {
-    ScheduleCron,
-    Switch,
-    FormItem,
-    Form,
-    CheckTagGroup,
-    InputWithButton,
-  },
   setup() {
     // i18n
     const {t} = useI18n();

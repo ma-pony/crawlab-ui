@@ -1,6 +1,6 @@
 <template>
   <div class="task-detail-tab-data">
-    <ClListLayout
+    <cl-list-layout
       :action-functions="actionFunctions"
       :table-pagination="tablePagination"
       :table-columns="tableColumns"
@@ -11,20 +11,16 @@
     >
       <template #extra>
       </template>
-    </ClListLayout>
+    </cl-list-layout>
   </div>
 </template>
 <script lang="ts">
 import {computed, defineComponent, ref, watch} from 'vue';
-import ClListLayout from '@/layouts/content/list/ListLayout.vue';
 import {useStore} from 'vuex';
 import useTaskDetail from '@/views/task/detail/taskDetail';
 
 export default defineComponent({
   name: 'TaskDetailTabOverview',
-  components: {
-    ClListLayout,
-  },
   setup() {
     // store
     const ns = 'task';

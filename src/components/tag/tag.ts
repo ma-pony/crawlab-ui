@@ -11,18 +11,6 @@ import useForm from '@/components/form/form';
 import useTagService from '@/services/tag/tagService';
 import {getDefaultFormComponentData} from '@/utils/form';
 import {FORM_FIELD_TYPE_INPUT, FORM_FIELD_TYPE_INPUT_TEXTAREA,} from '@/constants/form';
-import colors from '@/styles/color.scss';
-
-// get new tag
-export const getNewTag = (): Tag => {
-  const colorNames = Object.keys(colors);
-  const index = Math.floor(Math.random() * colorNames.length);
-  const name = colorNames[index];
-  const color = colors[name] || colors.blue;
-  return {
-    color,
-  };
-};
 
 // form component data
 const formComponentData = getDefaultFormComponentData<Tag>();

@@ -9,7 +9,7 @@
       <span class="prefix">
         <template v-if="item.icon">
           <font-awesome-icon v-if="Array.isArray(item.icon)" :icon="item.icon"/>
-          <atom-material-icon v-else-if="typeof item.icon === 'string'" :is-dir="false" :name="item.icon"/>
+          <cl-atom-material-icon v-else-if="typeof item.icon === 'string'" :is-dir="false" :name="item.icon"/>
         </template>
       </span>
       <span class="title">
@@ -21,11 +21,9 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import AtomMaterialIcon from '@/components/icon/AtomMaterialIcon.vue';
 
 export default defineComponent({
   name: 'ContextMenuList',
-  components: {AtomMaterialIcon},
   props: {
     items: {
       type: Array as PropType<ContextMenuItem[]>,
@@ -49,8 +47,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .context-menu-list {
   list-style: none;
   margin: 0;
@@ -58,8 +54,8 @@ export default defineComponent({
   min-width: auto;
 
   .context-menu-item {
-    height: $contextMenuItemHeight;
-    max-width: $contextMenuItemMaxWidth;
+    height: var(--cl-context-menu-item-height);
+    max-width: var(--cl-context-menu-item-max-width);
     display: flex;
     align-items: center;
     margin: 0;
@@ -67,7 +63,7 @@ export default defineComponent({
     cursor: pointer;
 
     &:hover {
-      background-color: $primaryPlainColor;
+      background-color: var(--cl-primary-plain-color);
     }
 
     .title {

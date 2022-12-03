@@ -1,6 +1,6 @@
 <template>
   <div class="notification-detail-tab-triggers">
-    <Transfer
+    <cl-transfer
       v-if="triggersList && triggersEnabled"
       :titles="triggersTitles"
       :data="triggersList"
@@ -12,14 +12,10 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Transfer from '@/components/transfer/Transfer.vue';
 import useNotificationDetail from '@/views/notification/detail/useNotificationDetail';
 
 export default defineComponent({
   name: 'NotificationDetailTabTriggers',
-  components: {
-    Transfer,
-  },
   setup() {
     return {
       ...useNotificationDetail(),

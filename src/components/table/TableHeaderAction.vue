@@ -63,24 +63,22 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .action {
   margin-left: 3px;
   font-size: 10px;
 
   &:hover {
-    color: $primaryColor;
+    color: var(--cl-primary-color);
   }
 
   &.focused {
     display: inline !important;
-    color: $primaryColor;
+    color: var(--cl-primary-color);
   }
 
   &.active {
     display: inline !important;
-    color: $warningColor;
+    color: var(--cl-warning-color);
   }
 }
 </style>

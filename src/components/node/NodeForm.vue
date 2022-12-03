@@ -1,12 +1,12 @@
 <template>
-  <Form
+  <cl-form
     v-if="form"
     ref="formRef"
     :model="form"
     :selective="isSelectiveForm"
   >
     <!--Row-->
-    <FormItem
+    <cl-form-item
       :span="2"
       :label="t('components.node.form.name')"
       not-editable
@@ -19,8 +19,8 @@
         :disabled="isFormItemDisabled('name')"
         :placeholder="t('components.node.form.name')"
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       v-if="readonly"
       :span="2"
       :label="t('components.node.form.key')"
@@ -32,34 +32,34 @@
         :model-value="form.key"
         disabled
       />
-    </FormItem>
+    </cl-form-item>
     <!--./Row-->
 
     <!--Row-->
     <!--TODO: implement tags later-->
-    <FormItem
+    <cl-form-item
       v-if="false"
       :span="2"
       :label="t('components.node.form.tags')"
       prop="tags"
     >
-      <TagInput v-locate="'tags'" v-model="form.tags" :disabled="isFormItemDisabled('tags')"/>
-    </FormItem>
+      <cl-tag-input v-locate="'tags'" v-model="form.tags" :disabled="isFormItemDisabled('tags')"/>
+    </cl-form-item>
     <!--./Row-->
 
     <!--Row-->
-    <FormItem
+    <cl-form-item
       :span="2"
       :label="t('components.node.form.type')"
       not-editable
       prop="type"
     >
-      <NodeType
+      <cl-node-type
         v-locate="'type'"
         :is-master="form.is_master"
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :span="2"
       :label="t('components.node.form.ip')"
       prop="ip"
@@ -70,11 +70,11 @@
         :disabled="isFormItemDisabled('ip')"
         :placeholder="t('components.node.form.ip')"
       />
-    </FormItem>
+    </cl-form-item>
     <!--./Row-->
 
     <!--Row-->
-    <FormItem
+    <cl-form-item
       :span="2"
       :label="t('components.node.form.mac')"
       prop="mac"
@@ -85,8 +85,8 @@
         :disabled="isFormItemDisabled('mac')"
         :placeholder="t('components.node.form.mac')"
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :span="2"
       :label="t('components.node.form.hostname')"
       prop="hostname"
@@ -97,23 +97,23 @@
         :disabled="isFormItemDisabled('hostname')"
         :placeholder="t('components.node.form.hostname')"
       />
-    </FormItem>
+    </cl-form-item>
     <!--./Row-->
 
     <!--Row-->
-    <FormItem
+    <cl-form-item
       :span="2"
       :label="t('components.node.form.enabled')"
       prop="enabled"
     >
-      <Switch
+      <cl-switch
         v-locate="'enabled'"
         v-model="form.enabled"
         :disabled="isFormItemDisabled('enabled')"
         @change="onEnabledChange"
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :span="2"
       :label="t('components.node.form.max_runners')"
       prop="max_runners"
@@ -125,11 +125,11 @@
         :min="0"
         :placeholder="t('components.node.form.max_runners')"
       />
-    </FormItem>
+    </cl-form-item>
     <!--./Row-->
 
     <!--Row-->
-    <FormItem
+    <cl-form-item
       :span="4"
       :label="t('components.node.form.description')"
       prop="description"
@@ -141,8 +141,8 @@
         :placeholder="t('components.node.form.description')"
         type="textarea"
       />
-    </FormItem>
-  </Form>
+    </cl-form-item>
+  </cl-form>
   <!--./Row-->
 </template>
 
@@ -150,11 +150,6 @@
 import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
 import useNode from '@/components/node/node';
-import TagInput from '@/components/input/TagInput.vue';
-import Form from '@/components/form/Form.vue';
-import FormItem from '@/components/form/FormItem.vue';
-import NodeType from '@/components/node/NodeType.vue';
-import Switch from '@/components/switch/Switch.vue';
 import {useI18n} from 'vue-i18n';
 import {sendEvent} from '@/admin/umeng';
 
@@ -164,13 +159,6 @@ export default defineComponent({
     readonly: {
       type: Boolean,
     }
-  },
-  components: {
-    Switch,
-    NodeType,
-    Form,
-    FormItem,
-    TagInput,
   },
   setup(props, {emit}) {
     // i18n

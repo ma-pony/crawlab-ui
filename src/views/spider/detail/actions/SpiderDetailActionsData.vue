@@ -1,41 +1,31 @@
 <template>
-  <NavActionGroup>
-    <NavActionFaIcon
+  <cl-nav-action-group>
+    <cl-nav-action-fa-icon
       :icon="['fa', 'database']"
       :tooltip="t('components.spider.actions.data.tooltip.dataActions')"
     />
-    <NavActionItem
+    <cl-nav-action-item
       v-export="colName"
     >
-      <FaIconButton
+      <cl-fa-icon-button
         :icon="['fa', 'download']"
         :tooltip="t('components.spider.actions.data.tooltip.export')"
         type="primary"
         id="export-btn"
         class-name="export-btn"
       />
-    </NavActionItem>
-  </NavActionGroup>
+    </cl-nav-action-item>
+  </cl-nav-action-group>
 </template>
 
 <script lang="ts">
 import {defineComponent, ref} from 'vue';
 import {useI18n} from 'vue-i18n';
-import NavActionGroup from '@/components/nav/NavActionGroup.vue';
-import NavActionItem from '@/components/nav/NavActionItem.vue';
-import FaIconButton from '@/components/button/FaIconButton.vue';
-import NavActionFaIcon from '@/components/nav/NavActionFaIcon.vue';
 import {ExportTypeCsv} from '@/constants/export';
 import {useStore} from 'vuex';
 
 export default defineComponent({
   name: 'SpiderDetailActionsData',
-  components: {
-    NavActionFaIcon,
-    FaIconButton,
-    NavActionGroup,
-    NavActionItem,
-  },
   setup() {
     // i18n
     const {t} = useI18n();

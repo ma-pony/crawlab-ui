@@ -1,6 +1,6 @@
 <template>
   <div class="nav-action-button">
-    <LabelButton
+    <cl-label-button
       v-if="buttonType === 'label'"
       :disabled="disabled"
       :icon="icon"
@@ -13,7 +13,7 @@
       :class-name="className"
       @click="onClick"
     />
-    <FaIconButton
+    <cl-fa-icon-button
       v-else-if="buttonType === 'fa-icon'"
       :disabled="disabled"
       :icon="icon"
@@ -30,15 +30,9 @@
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
 import {buttonProps} from '@/components/button/Button.vue';
-import LabelButton from '@/components/button/LabelButton.vue';
-import FaIconButton from '@/components/button/FaIconButton.vue';
 
 export default defineComponent({
   name: 'NavActionButton',
-  components: {
-    LabelButton,
-    FaIconButton,
-  },
   props: {
     buttonType: {
       type: String as PropType<ButtonType>,

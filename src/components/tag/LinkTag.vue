@@ -1,22 +1,22 @@
 <template>
-  <Tag
-      :clickable="clickable"
-      :color="color"
-      :effect="effect"
-      :icon="icon"
-      :label="label"
-      :spinning="spinning"
-      :tooltip="tooltip"
-      :type="type"
-      :width="width"
-      class="link-tag"
-      @click="onClick"
+  <cl-tag
+    :clickable="clickable"
+    :color="color"
+    :effect="effect"
+    :icon="icon"
+    :label="label"
+    :spinning="spinning"
+    :tooltip="tooltip"
+    :type="type"
+    :width="width"
+    class="link-tag"
+    @click="onClick"
   />
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Tag, {tagProps} from '@/components/tag/Tag.vue';
+import {tagProps} from '@/components/tag/Tag.vue';
 import {useRouter} from 'vue-router';
 
 const linkTagProps = {
@@ -29,7 +29,6 @@ const linkTagProps = {
 
 export default defineComponent({
   name: 'LinkTag',
-  components: {Tag},
   props: linkTagProps,
   setup(props: LinkTagProps, {emit}) {
     const router = useRouter();

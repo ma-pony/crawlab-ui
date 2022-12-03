@@ -1,24 +1,24 @@
 <template>
   <cl-list-layout
-      :table-columns="tableColumns"
-      :table-data="tableData"
-      :table-total="tableTotal"
-      :table-pagination="tablePagination"
-      :action-functions="actionFunctions"
-      :nav-actions="navActions"
-      no-actions
-      :visible-buttons="['export', 'customize-columns']"
+    :table-columns="tableColumns"
+    :table-data="tableData"
+    :table-total="tableTotal"
+    :table-pagination="tablePagination"
+    :action-functions="actionFunctions"
+    :nav-actions="navActions"
+    no-actions
+    :visible-buttons="['export', 'customize-columns']"
   >
     <template #extra>
       <cl-dialog
-          :visible="dialogVisible"
-          width="800px"
-          @confirm="onDialogConfirm"
-          @close="onDialogClose"
+        :visible="dialogVisible"
+        width="800px"
+        @confirm="onDialogConfirm"
+        @close="onDialogClose"
       >
-        <DependencySettingForm
-            :form="form"
-            @change="onFormChange"
+        <cl-dependency-setting-form
+          :form="form"
+          @change="onFormChange"
         />
       </cl-dialog>
     </template>
@@ -27,12 +27,12 @@
 
 <script lang="ts">
 import {defineComponent, computed, ref, h} from 'vue';
-import {useRequest, ClNavLink} from 'crawlab-ui';
-import DependencySettingForm from './DependencySettingForm.vue';
 import {ElMessage} from 'element-plus';
+import useRequest from '@/services/request';
+import {translate} from '@/utils';
+import ClNavLink from '@/components/nav/NavLink.vue';
 
-const pluginName = 'dependency';
-const t = (path) => window['_tp'](pluginName, path);
+const t = translate;
 const _t = window['_t'];
 
 const endpoint = '/plugin-proxy/dependency/settings';
@@ -44,9 +44,8 @@ const {
 
 export default defineComponent({
   name: 'DependencySettings',
-  components: {DependencySettingForm},
   setup(props, {emit}) {
-    const form = ref({});
+    const form = ref<any>({});
 
     const dialogVisible = ref(false);
 
@@ -56,7 +55,7 @@ export default defineComponent({
         label: t('table.columns.name'),
         icon: ['fa', 'font'],
         width: '150',
-        value: (row) => h(ClNavLink, {
+        value: (row: any) => h(ClNavLink, {
           label: row.name,
           path: `/dependencies/${row.key}`,
         }),
@@ -83,11 +82,11 @@ export default defineComponent({
         label: t('settings.table.columns.description'),
         icon: ['fa', 'comment-alt'],
         width: '1000',
-        value: (row) => t(row.description),
+        value: (row: any) => t(row.description),
       },
       {
         key: 'actions',
-        label: _t('components.table.columns.actions'),
+        label: t('components.table.columns.actions'),
         fixed: 'right',
         width: '200',
         buttons: [
@@ -95,7 +94,7 @@ export default defineComponent({
             type: 'warning',
             icon: ['fa', 'cog'],
             tooltip: t('settings.manage'),
-            onClick: (row) => {
+            onClick: (row: any) => {
               form.value = {...row};
               dialogVisible.value = true;
             },
@@ -124,7 +123,7 @@ export default defineComponent({
           tableTotal.value = 0;
         }
         const {data, total} = res;
-        tableData.value = data;
+        tableData.value = data as any;
         tableTotal.value = total;
       },
     });
@@ -137,12 +136,12 @@ export default defineComponent({
     const onDialogConfirm = async () => {
       if (!form.value._id) return;
       await post(`${endpoint}/${form.value._id}`, form.value);
-      await ElMessage.success(_t('common.message.success.save'));
+      await ElMessage.success(t('common.message.success.save'));
       form.value = {};
       dialogVisible.value = false;
     };
 
-    const onFormChange = (value) => {
+    const onFormChange = (value: any) => {
       form.value = {...value};
     };
 

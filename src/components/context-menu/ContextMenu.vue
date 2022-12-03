@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {ClickOutside} from 'element-plus/lib/directives';
+import {ClickOutside} from 'element-plus';
 
 export const contextMenuDefaultProps = {
   visible: {

@@ -1,37 +1,27 @@
 <template>
-  <NavActionGroup class="task-detail-actions-logs">
-    <NavActionFaIcon :icon="['fa', 'file-alt']"/>
-    <NavActionItem>
+  <cl-nav-action-group class="task-detail-actions-logs">
+    <cl-nav-action-fa-icon :icon="['fa', 'file-alt']"/>
+    <cl-nav-action-item>
       <el-tooltip
           :content="t('components.task.logs.actions.autoUpdateLogs')"
       >
-        <Switch
+        <cl-switch
             v-model="internalAutoUpdate"
             @change="onAutoUpdateChange"
         />
       </el-tooltip>
-    </NavActionItem>
-  </NavActionGroup>
+    </cl-nav-action-item>
+  </cl-nav-action-group>
 </template>
 
 <script lang="ts">
 import {defineComponent, ref, watch} from 'vue';
-import NavActionGroup from '@/components/nav/NavActionGroup.vue';
-import NavActionItem from '@/components/nav/NavActionItem.vue';
-import NavActionFaIcon from '@/components/nav/NavActionFaIcon.vue';
 import {useStore} from 'vuex';
 import useTask from '@/components/task/task';
-import Switch from '@/components/switch/Switch.vue';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'TaskDetailActionsLogs',
-  components: {
-    Switch,
-    NavActionFaIcon,
-    NavActionGroup,
-    NavActionItem,
-  },
   setup() {
     // i18n
     const {t} = useI18n();

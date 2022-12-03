@@ -1,6 +1,6 @@
 <template>
   <div class="git-references">
-    <ClTable
+    <cl-table
       :key="gitRefType"
       :columns="tableColumns"
       :data="tableData"
@@ -17,7 +17,6 @@
 import {computed, defineComponent, h, onBeforeMount, ref} from 'vue';
 import {useStore} from 'vuex';
 import Time from '@/components/time/Time.vue';
-import Table from '@/components/table/Table.vue';
 import {GIT_REF_TYPE_BRANCH} from '@/constants/git';
 import {TABLE_ACTION_CUSTOMIZE_COLUMNS} from '@/constants/table';
 import {useI18n} from 'vue-i18n';
@@ -25,9 +24,6 @@ import useSpiderDetail from '@/views/spider/detail/useSpiderDetail';
 
 export default defineComponent({
   name: 'SpiderDetailTabGitReferences',
-  components: {
-    ClTable: Table,
-  },
   setup() {
     // i18n
     const {t} = useI18n();

@@ -1,5 +1,5 @@
 <template>
-  <Button
+  <cl-button
     :circle="circle"
     :disabled="disabled"
     :plain="plain"
@@ -16,13 +16,12 @@
     <div v-if="badgeIcon" class="badge-icon">
       <font-awesome-icon :icon="badgeIcon"/>
     </div>
-  </Button>
+  </cl-button>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, PropType} from 'vue';
 import {buttonProps} from './Button.vue';
-import Button from '@/components/button/Button.vue';
 
 export const faIconButtonProps = {
   icon: {
@@ -42,7 +41,6 @@ export const faIconButtonProps = {
 
 export default defineComponent({
   name: 'FaIconButton',
-  components: {Button},
   props: faIconButtonProps,
   emits: [
     'click',
@@ -64,14 +62,12 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-@import "../../styles/variables";
-
 .badge-icon {
   position: absolute;
   top: -2px;
   right: 2px;
   font-size: 8px;
-  color: $white;
+  color: var(--cl-white);
 }
 </style>
 

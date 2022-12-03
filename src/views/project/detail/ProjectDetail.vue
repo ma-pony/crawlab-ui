@@ -1,15 +1,12 @@
 <template>
-  <DetailLayout store-namespace="project">
-  </DetailLayout>
+  <cl-detail-layout store-namespace="project"/>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import DetailLayout from '@/layouts/content/detail/DetailLayout.vue';
 
 export default defineComponent({
   name: 'ProjectDetail',
-  components: {DetailLayout},
   setup() {
     return {};
   },

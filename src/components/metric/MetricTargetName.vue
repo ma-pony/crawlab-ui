@@ -1,6 +1,6 @@
 <template>
   <div class="metric-target-name">
-    <NavLink
+    <cl-nav-link
       :label="computedName"
       @click="onClick"
     />
@@ -10,11 +10,9 @@
 <script lang="ts">
 import {computed, defineComponent, PropType} from 'vue';
 import {useI18n} from 'vue-i18n';
-import NavLink from '@/components/nav/NavLink.vue';
 
 export default defineComponent({
   name: 'MetricTargetName',
-  components: {NavLink},
   props: {
     name: {
       type: String

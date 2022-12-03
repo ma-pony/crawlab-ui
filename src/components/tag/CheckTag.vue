@@ -1,5 +1,5 @@
 <template>
-  <Tag
+  <cl-tag
     :clickable="computedClickable"
     :label="label"
     :tooltip="tooltip"
@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import {computed, defineComponent, ref} from 'vue';
-import Tag, {tagProps} from '@/components/tag/Tag.vue';
+import {tagProps} from '@/components/tag/Tag.vue';
 
 const checkTagProps = {
   modelValue: {
@@ -29,9 +29,6 @@ const checkTagProps = {
 
 export default defineComponent({
   name: 'CheckTag',
-  components: {
-    Tag,
-  },
   props: checkTagProps,
   emits: [
     'update:model-value',

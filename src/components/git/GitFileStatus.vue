@@ -12,7 +12,6 @@
 <script lang="ts">
 import {computed, defineComponent, PropType} from 'vue';
 import {emptyObjectFunc} from '@/utils/func';
-import variables from '@/styles/variables.scss';
 
 export default defineComponent({
   name: 'GitFileStatus',
@@ -27,19 +26,19 @@ export default defineComponent({
       const {fileStatus} = props;
       switch (fileStatus?.worktree) {
         case '?':
-          return {color: variables.dangerColor};
+          return {color: 'var(--cl-danger-color)'}
         case 'M':
-          return {color: variables.primaryColor};
+          return {color: 'var(--cl-primary-color)'}
         case 'A':
-          return {color: variables.successColor};
+          return {color: 'var(--cl-success-color)'}
         case 'D':
-          return {color: variables.infoColor};
+          return {color: 'var(--cl-info-color)'}
         case 'R':
-          return {color: variables.primaryColor};
+          return {color: 'var(--cl-primary-color)'}
         case 'C':
-          return {color: variables.primaryColor};
+          return {color: 'var(--cl-primary-color)'}
         case 'U':
-          return {color: variables.dangerColor};
+          return {color: 'var(--cl-danger-color)'}
         default:
           return {};
       }
@@ -53,8 +52,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "../../styles/variables.scss";
-
 .git-file-status {
   .file-name {
   }
@@ -62,7 +59,7 @@ export default defineComponent({
   .file-path {
     margin-left: 10px;
     font-size: 11px;
-    color: $infoMediumLightColor;
+    color: var(--cl-info-medium-light-color);
   }
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
   <div class="metric-target-type">
-    <NodeType
+    <cl-node-type
       v-if="type === 'node'"
       :is-master="isMaster"
     />
-    <Tag
+    <cl-tag
       v-else
       :label="label"
       :type="tagType"
@@ -21,7 +21,6 @@ import NodeType from '@/components/node/NodeType.vue';
 
 export default defineComponent({
   name: 'MetricTargetType',
-  components: {NodeType, Tag},
   props: {
     type: {
       type: String as PropType<MetricTargetType>,

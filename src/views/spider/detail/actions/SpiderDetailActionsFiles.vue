@@ -1,11 +1,11 @@
 <template>
-  <NavActionGroup>
-    <NavActionFaIcon
+  <cl-nav-action-group>
+    <cl-nav-action-fa-icon
       :icon="['fa', 'laptop-code']"
       :tooltip="t('components.spider.actions.files.tooltip.fileEditorActions')"
     />
-    <NavActionItem>
-      <FaIconButton
+    <cl-nav-action-item>
+      <cl-fa-icon-button
         :icon="['fa', 'upload']"
         :tooltip="t('components.spider.actions.files.tooltip.uploadFiles')"
         type="primary"
@@ -13,7 +13,7 @@
         class-name="upload-btn"
         @click="onClickUpload"
       />
-      <FaIconButton
+      <cl-fa-icon-button
         :icon="['fa', 'cog']"
         :tooltip="t('components.spider.actions.files.tooltip.fileEditorSettings')"
         type="info"
@@ -21,8 +21,8 @@
         class-name="open-settings-btn"
         @click="onOpenFilesSettings"
       />
-    </NavActionItem>
-  </NavActionGroup>
+    </cl-nav-action-item>
+  </cl-nav-action-group>
 </template>
 
 <script lang="ts">
@@ -30,19 +30,9 @@ import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
 import {useI18n} from 'vue-i18n';
 import {sendEvent} from '@/admin/umeng';
-import NavActionGroup from '@/components/nav/NavActionGroup.vue';
-import NavActionItem from '@/components/nav/NavActionItem.vue';
-import FaIconButton from '@/components/button/FaIconButton.vue';
-import NavActionFaIcon from '@/components/nav/NavActionFaIcon.vue';
 
 export default defineComponent({
   name: 'SpiderDetailActionsFiles',
-  components: {
-    NavActionFaIcon,
-    FaIconButton,
-    NavActionGroup,
-    NavActionItem,
-  },
   setup() {
     // i18n
     const {t} = useI18n();

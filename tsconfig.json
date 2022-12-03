@@ -12,9 +12,6 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": [
-      "webpack-env"
-    ],
     "paths": {
       "@/*": [
         "src/*"
@@ -31,6 +28,7 @@
     ]
   },
   "include": [
+    "src/shims-vue.d.ts",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",

@@ -1,24 +1,22 @@
 <template>
   <div
-      :class="classes"
-      :draggable="true"
-      class="draggable-item"
-      @dragstart="$emit('d-start', item)"
-      @dragend="$emit('d-end', item)"
-      @dragenter="$emit('d-enter', item)"
-      @dragleave="$emit('d-leave', item)"
+    :class="classes"
+    :draggable="true"
+    class="draggable-item"
+    @dragstart="$emit('d-start', item)"
+    @dragend="$emit('d-end', item)"
+    @dragenter="$emit('d-enter', item)"
+    @dragleave="$emit('d-leave', item)"
   >
-    <DraggableItemContent :item="item"/>
+    <cl-draggable-item-content :item="item"/>
   </div>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, PropType} from 'vue';
-import DraggableItemContent from '@/components/drag/DraggableItemContent.vue';
 
 export default defineComponent({
   name: 'DraggableItem',
-  components: {DraggableItemContent},
   props: {
     item: {
       type: Object as PropType<DraggableItemData>,
@@ -55,8 +53,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .draggable-item {
   position: relative;
 

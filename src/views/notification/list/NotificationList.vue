@@ -1,5 +1,5 @@
 <template>
-  <ClListLayout
+  <cl-list-layout
     class="notification-list"
     :action-functions="actionFunctions"
     :nav-actions="navActions"
@@ -10,24 +10,18 @@
   >
     <template #extra>
       <!-- Dialogs (handled by store) -->
-      <CreateEditNotificationDialog/>
+      <cl-create-edit-notification-dialog/>
       <!-- ./Dialogs -->
     </template>
-  </ClListLayout>
+  </cl-list-layout>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import ClListLayout from '@/layouts/content/list/ListLayout.vue';
-import CreateEditNotificationDialog from '@/components/notification/CreateEditNotificationDialog.vue';
 import useNotificationList from '@/views/notification/list/useNotificationList';
 
 export default defineComponent({
   name: 'NotificationList',
-  components: {
-    ClListLayout,
-    CreateEditNotificationDialog,
-  },
   setup() {
     const {
       navActions,

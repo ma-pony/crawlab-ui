@@ -1,6 +1,6 @@
 <template>
   <div class="plugin-status">
-    <Tag
+    <cl-tag
         :key="data"
         :icon="data.icon"
         :label="data.label"
@@ -12,7 +12,7 @@
       <template #tooltip>
         <div v-html="data.tooltip"/>
       </template>
-    </Tag>
+    </cl-tag>
   </div>
 </template>
 
@@ -24,16 +24,11 @@ import {
   PLUGIN_STATUS_RUNNING,
   PLUGIN_STATUS_ERROR,
 } from '@/constants/plugin';
-import Tag from '@/components/tag/Tag.vue';
-import colors from '@/styles/color.scss';
 import {emptyArrayFunc} from '@/utils/func';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'PluginStatus',
-  components: {
-    Tag,
-  },
   props: {
     status: {
       type: String as PropType<string>,
@@ -83,7 +78,7 @@ export default defineComponent({
         case PLUGIN_STATUS_ERROR:
           return {
             label: t('components.plugin.status.label.error'),
-            tooltip: `${t('components.plugin.status.tooltip.error')}:<br><span style="color: ${colors.red}">${error}</span>`,
+            tooltip: `${t('components.plugin.status.tooltip.error')}:<br><span style="color: var(--cl-red)">${error}</span>`,
             type: 'danger',
             icon: ['fa', 'times'],
           };

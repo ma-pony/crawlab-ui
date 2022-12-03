@@ -1,25 +1,25 @@
 <template>
   <div class="my-settings">
-    <SimpleLayout padding="0">
-      <NavActions ref="navActions" class="nav-actions">
-        <NavActionGroup>
-          <NavActionButton
+    <cl-simple-layout padding="0">
+      <cl-nav-actions ref="navActions" class="nav-actions">
+        <cl-nav-action-group>
+          <cl-nav-action-button
             :icon="['fa', 'save']"
             button-type="label"
             :label="t('components.nav.actions.save')"
             type="success"
             @click="onSave"
           />
-        </NavActionGroup>
-      </NavActions>
-      <Form
+        </cl-nav-action-group>
+      </cl-nav-actions>
+      <cl-form
         ref="formRef"
         :model="form"
         :rules="formRules"
         class="user-form"
       >
         <!-- Row -->
-        <FormItem
+        <cl-form-item
           :span="2"
           :label="t('components.user.form.username')"
           prop="username"
@@ -29,24 +29,24 @@
             v-model="form.username"
             :placeholder="t('components.user.form.username')"
           />
-        </FormItem>
-        <FormItem
+        </cl-form-item>
+        <cl-form-item
           :span="2"
           :label="t('components.user.form.password')"
           prop="password"
           required
         >
-          <LabelButton
+          <cl-label-button
             :icon="['fa','lock']"
             :label="t('components.user.form.changePassword')"
             type="danger"
             @click="onChangePassword"
           />
-        </FormItem>
+        </cl-form-item>
         <!-- ./Row -->
 
         <!-- Row -->
-        <FormItem
+        <cl-form-item
           :span="2"
           :label="t('components.user.form.email')"
           prop="email"
@@ -56,8 +56,8 @@
             :placeholder="t('components.user.form.email')"
             type="email"
           />
-        </FormItem>
-        <FormItem
+        </cl-form-item>
+        <cl-form-item
           :span="2"
           :label="t('components.user.form.role')"
           prop="role"
@@ -67,10 +67,10 @@
             <el-option :value="ROLE_ADMIN" :label="t('components.user.role.admin')"/>
             <el-option :value="ROLE_NORMAL" :label="t('components.user.role.normal')"/>
           </el-select>
-        </FormItem>
+        </cl-form-item>
         <!-- ./Row -->
-      </Form>
-    </SimpleLayout>
+      </cl-form>
+    </cl-simple-layout>
   </div>
 </template>
 
@@ -79,28 +79,12 @@ import {defineComponent, onBeforeMount, ref} from 'vue';
 import {useStore} from 'vuex';
 import {plainClone} from '@/utils/object';
 import useUser from '@/components/user/user';
-import Form from '@/components/form/Form.vue';
-import FormItem from '@/components/form/FormItem.vue';
 import {ROLE_ADMIN, ROLE_NORMAL} from '@/constants/user';
 import {useI18n} from 'vue-i18n';
-import LabelButton from '@/components/button/LabelButton.vue';
-import NavActions from '@/components/nav/NavActions.vue';
-import NavActionButton from '@/components/nav/NavActionButton.vue';
-import SimpleLayout from '@/layouts/content/simple/SimpleLayout.vue';
-import NavActionGroup from '@/components/nav/NavActionGroup.vue';
 import {ElMessage} from 'element-plus';
 
 export default defineComponent({
   name: 'MySettings',
-  components: {
-    NavActionGroup,
-    SimpleLayout,
-    Form,
-    FormItem,
-    LabelButton,
-    NavActions,
-    NavActionButton,
-  },
   setup() {
     // i18n
     const {t} = useI18n();

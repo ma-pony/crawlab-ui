@@ -1,11 +1,11 @@
 <template>
   <div class="plugin-pid">
-    <Tag
-        v-for="s in statusWithPid"
-        :key="JSON.stringify(s)"
-        :type="getType(s)"
-        :label="s.pid"
-        :tooltip="s.node?.name"
+    <cl-tag
+      v-for="s in statusWithPid"
+      :key="JSON.stringify(s)"
+      :type="getType(s)"
+      :label="s.pid"
+      :tooltip="s.node?.name"
     />
   </div>
 </template>
@@ -13,13 +13,9 @@
 <script lang="ts">
 import {computed, defineComponent, PropType} from 'vue';
 import {emptyArrayFunc} from '@/utils/func';
-import Tag from '@/components/tag/Tag.vue';
 
 export default defineComponent({
   name: 'PluginPid',
-  components: {
-    Tag,
-  },
   props: {
     status: {
       type: Array as PropType<PluginStatus[]>,

@@ -1,5 +1,5 @@
 <template>
-  <Button
+  <cl-button
     :circle="circle"
     :disabled="disabled"
     :plain="plain"
@@ -15,16 +15,15 @@
   >
     <font-awesome-icon v-if="icon" :icon="icon" class="icon"/>
     {{ label }}
-  </Button>
+  </cl-button>
 </template>
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import Button, {buttonProps} from '@/components/button/Button.vue';
+import {buttonProps} from '@/components/button/Button.vue';
 
 export default defineComponent({
   name: 'LabelButton',
-  components: {Button},
   props: {
     icon: {
       type: [Array, String] as PropType<Icon>,

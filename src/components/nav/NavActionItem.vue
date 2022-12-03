@@ -28,15 +28,13 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .nav-action-item {
   margin: 10px 0;
-  height: fit-content;
+  //height: fit-content;
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  color: $navActionsItemColor;
+  color: var(--cl-nav-actions-item-color);
 
   & + .nav-action-item {
     //margin-left: 10px;

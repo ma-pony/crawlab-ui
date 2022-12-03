@@ -1,5 +1,5 @@
 <template>
-  <SimpleLayout>
+  <cl-simple-layout>
     <div class="disclaimer">
       <div class="container">
         <h1 class="title">
@@ -8,18 +8,16 @@
         <div class="content" v-html="content"/>
       </div>
     </div>
-  </SimpleLayout>
+  </cl-simple-layout>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent} from 'vue';
 import {Converter} from 'showdown';
 import {useI18n} from 'vue-i18n';
-import SimpleLayout from '@/layouts/content/simple/SimpleLayout.vue';
 
 export default defineComponent({
   name: 'Disclaimer',
-  components: {SimpleLayout},
   setup() {
     // i18n
     const {t} = useI18n();
@@ -44,12 +42,10 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "../../styles/variables";
-
 .disclaimer {
   min-height: 100%;
   padding: 0 calc((100% - 800px) / 2);
-  color: $infoColor;
+  color: var(--cl-info-color);
 
   .container {
     .title {

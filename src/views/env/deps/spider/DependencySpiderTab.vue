@@ -1,20 +1,20 @@
 <template>
   <div class="dependency-spider-tab">
     <div class="top-bar">
-      <Form
+      <cl-form
         :model="spiderData"
         inline
       >
-        <FormItem :label="t('views.env.deps.spider.form.dependencyType')">
-          <Tag
+        <cl-form-item :label="t('views.env.deps.spider.form.dependencyType')">
+          <cl-tag
             :label="spiderDataDependencyTypeLabel"
             :type="spiderDataDependencyTypeType"
             :tooltip="spiderDataDependencyTypeTooltip"
             size="large"
           />
-        </FormItem>
-      </Form>
-      <Button
+        </cl-form-item>
+      </cl-form>
+      <cl-button
         class-name="action-btn"
         :tooltip="t('common.actions.install')"
         :disabled="!spiderData.dependency_type"
@@ -22,21 +22,21 @@
       >
         <font-awesome-icon class="icon" :icon="['fa', 'download']"/>
         {{ t('common.actions.install') }}
-      </Button>
+      </cl-button>
     </div>
-    <ClTable
+    <cl-table
       :data="tableData"
       :columns="tableColumns"
       hide-footer
     />
-    <InstallForm
+    <cl-install-form
       :visible="dialogVisible.install"
       :nodes="allNodes"
       :names="installForm.names"
       @confirm="onInstall"
       @close="() => onDialogClose('install')"
     />
-    <UninstallForm
+    <cl-uninstall-form
       :visible="dialogVisible.uninstall"
       :nodes="uninstallForm.nodes"
       :names="uninstallForm.names"
@@ -51,17 +51,11 @@ import {computed, defineComponent, h, onMounted, ref} from 'vue';
 import {useRoute} from 'vue-router';
 import {useStore} from 'vuex';
 import {ElMessage, ElMessageBox} from 'element-plus';
-import Form from '@/components/form/Form.vue';
-import FormItem from '@/components/form/FormItem.vue';
-import Button from '@/components/button/Button.vue';
-import Tag from '@/components/tag/Tag.vue';
 import useRequest from '@/services/request';
 import {translate} from '@/utils';
 import NavLink from '@/components/nav/NavLink.vue';
 import NodeType from '@/components/node/NodeType.vue';
-import InstallForm from '@/views/env/deps/components/form/InstallForm.vue';
-import UninstallForm from '@/views/env/deps/components/form/UninstallForm.vue';
-import Table from '@/components/table/Table.vue';
+import Tag from '@/components/tag/Tag.vue';
 
 const t = translate;
 
@@ -74,15 +68,6 @@ const endpoint = '/env/deps';
 
 export default defineComponent({
   name: 'DependencySpiderTab',
-  components: {
-    ClTable: Table,
-    Form,
-    FormItem,
-    Button,
-    Tag,
-    InstallForm,
-    UninstallForm,
-  },
   setup() {
     const route = useRoute();
 

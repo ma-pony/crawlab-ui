@@ -1,17 +1,13 @@
 <template>
   <div class="plugin-detail-tab-overview">
-    <PluginForm/>
+    <cl-plugin-form/>
   </div>
 </template>
 <script lang="ts">
 import {defineComponent} from 'vue';
-import PluginForm from '@/components/plugin/PluginForm.vue';
 
 export default defineComponent({
   name: 'PluginDetailTabOverview',
-  components: {
-    PluginForm,
-  },
   setup() {
     return {};
   },

@@ -33,6 +33,8 @@ import FileEditorSettingsFormItem from './file/FileEditorSettingsFormItem.vue';
 import FileUpload from './file/FileUpload.vue';
 import FilterCondition from './filter/FilterCondition.vue';
 import FilterConditionList from './filter/FilterConditionList.vue';
+import FilterInput from './filter/FilterInput.vue';
+import FilterSelect from './filter/FilterSelect.vue';
 import Form from './form/Form.vue';
 import FormItem from './form/FormItem.vue';
 import FormReadonlyValue from './form/FormReadonlyValue.vue';
@@ -71,6 +73,8 @@ import NodeForm from './node/NodeForm.vue';
 import NodeRunners from './node/NodeRunners.vue';
 import NodeStatus from './node/NodeStatus.vue';
 import NodeType from './node/NodeType.vue';
+import CreateEditNotificationDialog from './notification/CreateEditNotificationDialog.vue';
+import NotificationForm from './notification/NotificationForm.vue';
 import CreateEditPluginDialog from './plugin/CreateEditPluginDialog.vue';
 import InstallPluginDialog from './plugin/InstallPluginDialog.vue';
 import InstallPublicPlugin from './plugin/InstallPublicPlugin.vue';
@@ -164,6 +168,8 @@ export {
   FileUpload as ClFileUpload,
   FilterCondition as ClFilterCondition,
   FilterConditionList as ClFilterConditionList,
+  FilterInput as ClFilterInput,
+  FilterSelect as ClFilterSelect,
   Form as ClForm,
   FormItem as ClFormItem,
   FormReadonlyValue as ClFormReadonlyValue,
@@ -202,6 +208,8 @@ export {
   NodeRunners as ClNodeRunners,
   NodeStatus as ClNodeStatus,
   NodeType as ClNodeType,
+  CreateEditNotificationDialog as ClCreateEditNotificationDialog,
+  NotificationForm as ClNotificationForm,
   CreateEditPluginDialog as ClCreateEditPluginDialog,
   InstallPluginDialog as ClInstallPluginDialog,
   InstallPublicPlugin as ClInstallPublicPlugin,

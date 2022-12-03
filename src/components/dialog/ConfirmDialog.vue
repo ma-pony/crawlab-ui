@@ -1,5 +1,5 @@
 <template>
-  <Dialog
+  <cl-dialog
       :confirm-loading="confirmLoading"
       :title="title"
       :visible="visible"
@@ -12,17 +12,15 @@
     <template v-else>
       <slot></slot>
     </template>
-  </Dialog>
+  </cl-dialog>
 </template>
 
 <script lang="ts">
 import {defineComponent, PropType, ref} from 'vue';
-import Dialog from '@/components/dialog/Dialog.vue';
 import {voidFunc} from '@/utils/func';
 
 export default defineComponent({
   name: 'ConfirmDialog',
-  components: {Dialog},
   props: {
     confirmFunc: {
       type: Function as PropType<() => void>,

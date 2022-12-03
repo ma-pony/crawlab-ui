@@ -1,5 +1,5 @@
 <template>
-  <Tag
+  <cl-tag
       :key="data"
       :icon="data.icon"
       :label="data.label"
@@ -18,9 +18,6 @@ import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'NodeRunners',
-  components: {
-    Tag,
-  },
   props: {
     available: {
       type: Number as PropType<number | undefined>,

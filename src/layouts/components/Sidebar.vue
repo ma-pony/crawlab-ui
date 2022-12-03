@@ -31,15 +31,15 @@
     <div class="sidebar-menu">
       <el-menu
         :collapse="sidebarCollapsed"
-        :active-text-color="menuActiveText"
-        :background-color="menuBg"
-        :text-color="menuText"
+        active-text-color="var(--cl-menu-active-text)"
+        background-color="var(--cl-menu-bg)"
+        text-color="var(--cl-menu-text)"
         :default-active="activePath"
         :default-openeds="openedIndexes"
         @select="onMenuItemClick"
       >
         <template v-for="(item, $index) in menuItems" :key="$index">
-          <SidebarItem :item="item"/>
+          <cl-sidebar-item :item="item"/>
         </template>
         <div class="plugin-anchor"/>
       </el-menu>
@@ -52,18 +52,13 @@
 import {computed, defineComponent} from 'vue';
 import {useStore} from 'vuex';
 import {useRoute, useRouter} from 'vue-router';
-import variables from '@/styles/variables.scss';
-import logo from '@/assets/js/svg/logo.js';
+import logo from '@/assets/svg/logo';
 import {getPrimaryPath} from '@/utils/path';
-import SidebarItem from '@/layouts/components/SidebarItem.vue';
 import {useI18n} from 'vue-i18n';
 import urljoin from 'url-join';
 
 export default defineComponent({
   name: 'Sidebar',
-  components: {
-    SidebarItem,
-  },
   setup() {
     const router = useRouter();
 
@@ -149,7 +144,6 @@ export default defineComponent({
       onMenuItemClick,
       toggleSidebar,
       systemInfo,
-      ...variables,
       t,
     };
   },
@@ -157,29 +151,27 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables";
-
 .sidebar {
   overflow-x: hidden;
   user-select: none;
-  background-color: $menuBg;
+  background-color: var(--cl-menu-bg);
 
   &.collapsed {
     .logo-container,
     .sidebar-menu {
-      width: $sidebarWidthCollapsed;
+      width: var(--cl-sidebar-width-collapsed);
     }
   }
 
   .logo-container {
     display: inline-block;
-    height: $headerHeight;
-    width: $sidebarWidth;
+    height: var(--cl-header-height);
+    width: var(--cl-sidebar-width);
     padding-left: 12px;
     padding-right: 20px;
     border-right: none;
-    background-color: $menuBg;
-    transition: width $sidebarCollapseTransitionDuration;
+    background-color: var(--cl-menu-bg);
+    transition: width var(--cl-sidebar-collapse-transition-duration);
 
     .logo {
       display: flex;
@@ -206,7 +198,7 @@ export default defineComponent({
         line-height: 24px;
         margin-left: 10px;
         font-weight: 500;
-        color: $menuText;
+        color: var(--cl-menu-text);
 
         .logo-sub-title-block {
           display: flex;
@@ -219,16 +211,16 @@ export default defineComponent({
   }
 
   .sidebar-menu {
-    width: $sidebarWidth;
-    height: calc(100vh - #{$headerHeight});
+    width: var(--cl-sidebar-width);
+    height: calc(100vh - var(--cl-header-height));
     margin: 0;
     padding: 0;
-    transition: width $sidebarCollapseTransitionDuration;
+    transition: width var(--cl-sidebar-collapse-transition-duration);
 
     .el-menu {
       border-right: none;
       width: inherit !important;
-      height: calc(100vh - #{$headerHeight});
+      height: calc(100vh - var(--cl-header-height));
       transition: none !important;
     }
   }
@@ -237,20 +229,20 @@ export default defineComponent({
 .sidebar-toggle {
   position: fixed;
   top: 0;
-  left: $sidebarWidth;
+  left: var(--cl-sidebar-width);
   display: inline-flex;
   align-items: center;
   width: 18px;
   height: 64px;
   z-index: 5;
-  color: $menuBg;
+  color: var(--cl-menu-bg);
   font-size: 24px;
   margin-left: 10px;
   cursor: pointer;
-  transition: left $sidebarCollapseTransitionDuration;
+  transition: left var(--cl-sidebar-collapse-transition-duration);
 
   &.collapsed {
-    left: $sidebarWidthCollapsed;
+    left: var(--cl-sidebar-width-collapsed);
   }
 }
 </style>

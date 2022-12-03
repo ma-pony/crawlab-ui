@@ -1,5 +1,5 @@
 <template>
-  <Tag
+  <cl-tag
     v-for="tag in tags"
     :key="tag._id"
     :clickable="clickable"
@@ -11,13 +11,9 @@
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
 import {emptyArrayFunc} from '@/utils/func';
-import Tag from '@/components/tag/Tag.vue';
 
 export default defineComponent({
   name: 'TagList',
-  components: {
-    Tag,
-  },
   props: {
     tags: {
       type: Array as PropType<Tag[]>,

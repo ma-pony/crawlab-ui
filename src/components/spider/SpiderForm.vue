@@ -1,7 +1,7 @@
 <template>
-  <Form v-if="form" ref="formRef" :model="form">
+  <cl-form v-if="form" ref="formRef" :model="form">
     <!-- Row -->
-    <FormItem
+    <cl-form-item
       :span="2"
       :label="t('components.spider.form.name')"
       prop="name"
@@ -14,8 +14,8 @@
         id="name"
         class="name"
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :span="2"
       :label="t('components.spider.form.project')"
       prop="project_id"
@@ -34,17 +34,17 @@
           :value="op.value"
         />
       </el-select>
-    </FormItem>
+    </cl-form-item>
     <!-- ./Row -->
 
     <!-- Row -->
-    <FormItem
+    <cl-form-item
       :span="2"
       :label="t('components.spider.form.command')"
       prop="cmd"
       required
     >
-      <InputWithButton
+      <cl-input-with-button
         v-model="form.cmd"
         :button-icon="['fa', 'edit']"
         :button-label="t('common.actions.edit')"
@@ -53,13 +53,13 @@
         id="cmd"
         class-name="cmd"
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :span="2"
       :label="t('components.spider.form.param')"
       prop="param"
     >
-      <InputWithButton
+      <cl-input-with-button
         v-model="form.param"
         :button-icon="['fa', 'edit']"
         :button-label="t('common.actions.edit')"
@@ -68,11 +68,11 @@
         id="cmd"
         class-name="param"
       />
-    </FormItem>
+    </cl-form-item>
     <!-- ./Row -->
 
     <!-- Row -->
-    <FormItem
+    <cl-form-item
       :span="2"
       :label="t('components.spider.form.defaultMode')"
       prop="mode"
@@ -91,8 +91,8 @@
           :value="op.value"
         />
       </el-select>
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :span="2"
       :label="t('components.spider.form.resultsCollection')"
       prop="col_name"
@@ -108,42 +108,42 @@
         @input="onDataCollectionInput"
         @select="onDataCollectionSuggestionSelect"
       />
-    </FormItem>
+    </cl-form-item>
     <!-- ./Row -->
 
-    <FormItem
+    <cl-form-item
       v-if="form.mode === TASK_MODE_SELECTED_NODE_TAGS"
       :span="4"
       :label="t('components.spider.form.selectedTags')"
       prop="node_tags"
       required
     >
-      <CheckTagGroup
+      <cl-check-tag-group
         v-model="form.node_tags"
         :options="allNodeTags"
         :disabled="isFormItemDisabled('node_tags')"
         id="node-tags"
         class-name="node-tags"
       />
-    </FormItem>
+    </cl-form-item>
 
-    <FormItem
+    <cl-form-item
       v-if="[TASK_MODE_SELECTED_NODES, TASK_MODE_SELECTED_NODE_TAGS].includes(form.mode)"
       :span="4"
       :label="t('components.spider.form.selectedNodes')"
       prop="node_ids"
       required
     >
-      <CheckTagGroup
+      <cl-check-tag-group
         v-model="form.node_ids"
         :options="allNodeSelectOptions"
         :disabled="form.mode === TASK_MODE_SELECTED_NODE_TAGS && isFormItemDisabled('node_ids')"
         id="node"
         class-name="nodes"
       />
-    </FormItem>
+    </cl-form-item>
 
-    <FormItem
+    <cl-form-item
       :span="4"
       :label="t('components.spider.form.description')"
       prop="description"
@@ -156,8 +156,8 @@
         id="description"
         class="description"
       />
-    </FormItem>
-  </Form>
+    </cl-form-item>
+  </cl-form>
 </template>
 
 <script lang="ts">
@@ -166,10 +166,6 @@ import {useStore} from 'vuex';
 import useSpider from '@/components/spider/spider';
 import useNode from '@/components/node/node';
 import useProject from '@/components/project/project';
-import Form from '@/components/form/Form.vue';
-import FormItem from '@/components/form/FormItem.vue';
-import InputWithButton from '@/components/input/InputWithButton.vue';
-import CheckTagGroup from '@/components/tag/CheckTagGroup.vue';
 import {TASK_MODE_SELECTED_NODE_TAGS, TASK_MODE_SELECTED_NODES} from '@/constants/task';
 import pinyin, {STYLE_NORMAL} from 'pinyin';
 import {isZeroObjectId} from '@/utils/mongo';
@@ -177,12 +173,6 @@ import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'SpiderForm',
-  components: {
-    Form,
-    FormItem,
-    InputWithButton,
-    CheckTagGroup,
-  },
   setup() {
     // i18n
     const {t} = useI18n();

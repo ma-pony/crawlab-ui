@@ -1,5 +1,5 @@
 <template>
-  <CreateEditDialog
+  <cl-create-edit-dialog
     :type="activeDialogKey"
     :tab-name="createEditDialogTabName"
     :visible="createEditDialogVisible"
@@ -10,24 +10,18 @@
     :batch-form-fields="batchFormFields"
   >
     <template #default>
-      <NotificationForm/>
+      <cl-notification-form/>
     </template>
-  </CreateEditDialog>
+  </cl-create-edit-dialog>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
-import CreateEditDialog from '@/components/dialog/CreateEditDialog.vue';
-import NotificationForm from '@/components/notification/NotificationForm.vue';
 import useNotification from '@/components/notification/notification';
 
 export default defineComponent({
   name: 'CreateEditNotificationDialog',
-  components: {
-    CreateEditDialog,
-    NotificationForm,
-  },
   setup() {
     // store
     const store = useStore();

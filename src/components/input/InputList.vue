@@ -13,7 +13,7 @@
         @change="getOnChangeFn($index)"
       />
       <div class="actions">
-        <Tag
+        <cl-tag
           clickable
           :icon="['fa', 'plus']"
           :size="actionSize"
@@ -23,7 +23,7 @@
           :tooltip="t('common.actions.add')"
           @click="() => onAdd($index)"
         />
-        <Tag
+        <cl-tag
           clickable
           :icon="['fa', 'xmark']"
           :size="actionSize"
@@ -41,14 +41,12 @@
 <script lang="ts">
 import {defineComponent, PropType, ref, watch} from 'vue';
 import {cloneArray, translate} from '@/utils';
-import Tag from '@/components/tag/Tag.vue';
 
 // i18n
 const t = translate;
 
 export default defineComponent({
   name: 'InputList',
-  components: {Tag},
   props: {
     modelValue: {
       type: Array as PropType<string[]>,

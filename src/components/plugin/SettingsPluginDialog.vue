@@ -1,12 +1,12 @@
 <template>
-  <Dialog
+  <cl-dialog
     :title="t('components.plugin.settings.title')"
     :visible="activeDialogKey === 'settings'"
     @close="onClose"
     @confirm="onConfirm"
   >
-    <Form class="settings-form" :model="settings.value">
-      <FormItem
+    <cl-form class="settings-form" :model="settings.value">
+      <cl-form-item
         :span="2"
         :offset="2"
         :label="t('components.plugin.settings.label.installSource')"
@@ -24,16 +24,16 @@
             :value="op.value"
           />
         </el-select>
-      </FormItem>
-      <FormItem
+      </cl-form-item>
+      <cl-form-item
         :span="4"
         label=" "
       >
         <el-alert class="alert-tip" type="info" :closable="false" show-icon>
           {{ t('components.plugin.settings.tips.installSource') }}
         </el-alert>
-      </FormItem>
-      <FormItem
+      </cl-form-item>
+      <cl-form-item
         :span="2"
         :offset="2"
         :label="t('components.plugin.settings.label.goProxy')"
@@ -52,36 +52,28 @@
             :value="op.value"
           />
         </el-select>
-      </FormItem>
-      <FormItem
+      </cl-form-item>
+      <cl-form-item
         :span="4"
         label=" "
       >
         <el-alert class="alert-tip" type="info" :closable="false" show-icon>
           {{ t('components.plugin.settings.tips.goProxy') }}
         </el-alert>
-      </FormItem>
-    </Form>
-  </Dialog>
+      </cl-form-item>
+    </cl-form>
+  </cl-dialog>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
 import usePlugin from '@/components/plugin/plugin';
-import Dialog from '@/components/dialog/Dialog.vue';
-import Form from '@/components/form/Form.vue';
-import FormItem from '@/components/form/FormItem.vue';
 import {useI18n} from 'vue-i18n';
 import {sendEvent} from '@/admin/umeng';
 
 export default defineComponent({
   name: 'SettingsPluginDialog',
-  components: {
-    FormItem,
-    Dialog,
-    Form,
-  },
   setup() {
     // i18n
     const {t} = useI18n();

@@ -1,6 +1,6 @@
 <template>
   <div :class="sidebarCollapsed ? 'collapsed' : ''" class="header-container">
-    <el-header :height="headerHeight" class="header">
+    <el-header height="var(--cl-header-height)" class="header">
       <div class="left">
       </div>
       <div class="right">
@@ -79,7 +79,6 @@
 <script lang="ts">
 import {computed, defineComponent} from 'vue';
 import {useStore} from 'vuex';
-import variables from '../../styles/variables.scss';
 import {useRouter} from 'vue-router';
 import {useI18n} from 'vue-i18n';
 import {setGlobalLang} from '@/utils/i18n';
@@ -153,7 +152,6 @@ export default defineComponent({
     };
 
     return {
-      ...variables,
       sidebarCollapsed,
       locale,
       langName,
@@ -169,16 +167,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .header-container {
-  height: $headerHeight;
-  width: calc(100vw - #{$sidebarWidth});
-  background-color: $headerBg;
-  transition: width $sidebarCollapseTransitionDuration;
+  height: var(--cl-header-height);
+  width: calc(100vw - var(--cl-sidebar-width));
+  background-color: var(--cl-header-bg);
+  transition: width var(--cl-sidebar-collapse-transition-duration);
 
   &.collapsed {
-    width: calc(100vw - #{$sidebarWidthCollapsed});
+    width: calc(100vw - var(--cl-sidebar-width-collapsed));
   }
 
   .header {
@@ -188,7 +184,7 @@ export default defineComponent({
     align-items: center;
     justify-content: space-between;
     border-left: none;
-    border-bottom: 1px solid $headerBorderColor;
+    border-bottom: 1px solid var(--cl-header-border-color);
 
     .left {
       display: flex;

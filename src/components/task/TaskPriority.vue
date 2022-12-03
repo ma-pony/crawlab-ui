@@ -1,5 +1,5 @@
 <template>
-  <Tag
+  <cl-tag
     :key="data"
     :color="data.color"
     :icon="data.icon"
@@ -14,16 +14,11 @@
 </template>
 
 <script lang="ts">
-import colors from '@/styles/color.scss';
 import {computed, defineComponent, PropType} from 'vue';
-import Tag from '@/components/tag/Tag.vue';
 import {getPriorityLabel} from '@/utils/task';
 
 export default defineComponent({
   name: 'TaskPriority',
-  components: {
-    Tag,
-  },
   props: {
     priority: {
       type: Number,
@@ -44,27 +39,27 @@ export default defineComponent({
       if (priority <= 2) {
         return {
           label: getPriorityLabel(priority),
-          color: colors.red,
+          color: 'var(--cl-red)',
         };
       } else if (priority <= 4) {
         return {
           label: getPriorityLabel(priority),
-          color: colors.orange,
+          color: 'var(--cl-orange)',
         };
       } else if (priority <= 6) {
         return {
           label: getPriorityLabel(priority),
-          color: colors.limeGreen,
+          color: 'var(--cl-lime-green)',
         };
       } else if (priority <= 8) {
         return {
           label: getPriorityLabel(priority),
-          color: colors.cyan,
+          color: 'var(--cl-cyan)',
         };
       } else {
         return {
           label: getPriorityLabel(priority),
-          color: colors.blue,
+          color: 'var(--cl-blue)',
         };
       }
     });

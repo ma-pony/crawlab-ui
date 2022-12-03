@@ -1,5 +1,5 @@
 <template>
-  <CreateEditDialog
+  <cl-create-edit-diaglog
     :type="activeDialogKey"
     :tab-name="createEditDialogTabName"
     :visible="createEditDialogVisible"
@@ -10,24 +10,18 @@
     :batch-form-fields="batchFormFields"
   >
     <template #default>
-      <SpiderForm/>
+      <cl-spider-form/>
     </template>
-  </CreateEditDialog>
+  </cl-create-edit-diaglog>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
-import CreateEditDialog from '@/components/dialog/CreateEditDialog.vue';
-import SpiderForm from '@/components/spider/SpiderForm.vue';
 import useSpider from '@/components/spider/spider';
 
 export default defineComponent({
   name: 'CreateSpiderDialog',
-  components: {
-    CreateEditDialog,
-    SpiderForm,
-  },
   setup() {
     // store
     const store = useStore();

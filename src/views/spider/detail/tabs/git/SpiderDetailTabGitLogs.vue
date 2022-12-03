@@ -1,6 +1,6 @@
 <template>
   <div class="git-logs">
-    <ClTable
+    <cl-table
       :data="tableData"
       :columns="tableColumns"
       :page="tablePagination.page"
@@ -15,7 +15,6 @@
 <script lang="ts">
 import {computed, defineComponent, h, onBeforeMount, ref} from 'vue';
 import {useStore} from 'vuex';
-import Table from '@/components/table/Table.vue';
 import Time from '@/components/time/Time.vue';
 import Tag from '@/components/tag/Tag.vue';
 import {GIT_REF_TYPE_BRANCH} from '@/constants/git';
@@ -25,9 +24,6 @@ import useSpiderDetail from '../../useSpiderDetail';
 
 export default defineComponent({
   name: 'SpiderDetailTabGitLogs',
-  components: {
-    ClTable: Table,
-  },
   setup() {
     // i18n
     const {t} = useI18n();

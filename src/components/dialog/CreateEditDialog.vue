@@ -1,5 +1,5 @@
 <template>
-  <Dialog
+  <cl-dialog
     class-name="create-edit-dialog"
     :title="computedTitle"
     :visible="visible"
@@ -19,13 +19,13 @@
         <slot/>
       </el-tab-pane>
       <el-tab-pane v-if="!noBatch" :label="t('components.dialog.type.batch')" name="batch">
-        <CreateDialogContentBatch
+        <cl-create-dialog-content-batch
           :data="batchFormData"
           :fields="batchFormFields"
         />
       </el-tab-pane>
     </el-tabs>
-  </Dialog>
+  </cl-dialog>
 </template>
 
 <script lang="ts">
@@ -39,10 +39,6 @@ import {sendEvent} from '@/admin/umeng';
 
 export default defineComponent({
   name: 'CreateEditDialog',
-  components: {
-    Dialog,
-    CreateDialogContentBatch,
-  },
   props: {
     visible: {
       type: Boolean,

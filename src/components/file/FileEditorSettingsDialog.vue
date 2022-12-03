@@ -11,7 +11,7 @@
         </el-menu-item>
       </el-menu>
       <el-form
-        :label-width="variables.fileEditorSettingsDialogLabelWidth"
+        label-width="var(--cl-file-editor-settings-dialog-label-width)"
         class="form"
       >
         <el-form-item
@@ -24,7 +24,7 @@
             </el-tooltip>
             {{ getDefinitionTitle(name) }}
           </template>
-          <FileEditorSettingsFormItem v-model="options[name]" :name="name"/>
+          <cl-file-editor-settings-form-item v-model="options[name]" :name="name"/>
         </el-form-item>
       </el-form>
       <template #footer>
@@ -39,16 +39,13 @@
 import {computed, defineComponent, onBeforeMount, readonly, ref} from 'vue';
 import {useStore} from 'vuex';
 import {plainClone} from '@/utils/object';
-import variables from '@/styles/variables.scss';
 import {getOptionDefinition, getThemes} from '@/utils/codemirror';
-import FileEditorSettingsFormItem from '@/components/file/FileEditorSettingsFormItem.vue';
 import {onBeforeRouteLeave} from 'vue-router';
 import {useI18n} from 'vue-i18n';
 import {sendEvent} from '@/admin/umeng';
 
 export default defineComponent({
   name: 'FileEditorSettingsDialog',
-  components: {FileEditorSettingsFormItem},
   setup() {
     const {t} = useI18n();
 
@@ -150,7 +147,6 @@ export default defineComponent({
     });
 
     return {
-      variables,
       options,
       activeTabName,
       tabs,

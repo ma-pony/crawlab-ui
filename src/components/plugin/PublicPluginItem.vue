@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="actions-wrapper">
-        <LabelButton
+        <cl-label-button
           class-name="install-btn"
           :type="type"
           :icon="icon"
@@ -34,8 +34,7 @@
 
 <script lang="ts">
 import {computed, defineComponent, PropType} from 'vue';
-import defaultLogo from '@/assets/js/svg/logo.js';
-import LabelButton from '@/components/button/LabelButton.vue';
+import defaultLogo from '@/assets/svg/logo';
 import {useI18n} from 'vue-i18n';
 import {
   PLUGIN_STATUS_INSTALLING,
@@ -43,7 +42,6 @@ import {
 
 export default defineComponent({
   name: 'PublicPluginItem',
-  components: {LabelButton},
   props: {
     plugin: {
       type: Object as PropType<PublicPlugin>,
@@ -146,8 +144,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "../../styles/variables.scss";
-
 .public-plugin-item {
   width: 100%;
   height: 100px;
@@ -196,11 +192,11 @@ export default defineComponent({
           font-size: 20px;
           line-height: 160%;
           font-weight: 500;
-          color: $infoColor;
+          color: var(--cl-info-color);
         }
 
         .description {
-          color: $infoMediumColor;
+          color: var(--cl-info-medium-color);
           width: 100%;
           word-break: break-word;
         }

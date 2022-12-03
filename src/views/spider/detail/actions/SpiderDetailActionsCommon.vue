@@ -1,45 +1,33 @@
 <template>
-  <NavActionGroup>
-    <NavActionFaIcon :icon="['fa', 'tools']"/>
-    <NavActionItem>
-      <FaIconButton :icon="['fa', 'play']" :tooltip="t('common.actions.run')" type="success" @click="onRun"/>
-    </NavActionItem>
+  <cl-nav-action-group>
+    <cl-nav-action-fa-icon :icon="['fa', 'tools']"/>
+    <cl-nav-action-item>
+      <cl-fa-icon-button :icon="['fa', 'play']" :tooltip="t('common.actions.run')" type="success" @click="onRun"/>
+    </cl-nav-action-item>
     <!--TODO: implement-->
-    <NavActionItem v-if="false">
-      <FaIconButton :icon="['fa', 'clone']" :tooltip="t('common.actions.clone')" type="info"/>
-    </NavActionItem>
+    <cl-nav-action-item v-if="false">
+      <cl-fa-icon-button :icon="['fa', 'clone']" :tooltip="t('common.actions.clone')" type="info"/>
+    </cl-nav-action-item>
     <!--TODO: implement-->
-    <NavActionItem v-if="false">
-      <FaIconButton :icon="['far', 'star']" plain :tooltip="t('common.actions.bookmark')" type="warning"/>
-    </NavActionItem>
-  </NavActionGroup>
+    <cl-nav-action-item v-if="false">
+      <cl-fa-icon-button :icon="['far', 'star']" plain :tooltip="t('common.actions.bookmark')" type="warning"/>
+    </cl-nav-action-item>
+  </cl-nav-action-group>
 
   <!-- Dialogs (handled by store) -->
-  <RunSpiderDialog v-if="activeDialogKey === 'run'"/>
+  <cl-run-spider-dialog v-if="activeDialogKey === 'run'"/>
   <!-- ./Dialogs -->
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import FaIconButton from '@/components/button/FaIconButton.vue';
-import NavActionGroup from '@/components/nav/NavActionGroup.vue';
-import NavActionItem from '@/components/nav/NavActionItem.vue';
-import NavActionFaIcon from '@/components/nav/NavActionFaIcon.vue';
 import {useStore} from 'vuex';
 import useSpider from '@/components/spider/spider';
-import RunSpiderDialog from '@/components/spider/RunSpiderDialog.vue';
 import {useI18n} from 'vue-i18n';
 import {sendEvent} from '@/admin/umeng';
 
 export default defineComponent({
   name: 'SpiderDetailActionsCommon',
-  components: {
-    NavActionFaIcon,
-    FaIconButton,
-    NavActionGroup,
-    NavActionItem,
-    RunSpiderDialog,
-  },
   setup() {
     // i18n
     const {t} = useI18n();

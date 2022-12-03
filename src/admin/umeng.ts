@@ -6,7 +6,7 @@ const {
 
 export const initUmeng = async () => {
   // import umeng.js
-  require('@/assets/js/umeng.js');
+  await import('@/assets/js/umeng.js');
 
   if (localStorage.getItem('useStats') !== '0') {
     const res = await get('/version');

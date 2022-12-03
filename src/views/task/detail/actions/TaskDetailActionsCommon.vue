@@ -1,42 +1,38 @@
 <template>
-  <NavActionGroup class="task-detail-actions-common">
-    <NavActionFaIcon :icon="['fa', 'tools']"/>
-    <NavActionItem>
-      <TaskStatus :status="form.status" size="large"/>
-    </NavActionItem>
-    <NavActionItem>
-      <FaIconButton
+  <cl-nav-action-group class="task-detail-actions-common">
+    <cl-nav-action-fa-icon :icon="['fa', 'tools']"/>
+    <cl-nav-action-item>
+      <cl-task-status :status="form.status" size="large"/>
+    </cl-nav-action-item>
+    <cl-nav-action-item>
+      <cl-fa-icon-button
         :icon="['fa', 'redo']"
         :tooltip="t('common.actions.restart')"
         type="warning"
         @click="onRestart"
       />
-    </NavActionItem>
-    <NavActionItem>
-      <FaIconButton
+    </cl-nav-action-item>
+    <cl-nav-action-item>
+      <cl-fa-icon-button
         v-if="cancellable"
         :icon="['fa', 'pause']"
         :tooltip="t('common.actions.cancel')"
         type="info"
         @click="onCancel"
       />
-      <FaIconButton
+      <cl-fa-icon-button
         v-else
         :icon="['fa', 'trash-alt']"
         :tooltip="t('common.actions.delete')"
         type="danger"
         @click="onDelete"
       />
-    </NavActionItem>
-  </NavActionGroup>
+    </cl-nav-action-item>
+  </cl-nav-action-group>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent} from 'vue';
-import FaIconButton from '@/components/button/FaIconButton.vue';
-import NavActionGroup from '@/components/nav/NavActionGroup.vue';
-import NavActionItem from '@/components/nav/NavActionItem.vue';
-import NavActionFaIcon from '@/components/nav/NavActionFaIcon.vue';
 import {useStore} from 'vuex';
 import {isCancellable} from '@/utils/task';
 import useTask from '@/components/task/task';
@@ -44,7 +40,6 @@ import {ElMessage, ElMessageBox} from 'element-plus';
 import useRequest from '@/services/request';
 import useTaskDetail from '@/views/task/detail/taskDetail';
 import {useRouter} from 'vue-router';
-import TaskStatus from '@/components/task/TaskStatus.vue';
 import {useI18n} from 'vue-i18n';
 
 const {
@@ -53,13 +48,6 @@ const {
 
 export default defineComponent({
   name: 'TaskDetailActionsCommon',
-  components: {
-    TaskStatus,
-    NavActionFaIcon,
-    FaIconButton,
-    NavActionGroup,
-    NavActionItem,
-  },
   setup() {
     // i18n
     const {t} = useI18n();

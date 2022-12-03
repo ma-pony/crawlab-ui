@@ -1,5 +1,5 @@
 <template>
-  <Tag
+  <cl-tag
     :key="data"
     :color="data.color"
     :icon="data.icon"
@@ -12,21 +12,16 @@
     <template #tooltip>
       <div class="tooltip" v-html="data.tooltip"/>
     </template>
-  </Tag>
+  </cl-tag>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, PropType} from 'vue';
 import {emptyObjectFunc} from '@/utils';
-import Tag from '@/components/tag/Tag.vue';
 import {useI18n} from 'vue-i18n';
-import variables from '@/styles/variables.scss';
 
 export default defineComponent({
   name: 'TaskCommand',
-  components: {
-    Tag,
-  },
   emits: [
     'click',
   ],
@@ -69,16 +64,16 @@ export default defineComponent({
       return 'warning';
     });
 
-    const color = computed<Color>(() => {
+    const color = computed<string>(() => {
       switch (type.value) {
         case 'info':
-          return variables.infoLightColor;
+          return 'var(--cl-info-light-color)';
         case 'primary':
-          return variables.primaryColor;
+          return 'var(--cl-primary-color)';
         case 'warning':
-          return variables.warningColor;
+          return 'var(--cl-warning-color)';
         default:
-          return variables.infoLightColor;
+          return 'var(--cl-info-light-color)';
       }
     });
 

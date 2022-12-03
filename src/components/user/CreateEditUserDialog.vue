@@ -1,5 +1,5 @@
 <template>
-  <CreateEditDialog
+  <cl-create-edit-dialog
       :action-functions="actionFunctions"
       :batch-form-data="formList"
       :batch-form-fields="batchFormFields"
@@ -11,24 +11,18 @@
       :visible="createEditDialogVisible"
   >
     <template #default>
-      <UserForm/>
+      <cl-user-form/>
     </template>
-  </CreateEditDialog>
+  </cl-create-edit-dialog>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
-import CreateEditDialog from '@/components/dialog/CreateEditDialog.vue';
-import UserForm from '@/components/user/UserForm.vue';
 import useUser from '@/components/user/user';
 
 export default defineComponent({
   name: 'CreateEditUserDialog',
-  components: {
-    CreateEditDialog,
-    UserForm,
-  },
   setup() {
     // store
     const store = useStore();

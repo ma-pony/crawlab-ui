@@ -1,5 +1,5 @@
 <template>
-  <CreateEditDialog
+  <cl-create-edit-dialog
       :type="activeDialogKey"
       :tab-name="createEditDialogTabName"
       :visible="createEditDialogVisible"
@@ -10,24 +10,18 @@
       :batch-form-fields="batchFormFields"
   >
     <template #default>
-      <ProjectForm/>
+      <cl-project-form/>
     </template>
-  </CreateEditDialog>
+  </cl-create-edit-dialog>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
-import CreateEditDialog from '@/components/dialog/CreateEditDialog.vue';
-import ProjectForm from '@/components/project/ProjectForm.vue';
 import useProject from '@/components/project/project';
 
 export default defineComponent({
   name: 'CreateEditProjectDialog',
-  components: {
-    CreateEditDialog,
-    ProjectForm,
-  },
   setup() {
     // store
     const store = useStore();

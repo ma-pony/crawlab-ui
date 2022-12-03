@@ -11,7 +11,7 @@
     :index="item.path"
     @click="onMenuItemClick(item)"
   >
-    <MenuItemIcon :item="item" size="normal"/>
+    <cl-menu-item-icon :item="item" size="normal"/>
     <template #title>
       <span class="menu-item-title">{{ t(item.title) }}</span>
     </template>
@@ -24,7 +24,7 @@
     :index="item.path"
   >
     <template #title>
-      <MenuItemIcon :item="item" size="normal"/>
+      <cl-menu-item-icon :item="item" size="normal"/>
       <span class="menu-item-title">{{ t(item.title) }}</span>
     </template>
     <SidebarItem
@@ -41,14 +41,10 @@
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
 import {emptyObjectFunc} from '@/utils/func';
-import MenuItemIcon from '@/components/icon/MenuItemIcon.vue';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'SidebarItem',
-  components: {
-    MenuItemIcon,
-  },
   props: {
     item: {
       type: Object as PropType<MenuItem>,
@@ -74,8 +70,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables";
-
 .el-menu-item * {
   vertical-align: middle;
 }
@@ -83,7 +77,7 @@ export default defineComponent({
 .el-menu-item,
 .el-sub-menu {
   &.is-active {
-    background-color: $menuHover !important;
+    background-color: var(--cl-menu-hover) !important;
   }
 
   .menu-item-title {

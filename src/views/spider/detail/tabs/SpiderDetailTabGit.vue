@@ -1,5 +1,5 @@
 <template>
-  <NavTabs
+  <cl-nav-tabs
     :active-key="activeTabKey"
     :items="tabItems"
     @select="onTabSelect"
@@ -25,7 +25,7 @@
             </el-tooltip>
           </el-radio-button>
         </el-radio-group>
-        <LabelButton
+        <cl-label-button
           id="checkout-btn"
           class-name="checkout-btn"
           :type="!loading.checkout ? 'primary' : 'warning'"
@@ -36,7 +36,7 @@
           :loading="loading.checkout"
           @click="onClickCheckout"
         />
-        <LabelButton
+        <cl-label-button
           id="pull-btn"
           class-name="pull-btn"
           :type="!loading.pull ? 'primary' : 'warning'"
@@ -47,7 +47,7 @@
           :loading="loading.pull"
           @click="onClickPull"
         />
-        <LabelButton
+        <cl-label-button
           id="commit-btn"
           class-name="commit-btn"
           :type="!loading.commit ? 'success' : 'warning'"
@@ -60,24 +60,24 @@
         />
       </div>
     </template>
-  </NavTabs>
+  </cl-nav-tabs>
   <div class="tab-content">
-    <SpiderDetailTabGitRemote v-if="activeTabKey === 'remote'"/>
-    <SpiderDetailTabGitReferences v-else-if="activeTabKey === 'references'"/>
-    <SpiderDetailTabGitLogs v-else-if="activeTabKey === 'logs'"/>
-    <SpiderDetailTabGitChanges v-else-if="activeTabKey === 'changes'"/>
-    <SpiderDetailTabGitIgnore v-else-if="activeTabKey === 'ignore'"/>
+    <cl-spider-detail-tab-git-remote v-if="activeTabKey === 'remote'"/>
+    <cl-spider-detail-tab-git-references v-else-if="activeTabKey === 'references'"/>
+    <cl-spider-detail-tab-git-logs v-else-if="activeTabKey === 'logs'"/>
+    <cl-spider-detail-tab-git-changes v-else-if="activeTabKey === 'changes'"/>
+    <cl-spider-detail-tab-git-ignore v-else-if="activeTabKey === 'ignore'"/>
   </div>
 
   <!--Checkout Dialog-->
-  <Dialog
+  <cl-dialog
     :visible="dialogVisible.checkout"
     title="Checkout"
     @confirm="onDialogCheckoutConfirm"
     @close="onDialogCheckoutClose"
   >
-    <Form ref="checkoutFormRef" :model="checkoutForm">
-      <FormItem
+    <cl-form ref="checkoutFormRef" :model="checkoutForm">
+      <cl-form-item
         id="checkout-form-item-ref-type"
         class="checkout-form-item-ref-type"
         :span="4"
@@ -97,8 +97,8 @@
             {{ t('components.git.references.type.tag') }}
           </el-radio-button>
         </el-radio-group>
-      </FormItem>
-      <FormItem
+      </cl-form-item>
+      <cl-form-item
         id="checkout-form-item-name"
         class="checkout-form-item-name"
         :span="4"
@@ -116,9 +116,9 @@
             :value="op.value"
           />
         </el-select>
-      </FormItem>
-    </Form>
-  </Dialog>
+      </cl-form-item>
+    </cl-form>
+  </cl-dialog>
   <!--./Checkout Dialog-->
 </template>
 
@@ -126,35 +126,13 @@
 import {computed, defineComponent, onBeforeMount, onBeforeUnmount, ref, watch} from 'vue';
 import {useStore} from 'vuex';
 import {useRoute} from 'vue-router';
-import LabelButton from '@/components/button/LabelButton.vue';
-import NavTabs from '@/components/nav/NavTabs.vue';
 import useSpiderDetail from '@/views/spider/detail/useSpiderDetail';
-import SpiderDetailTabGitChanges from '@/views/spider/detail/tabs/git/SpiderDetailTabGitChanges.vue';
-import SpiderDetailTabGitLogs from '@/views/spider/detail/tabs/git/SpiderDetailTabGitLogs.vue';
-import SpiderDetailTabGitIgnore from '@/views/spider/detail/tabs/git/SpiderDetailTabGitIgnore.vue';
-import SpiderDetailTabGitRemote from '@/views/spider/detail/tabs/git/SpiderDetailTabGitRemote.vue';
-import SpiderDetailTabGitReferences from '@/views/spider/detail/tabs/git/SpiderDetailTabGitReferences.vue';
-import Dialog from '@/components/dialog/Dialog.vue';
 import {GIT_REF_TYPE_BRANCH, GIT_REF_TYPE_TAG} from '@/constants/git';
-import Form from '@/components/form/Form.vue';
-import FormItem from '@/components/form/FormItem.vue';
 import {useI18n} from 'vue-i18n';
 import {sendEvent} from '@/admin/umeng';
 
 export default defineComponent({
   name: 'SpiderDetailTabGit',
-  components: {
-    Dialog,
-    LabelButton,
-    NavTabs,
-    Form,
-    FormItem,
-    SpiderDetailTabGitRemote,
-    SpiderDetailTabGitReferences,
-    SpiderDetailTabGitLogs,
-    SpiderDetailTabGitChanges,
-    SpiderDetailTabGitIgnore,
-  },
   setup() {
     // i18n
     const {t} = useI18n();

@@ -1,5 +1,5 @@
 <template>
-  <Form
+  <cl-form
     v-if="form"
     ref="formRef"
     :model="form"
@@ -8,7 +8,7 @@
     class="user-form"
   >
     <!-- Row -->
-    <FormItem
+    <cl-form-item
       :span="2"
       :label="t('components.user.form.username')"
       prop="username"
@@ -20,8 +20,8 @@
         :disabled="isFormItemDisabled('username')"
         :placeholder="t('components.user.form.username')"
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :span="2"
       :label="t('components.user.form.password')"
       prop="password"
@@ -35,7 +35,7 @@
         :placeholder="t('components.user.form.password')"
         type="password"
       />
-      <LabelButton
+      <cl-label-button
         v-else
         id="password"
         class-name="password"
@@ -44,11 +44,11 @@
         type="danger"
         @click="onChangePassword"
       />
-    </FormItem>
+    </cl-form-item>
     <!-- ./Row -->
 
     <!-- Row -->
-    <FormItem
+    <cl-form-item
       :span="2"
       :label="t('components.user.form.email')"
       prop="email"
@@ -60,8 +60,8 @@
         :placeholder="t('components.user.form.email')"
         type="email"
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :span="2"
       :label="t('components.user.form.role')"
       prop="role"
@@ -75,29 +75,21 @@
         <el-option v-locate="ROLE_ADMIN" :value="ROLE_ADMIN" :label="t('components.user.role.admin')"/>
         <el-option v-locate="ROLE_NORMAL" :value="ROLE_NORMAL" :label="t('components.user.role.normal')"/>
       </el-select>
-    </FormItem>
+    </cl-form-item>
     <!-- ./Row -->
-  </Form>
+  </cl-form>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent} from 'vue';
 import {useStore} from 'vuex';
 import useUser from '@/components/user/user';
-import Form from '@/components/form/Form.vue';
-import FormItem from '@/components/form/FormItem.vue';
 import {ROLE_ADMIN, ROLE_NORMAL} from '@/constants/user';
-import LabelButton from '@/components/button/LabelButton.vue';
 import useUserDetail from '@/views/user/detail/userDetail';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'UserForm',
-  components: {
-    LabelButton,
-    FormItem,
-    Form,
-  },
   setup() {
     // i18n
     const {t} = useI18n();

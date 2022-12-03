@@ -1,6 +1,6 @@
 <template>
   <div class="transfer">
-    <TransferPanel
+    <cl-transfer-panel
       :checked="leftChecked"
       :data="leftData"
       :title="titles[0]"
@@ -9,7 +9,7 @@
       @drag="onLeftDrag"
     />
     <div class="actions">
-      <Button
+      <cl-button
         :disabled="leftDisabled"
         :tooltip="leftTooltip || t('components.transfer.moveToLeft')"
         size="large"
@@ -19,8 +19,8 @@
           <font-awesome-icon :icon="['fa', 'angle-left']" style="margin-right: 5px"/>
           {{ buttonTexts[0] }}
         </div>
-      </Button>
-      <Button
+      </cl-button>
+      <cl-button
         :disabled="rightDisabled"
         :tooltip="rightTooltip || t('components.transfer.moveToLeft')"
         size="large"
@@ -30,9 +30,9 @@
           {{ buttonTexts[1] }}
           <font-awesome-icon :icon="['fa', 'angle-right']" style="margin-left: 5px"/>
         </div>
-      </Button>
+      </cl-button>
     </div>
-    <TransferPanel
+    <cl-transfer-panel
       :checked="rightChecked"
       :data="rightData"
       :title="titles[1]"
@@ -45,14 +45,11 @@
 
 <script lang="ts">
 import {computed, defineComponent, PropType, ref} from 'vue';
-import {DataItem, Key} from 'element-plus/lib/components/transfer';
-import TransferPanel from '@/components/transfer/TransferPanel.vue';
-import Button from '@/components/button/Button.vue';
+import {DataItem, Key} from 'element-plus';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'Transfer',
-  components: {Button, TransferPanel},
   props: {
     value: {
       type: Array as PropType<Key[]>,

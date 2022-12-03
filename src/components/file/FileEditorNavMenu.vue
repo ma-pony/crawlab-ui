@@ -33,7 +33,7 @@
       @node-collapse="onNodeCollapse"
     >
       <template #default="{ data }">
-        <FileEditorNavMenuContextMenu
+        <cl-file-editor-nav-menu-context-menu
           :clicking="contextMenuClicking"
           :visible="isShowContextMenu(data)"
           @hide="onNodeContextMenuHide"
@@ -51,14 +51,14 @@
             <div class="background"/>
             <div class="nav-item">
               <span class="icon">
-                <atom-material-icon :is-dir="data.is_dir" :name="data.name"/>
+                <cl-atom-material-icon :is-dir="data.is_dir" :name="data.name"/>
               </span>
               <span class="title">
                 {{ data.name }}
               </span>
             </div>
           </div>
-        </FileEditorNavMenuContextMenu>
+        </cl-file-editor-nav-menu-context-menu>
       </template>
     </el-tree>
   </div>
@@ -66,24 +66,17 @@
 
 <script lang="ts">
 import {computed, defineComponent, onMounted, onUnmounted, PropType, reactive, ref, watch} from 'vue';
-import {ClickOutside} from 'element-plus/lib/directives';
+import {ClickOutside} from 'element-plus';
 import Node from 'element-plus/lib/components/tree/src/model/node';
 import {DropType} from 'element-plus/lib/components/tree/src/tree.type';
-import AtomMaterialIcon from '@/components/icon/AtomMaterialIcon.vue';
 import {KEY_CONTROL, KEY_META} from '@/constants/keyboard';
-import FileEditorNavMenuContextMenu from '@/components/file/FileEditorNavMenuContextMenu.vue';
 import {ElMessageBox, ElTree} from 'element-plus';
 import {useDropzone} from 'vue3-dropzone';
 import {emptyArrayFunc, emptyObjectFunc} from '@/utils/func';
 import {useI18n} from 'vue-i18n';
-import {sendEvent} from '@/admin/umeng';
 
 export default defineComponent({
   name: 'FileEditorNavMenu',
-  components: {
-    FileEditorNavMenuContextMenu,
-    AtomMaterialIcon
-  },
   directives: {
     ClickOutside,
   },
@@ -446,8 +439,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .file-editor-nav-menu {
   flex: 1;
   max-height: 100%;
@@ -468,11 +459,11 @@ export default defineComponent({
 
         &.selected {
           .background {
-            background-color: $fileEditorMaskBg;
+            background-color: var(--cl-file-editor-mask-bg);
           }
 
           .nav-item {
-            color: $fileEditorNavMenuItemSelectedColor;
+            color: var(--cl-file-editor-nav-menu-item-selected-color);
           }
         }
 
@@ -482,13 +473,13 @@ export default defineComponent({
           }
 
           .nav-item {
-            border: 1px dashed $fileEditorNavMenuItemDragTargetBorderColor;
+            border: 1px dashed var(--cl-file-editor-nav-menu-item-drag-target-border-color);
           }
         }
 
         .nav-item:hover,
         .background:hover + .nav-item {
-          color: $fileEditorNavMenuItemSelectedColor;
+          color: var(--cl-file-editor-nav-menu-item-selected-color);
         }
 
         .background {

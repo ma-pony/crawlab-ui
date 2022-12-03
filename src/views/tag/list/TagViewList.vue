@@ -1,5 +1,5 @@
 <template>
-  <ClListLayout
+  <cl-list-layout
     class="tag-list"
     :action-functions="actionFunctions"
     :nav-actions="navActions"
@@ -10,24 +10,18 @@
   >
     <template #extra>
       <!-- Dialogs (handled by store) -->
-      <CreateTagDialog/>
+      <cl-create-tag-dialog/>
       <!-- ./Dialogs -->
     </template>
-  </ClListLayout>
+  </cl-list-layout>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import CreateTagDialog from '@/components/tag/CreateEditTagDialog.vue';
-import ClListLayout from '@/layouts/content/list/ListLayout.vue';
 import useTagList from '@/views/tag/list/tagList';
 
 export default defineComponent({
-  name: 'TagList',
-  components: {
-    ClListLayout,
-    CreateTagDialog,
-  },
+  name: 'TagViewList',
   setup() {
     const {
       navActions,
@@ -51,7 +45,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../../styles/variables.scss";
 
 .tag-list {
   .nav-actions {
@@ -59,7 +52,7 @@ export default defineComponent({
   }
 
   .content {
-    background-color: $containerWhiteBg;
+    background-color: var(--container-white-bg);
   }
 }
 </style>

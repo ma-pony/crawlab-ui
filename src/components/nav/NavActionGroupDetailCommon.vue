@@ -1,7 +1,7 @@
 <template>
-  <NavActionGroup>
-    <NavActionItem v-if="showBackButton">
-      <NavActionButton
+  <cl-nav-action-group>
+    <cl-nav-action-item v-if="showBackButton">
+      <cl-nav-action-button
         v-auth="ACTION_BACK"
         :disabled="disabled"
         :icon="['fa', 'undo']"
@@ -12,9 +12,9 @@
         class-name="back-btn"
         @click="() => $emit('back')"
       />
-    </NavActionItem>
-    <NavActionItem v-if="showSaveButton">
-      <NavActionButton
+    </cl-nav-action-item>
+    <cl-nav-action-item v-if="showSaveButton">
+      <cl-nav-action-button
         v-auth="ACTION_SAVE"
         :disabled="disabled"
         :icon="['fa', 'save']"
@@ -25,21 +25,17 @@
         class-name="save-btn"
         @click="() => $emit('save')"
       />
-    </NavActionItem>
-  </NavActionGroup>
+    </cl-nav-action-item>
+  </cl-nav-action-group>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {useI18n} from 'vue-i18n';
 import {ACTION_BACK, ACTION_SAVE} from '@/constants';
-import NavActionItem from '@/components/nav/NavActionItem.vue';
-import NavActionGroup from '@/components/nav/NavActionGroup.vue';
-import NavActionButton from '@/components/nav/NavActionButton.vue';
 
 export default defineComponent({
   name: 'NavActionGroupDetailCommon',
-  components: {NavActionButton, NavActionGroup, NavActionItem},
   props: {
     disabled: {
       type: Boolean,

@@ -1,7 +1,7 @@
 <template>
   <div class="table-actions">
     <slot name="prefix"></slot>
-    <!--    <FaIconButton-->
+    <!--    <cl-fa-icon-button-->
     <!--        v-if="showButton(ACTION_ADD)"-->
     <!--        :icon="['fa', 'plus']"-->
     <!--        class="action-btn"-->
@@ -10,7 +10,7 @@
     <!--        :disabled="selection.length === 0"-->
     <!--        @click="onAdd"-->
     <!--    />-->
-    <FaIconButton
+    <cl-fa-icon-button
       v-if="showButton(ACTION_EDIT)"
       :disabled="selection.length === 0"
       :icon="['fa', 'edit']"
@@ -21,7 +21,7 @@
       type="warning"
       @click="onEdit"
     />
-    <FaIconButton
+    <cl-fa-icon-button
       v-if="showButton(ACTION_DELETE)"
       :disabled="selection.length === 0"
       :icon="['fa', 'trash-alt']"
@@ -38,7 +38,7 @@
         conditions,
       }"
     >
-      <FaIconButton
+      <cl-fa-icon-button
         v-if="showButton(TABLE_ACTION_EXPORT)"
         :icon="['fa', 'file-export']"
         id="export-btn"
@@ -49,7 +49,7 @@
         @click="onExport"
       />
     </div>
-    <FaIconButton
+    <cl-fa-icon-button
       v-if="showButton(TABLE_ACTION_CUSTOMIZE_COLUMNS)"
       :icon="['fa', 'arrows-alt']"
       id="customize-columns-btn"
@@ -65,7 +65,6 @@
 
 <script lang="ts">
 import {defineComponent, inject, PropType} from 'vue';
-import FaIconButton from '@/components/button/FaIconButton.vue';
 import {ACTION_ADD, ACTION_DELETE, ACTION_EDIT,} from '@/constants/action';
 import {TABLE_ACTION_CUSTOMIZE_COLUMNS, TABLE_ACTION_EXPORT,} from '@/constants/table';
 import {useI18n} from 'vue-i18n';
@@ -75,9 +74,6 @@ import {getPrimaryPath} from '@/utils';
 
 export default defineComponent({
   name: 'TableActions',
-  components: {
-    FaIconButton,
-  },
   emits: [
     'edit',
     'delete',

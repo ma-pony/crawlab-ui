@@ -1,5 +1,5 @@
 <template>
-  <ClListLayout
+  <cl-list-layout
     class="task-list"
     :action-functions="actionFunctions"
     :nav-actions="navActions"
@@ -12,17 +12,15 @@
   >
     <template #extra>
       <!-- Dialogs (handled by store) -->
-      <CreateTaskDialog/>
+      <cl-create-task-dialog/>
       <!-- ./Dialogs -->
     </template>
-  </ClListLayout>
+  </cl-list-layout>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import ClListLayout from '@/layouts/content/list/ListLayout.vue';
 import useTaskList from '@/views/task/list/taskList';
-import CreateTaskDialog from '@/components/task/CreateTaskDialog.vue';
 
 export default defineComponent({
   name: 'TaskList',
@@ -35,10 +33,6 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-  },
-  components: {
-    ClListLayout,
-    CreateTaskDialog,
   },
   setup(props: TaskListProps, {emit}) {
     return {

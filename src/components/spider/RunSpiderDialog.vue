@@ -1,17 +1,17 @@
 <template>
-  <Dialog
+  <cl-dialog
     :title="title"
     :visible="visible"
     class-name="run-spider-dialog"
     @close="onClose"
     @confirm="onConfirm"
   >
-    <Form
+    <cl-form
       ref="formRef"
       :model="options"
     >
       <!-- Row -->
-      <FormItem
+      <cl-form-item
         :span="2"
         :label="t('components.task.form.command')"
         prop="cmd"
@@ -21,8 +21,8 @@
           v-model="options.cmd"
           :placeholder="t('components.task.form.command')"
         />
-      </FormItem>
-      <FormItem
+      </cl-form-item>
+      <cl-form-item
         :span="2"
         :label="t('components.task.form.param')"
         prop="param"
@@ -31,11 +31,11 @@
           v-model="options.param"
           :placeholder="t('components.task.form.param')"
         />
-      </FormItem>
+      </cl-form-item>
       <!-- ./Row -->
 
       <!-- Row -->
-      <FormItem
+      <cl-form-item
         :span="2"
         :label="t('components.task.form.mode')"
         prop="mode"
@@ -51,8 +51,8 @@
             :value="op.value"
           />
         </el-select>
-      </FormItem>
-      <FormItem
+      </cl-form-item>
+      <cl-form-item
         :span="2"
         :label="t('components.task.form.priority')"
         prop="priority"
@@ -68,60 +68,50 @@
             :value="op.value"
           />
         </el-select>
-      </FormItem>
+      </cl-form-item>
       <!-- ./Row -->
 
-      <FormItem
+      <cl-form-item
         v-if="options.mode === TASK_MODE_SELECTED_NODE_TAGS"
         :span="4"
         :label="t('components.task.form.selectedTags')"
         prop="node_tags"
         required
       >
-        <CheckTagGroup
+        <cl-check-tag-group
           v-model="options.node_tags"
           :options="allNodeTags"
         />
-      </FormItem>
+      </cl-form-item>
 
-      <FormItem
+      <cl-form-item
         v-if="[TASK_MODE_SELECTED_NODES, TASK_MODE_SELECTED_NODE_TAGS].includes(options.mode)"
         :span="4"
         :label="t('components.task.form.selectedNodes')"
         required
       >
-        <CheckTagGroup
+        <cl-check-tag-group
           v-model="options.node_ids"
           :options="allNodeSelectOptions"
         />
-      </FormItem>
-    </Form>
-  </Dialog>
+      </cl-form-item>
+    </cl-form>
+  </cl-dialog>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, onBeforeMount, ref, watch} from 'vue';
 import {useStore} from 'vuex';
-import Dialog from '@/components/dialog/Dialog.vue';
-import Form from '@/components/form/Form.vue';
 import useSpider from '@/components/spider/spider';
 import useNode from '@/components/node/node';
 import {TASK_MODE_RANDOM, TASK_MODE_SELECTED_NODE_TAGS, TASK_MODE_SELECTED_NODES} from '@/constants/task';
 import useTask from '@/components/task/task';
-import FormItem from '@/components/form/FormItem.vue';
-import CheckTagGroup from '@/components/tag/CheckTagGroup.vue';
 import {ElMessage} from 'element-plus';
 import {useI18n} from 'vue-i18n';
 import {sendEvent} from '@/admin/umeng';
 
 export default defineComponent({
   name: 'RunSpiderDialog',
-  components: {
-    Dialog,
-    Form,
-    FormItem,
-    CheckTagGroup,
-  },
   setup() {
     // i18n
     const {t} = useI18n();
@@ -151,7 +141,7 @@ export default defineComponent({
     const spider = computed<Spider>(() => form.value);
 
     // form ref
-    const formRef = ref<typeof Form>();
+    const formRef = ref();
 
     // get run options
     const getOptions = (): SpiderRunOptions => {

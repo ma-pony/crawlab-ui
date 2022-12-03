@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-loading="loadingPublicPlugins" class="sidebar">
-      <PublicPluginItem
+      <cl-public-plugin-item
         v-for="(p, $index) in publicPlugins"
         :key="$index"
         :plugin="p"
@@ -14,7 +14,7 @@
       />
     </div>
     <div v-loading="loadingActivePublicPluginInfo" class="content">
-      <PublicPluginContent
+      <cl-public-plugin-content
         v-if="!!activePublicPlugin && !!activePublicPluginInfo"
         :plugin="activePublicPlugin"
         :info="activePublicPluginInfo"
@@ -38,15 +38,9 @@ import {
   PLUGIN_STATUS_RUNNING,
   PLUGIN_STATUS_STOPPED
 } from '@/constants/plugin';
-import PublicPluginItem from '@/components/plugin/PublicPluginItem.vue';
-import PublicPluginContent from '@/components/plugin/PublicPluginContent.vue';
 
 export default defineComponent({
   name: 'InstallPublicPlugin',
-  components: {
-    PublicPluginItem,
-    PublicPluginContent,
-  },
   setup() {
     // i18n
     const {t} = useI18n();
@@ -154,17 +148,15 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "../../styles/variables.scss";
-
 .container {
   display: flex;
-  border: 1px solid $infoMediumLightColor;
+  border: 1px solid var(--cl-info-medium-light-color);
   height: calc(100vh - 400px);
   min-height: 360px;
 
   .sidebar {
     flex: 0 0 450px;
-    border-right: 1px solid $infoMediumLightColor;
+    border-right: 1px solid var(--cl-info-medium-light-color);
     overflow-y: auto;
   }
 

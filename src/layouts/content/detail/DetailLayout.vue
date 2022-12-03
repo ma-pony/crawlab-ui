@@ -1,7 +1,7 @@
 <template>
   <div :class="(noSidebar || sidebarCollapsed) ? 'collapsed' : ''" class="detail-layout">
     <div class="sidebar">
-      <NavSidebar
+      <cl-nav-sidebar
         v-if="!noSidebar"
         ref="navSidebar"
         :active-key="activeId"
@@ -12,7 +12,7 @@
       />
     </div>
     <div class="content">
-      <NavTabs
+      <cl-nav-tabs
         :active-key="activeTabName"
         :items="tabs"
         :collapsed="sidebarCollapsed"
@@ -31,16 +31,16 @@
             </div>
           </el-tooltip>
         </template>
-      </NavTabs>
-      <NavActions ref="navActions" :collapsed="actionsCollapsed" class="nav-actions">
-        <NavActionGroupDetailCommon
+      </cl-nav-tabs>
+      <cl-nav-actions ref="navActions" :collapsed="actionsCollapsed" class="nav-actions">
+        <cl-nav-action-group-detail-common
           :show-back-button="showBackButton"
           :show-save-button="showSaveButton"
           @back="onBack"
           @save="onSave"
         />
         <slot name="actions"/>
-      </NavActions>
+      </cl-nav-actions>
       <div :style="contentContainerStyle" class="content-container">
         <router-view/>
       </div>
@@ -51,10 +51,6 @@
 <script lang="ts">
 import {computed, defineComponent, onBeforeMount, onBeforeUnmount, onMounted, PropType} from 'vue';
 import useDetail from '@/layouts/content/detail/useDetail';
-import NavSidebar from '@/components/nav/NavSidebar.vue';
-import NavTabs from '@/components/nav/NavTabs.vue';
-import NavActions from '@/components/nav/NavActions.vue';
-import NavActionGroupDetailCommon from '@/components/nav/NavActionGroupDetailCommon.vue';
 import {useStore} from 'vuex';
 import {useI18n} from 'vue-i18n';
 
@@ -64,12 +60,6 @@ const IGNORE_GET_ALL_NS = [
 
 export default defineComponent({
   name: 'DetailLayout',
-  components: {
-    NavActionGroupDetailCommon,
-    NavSidebar,
-    NavTabs,
-    NavActions,
-  },
   props: {
     storeNamespace: {
       type: String as PropType<ListStoreNamespace>,
@@ -145,9 +135,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-
-@import "../../../styles/variables";
-
 .detail-layout {
   display: flex;
   height: 100%;
@@ -164,18 +151,18 @@ export default defineComponent({
   }
 
   .sidebar {
-    flex: 0 0 $navSidebarWidth;
+    flex: 0 0 var(--cl-nav-sidebar-width);
     width: 0;
-    transition: flex $navSidebarCollapseTransitionDuration;
-    border-right: 1px solid $infoLightColor;
+    transition: flex var(--cl-nav-sidebar-collapse-transition-duration);
+    border-right: 1px solid var(--cl-info-plain-color);
     background-color: #ffffff;
   }
 
   .content {
-    flex: 1 0 calc(100% - #{$navSidebarWidth});
-    width: $navSidebarWidth;
-    max-width: calc(100% - #{$navSidebarWidth});
-    background-color: $containerWhiteBg;
+    flex: 1 0 calc(100% - var(--cl-nav-sidebar-width));
+    width: var(--cl-nav-sidebar-width);
+    max-width: calc(100% - var(--cl-nav-sidebar-width));
+    background-color: var(--cl-container-white-bg);
     display: flex;
     flex-direction: column;
 
@@ -191,14 +178,14 @@ export default defineComponent({
   .actions-toggle {
     display: flex;
     align-items: center;
-    height: $navTabsHeight;
-    color: $infoColor;
+    height: var(--cl-nav-tabs-height);
+    color: var(--cl-info-color);
     cursor: pointer;
     padding: 0 20px;
-    border-left: 1px solid $containerBorderColor;
+    border-left: 1px solid var(--cl-container-border-color);
 
     .icon {
-      transition: all $defaultTransitionDuration;
+      transition: all var(--cl-default-transition-duration);
     }
 
     &.collapsed {

@@ -1,22 +1,21 @@
 <template>
   <el-switch
-      v-model="internalValue"
-      :active-color="activeColor"
-      :active-icon-class="activeIconClass"
-      :active-text="activeText"
-      :disabled="disabled"
-      :inactive-color="inactiveColor"
-      :inactive-icon-class="inactiveIconClass"
-      :inactive-text="inactiveText"
-      :loading="loading"
-      :width="width"
-      @change="onChange"
+    v-model="internalValue"
+    :active-color="activeColor"
+    :active-icon-class="activeIconClass"
+    :active-text="activeText"
+    :disabled="disabled"
+    :inactive-color="inactiveColor"
+    :inactive-icon-class="inactiveIconClass"
+    :inactive-text="inactiveText"
+    :loading="loading"
+    :width="width"
+    @change="onChange"
   />
 </template>
 
 <script lang="ts">
 import {defineComponent, onBeforeMount, ref, watch} from 'vue';
-import variables from '@/styles/variables.scss';
 
 export default defineComponent({
   name: 'Switch',
@@ -31,11 +30,11 @@ export default defineComponent({
     },
     activeColor: {
       type: String,
-      default: variables.successColor,
+      default: 'var(--cl-success-color)',
     },
     inactiveColor: {
       type: String,
-      default: variables.infoMediumColor,
+      default: 'var(--cl-info-medium-color)',
     },
     activeIconClass: {
       type: String,
@@ -84,7 +83,6 @@ export default defineComponent({
     });
 
     return {
-      variables,
       internalValue,
       onChange,
     };

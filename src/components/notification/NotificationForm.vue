@@ -1,11 +1,11 @@
 <template>
-  <Form
+  <cl-form
     v-if="form"
     ref="formRef"
     :model="form"
     :selective="isSelectiveForm"
   >
-    <FormItem
+    <cl-form-item
       :span="2"
       :label="t('views.notification.settings.form.name')"
       prop="name"
@@ -16,8 +16,8 @@
         :placeholder="t('views.notification.settings.form.name')"
         @change="onChange"
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :span="2"
       :label="t('views.notification.settings.form.description')"
       prop="description"
@@ -27,8 +27,8 @@
         type="textarea"
         :placeholder="t('views.notification.settings.form.description')"
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :span="2"
       :label="t('views.notification.settings.form.type')"
       prop="type"
@@ -37,17 +37,17 @@
         <el-option value="mail" :label="t('views.notification.settings.type.mail')"/>
         <el-option value="mobile" :label="t('views.notification.settings.type.mobile')"/>
       </el-select>
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :span="2"
       :label="t('views.notification.settings.form.enabled')"
       prop="enabled"
     >
-      <Switch v-model="form.enabled"/>
-    </FormItem>
+      <cl-switch v-model="form.enabled"/>
+    </cl-form-item>
 
     <template v-if="form.type === 'mail'">
-      <FormItem
+      <cl-form-item
         :span="2"
         :label="t('views.notification.settings.form.mail.smtp.server')"
         prop="mail.server"
@@ -57,8 +57,8 @@
           v-model="form.mail.server"
           :placeholder="t('views.notification.settings.form.mail.smtp.server')"
         />
-      </FormItem>
-      <FormItem
+      </cl-form-item>
+      <cl-form-item
         :span="2"
         :label="t('views.notification.settings.form.mail.smtp.port')"
         prop="mail.port"
@@ -68,8 +68,8 @@
           v-model="form.mail.port"
           :placeholder="t('views.notification.settings.form.mail.smtp.port')"
         />
-      </FormItem>
-      <FormItem
+      </cl-form-item>
+      <cl-form-item
         :span="2"
         :label="t('views.notification.settings.form.mail.smtp.user')"
         prop="mail.user"
@@ -78,8 +78,8 @@
           v-model="form.mail.user"
           :placeholder="t('views.notification.settings.form.mail.smtp.user')"
         />
-      </FormItem>
-      <FormItem
+      </cl-form-item>
+      <cl-form-item
         :span="2"
         :label="t('views.notification.settings.form.mail.smtp.password')"
         prop="mail.password"
@@ -88,15 +88,15 @@
           v-model="form.mail.password"
           :placeholder="t('views.notification.settings.form.mail.smtp.password')"
         />
-      </FormItem>
-      <FormItem :span="2" :label="t('views.notification.settings.form.mail.smtp.sender.email')"
+      </cl-form-item>
+      <cl-form-item :span="2" :label="t('views.notification.settings.form.mail.smtp.sender.email')"
                 prop="mail.sender_email">
         <el-input
           v-model="form.mail.sender_email"
           :placeholder="t('views.notification.settings.form.mail.smtp.sender.email')"
         />
-      </FormItem>
-      <FormItem
+      </cl-form-item>
+      <cl-form-item
         :span="2"
         :label="t('views.notification.settings.form.mail.smtp.sender.identity')"
         prop="mail.sender_identity"
@@ -105,8 +105,8 @@
           v-model="form.mail.sender_identity"
           :placeholder="t('views.notification.settings.form.mail.smtp.sender.identity')"
         />
-      </FormItem>
-      <FormItem
+      </cl-form-item>
+      <cl-form-item
         :span="2"
         :label="t('views.notification.settings.form.mail.to')"
         prop="mail.to"
@@ -116,8 +116,8 @@
           v-model="form.mail.to"
           :placeholder="t('views.notification.settings.form.mail.to')"
         />
-      </FormItem>
-      <FormItem
+      </cl-form-item>
+      <cl-form-item
         :span="2"
         :label="t('views.notification.settings.form.mail.cc')"
         prop="mail.cc"
@@ -126,11 +126,11 @@
           v-model="form.mail.cc"
           :placeholder="t('views.notification.settings.form.mail.cc')"
         />
-      </FormItem>
+      </cl-form-item>
     </template>
 
     <template v-else-if="form.type === 'mobile'">
-      <FormItem
+      <cl-form-item
         :span="4"
         :label="t('views.notification.settings.form.mobile.webhook')"
         prop="mobile.webhook"
@@ -139,16 +139,13 @@
           v-model="form.mobile.webhook"
           :placeholder="t('views.notification.settings.form.mobile.webhook')"
         />
-      </FormItem>
+      </cl-form-item>
     </template>
-  </Form>
+  </cl-form>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Form from '@/components/form/Form.vue';
-import FormItem from '@/components/form/FormItem.vue';
-import Switch from '@/components/switch/Switch.vue';
 import {useI18n} from 'vue-i18n';
 import {useStore} from 'vuex';
 import useNotification from '@/components/notification/notification';
@@ -159,11 +156,6 @@ export default defineComponent({
     readonly: {
       type: Boolean,
     }
-  },
-  components: {
-    Form,
-    FormItem,
-    Switch,
   },
   emits: [
     'update:modelValue',

@@ -20,13 +20,13 @@
     <template
       v-if="filteredItems.length > 0"
     >
-      <NavSidebarList
+      <cl-nav-sidebar-list
         v-if="type === 'list'"
         :active-key="activeKey"
         :items="filteredItems"
         @select="onSelectList"
       />
-      <NavSidebarTree
+      <cl-nav-sidebar-tree
         v-else-if="type === 'tree'"
         :active-key="activeKey"
         :items="filteredItems"
@@ -38,7 +38,7 @@
         @check="onCheckTree"
       />
     </template>
-    <Empty
+    <cl-empty
       v-else
     />
   </div>
@@ -46,10 +46,6 @@
 <script lang="ts">
 import {computed, defineComponent, PropType, ref} from 'vue';
 import {ElMenu} from 'element-plus';
-import variables from '@/styles/variables.scss';
-import NavSidebarList from '@/components/nav/NavSidebarList.vue';
-import NavSidebarTree from '@/components/nav/NavSidebarTree.vue';
-import Empty from '@/components/empty/Empty.vue';
 import {useI18n} from 'vue-i18n';
 import {emptyArrayFunc} from '@/utils/func';
 
@@ -69,11 +65,6 @@ export const navSidebarContentProps = {
 
 export default defineComponent({
   name: 'NavSidebar',
-  components: {
-    NavSidebarList,
-    NavSidebarTree,
-    Empty,
-  },
   props: {
     type: {
       type: String as PropType<NavSidebarType>,
@@ -144,8 +135,7 @@ export default defineComponent({
     const scroll = (id: string) => {
       const idx = filteredItems.value.findIndex(d => d.id === id);
       if (idx === -1) return;
-      const {navSidebarItemHeight} = variables;
-      const navSidebarItemHeightNumber = Number(navSidebarItemHeight.replace('px', ''));
+      const navSidebarItemHeightNumber = 48; // var(--cl-nav-sidebar-item-height)
       if (!navMenu.value) return;
       const $el = navMenu.value.$el as HTMLDivElement;
       $el.scrollTo({
@@ -170,14 +160,12 @@ export default defineComponent({
 });
 </script>
 <style scoped lang="scss">
-@import "../../styles/variables.scss";
-
 .nav-sidebar {
   height: 100%;
   position: relative;
-  width: $navSidebarWidth;
-  border-right: 1px solid $navSidebarBorderColor;
-  background-color: $navSidebarBg;
+  width: var(--cl-nav-sidebar-width);
+  border-right: 1px solid var(--cl-nav-sidebar-border-color);
+  background-color: var(--cl-nav-sidebar-bg);
 
   &.collapsed {
     margin: 10px 0;
@@ -191,9 +179,9 @@ export default defineComponent({
 
   .search {
     position: relative;
-    height: $navSidebarSearchHeight;
+    height: var(--cl-nav-sidebar-search-height);
     box-sizing: content-box;
-    border-bottom: 1px solid $navSidebarBorderColor;
+    border-bottom: 1px solid var(--cl-nav-sidebar-border-color);
 
     .search-input {
       width: 100%;
@@ -211,7 +199,7 @@ export default defineComponent({
       align-items: center;
       height: 40px;
       width: 25px;
-      color: $navSidebarItemActionColor;
+      color: var(--cl-nav-sidebar-item-action-color);
       cursor: pointer;
     }
   }
@@ -233,8 +221,8 @@ export default defineComponent({
     .wrapper {
       height: 24px;
       width: 24px;
-      background-color: $infoPlainColor;
-      border: 1px solid $infoColor;
+      background-color: var(--cl-info-plain-color);
+      border: 1px solid var(--cl-info-color);
       border-bottom-right-radius: 5px;
       border-top-right-radius: 5px;
       border-left: none;

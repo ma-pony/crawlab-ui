@@ -47,7 +47,7 @@
     <!-- ./Input -->
 
     <!-- Color Picker -->
-    <ColorPicker
+    <cl-color-picker
         v-model="internalValue.color"
         :disabled="!isNew"
         :predefine="predefinedColors"
@@ -77,9 +77,6 @@ import ColorPicker from '@/components/color/ColorPicker.vue';
 
 export default defineComponent({
   name: 'TagInputItem',
-  components: {
-    ColorPicker,
-  },
   props: {
     modelValue: {
       type: Object as PropType<Tag>,
@@ -254,8 +251,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .tag-input-item {
   display: flex;
   align-items: center;
@@ -276,25 +271,25 @@ export default defineComponent({
         width: 14px;
         height: 14px;
         padding: 3px;
-        color: $infoMediumColor;
+        color: var(--cl-info-medium-light-color);
         cursor: pointer;
 
         &:hover:not(.disabled) {
           &.check {
-            color: $successColor;
+            color: var(--cl-success-color);
           }
 
           &.close {
-            color: $infoColor;
+            color: var(--cl-info-color);
           }
 
           &.delete {
-            color: $dangerColor;
+            color: var(--cl-danger-color);
           }
         }
 
         &.disabled {
-          color: $infoMediumLightColor;
+          color: var(--cl-info-medium-light-color);
           cursor: not-allowed;
         }
       }

@@ -1,6 +1,6 @@
 <template>
   <div class="spider-detail-tab-data">
-    <ResultList
+    <cl-result-list
       :id="spider.col_id"
       :data-source-id="spider.data_source_id"
       no-actions
@@ -13,15 +13,11 @@ import {computed, defineComponent, onBeforeMount, onBeforeUnmount} from 'vue';
 import {useRoute} from 'vue-router';
 import {useStore} from 'vuex';
 import {FILTER_OP_EQUAL} from '@/constants/filter';
-import ResultList from '@/views/data/list/ResultList.vue';
 import useSpider from '@/components/spider/spider';
 import useSpiderDetail from '@/views/spider/detail/useSpiderDetail';
 
 export default defineComponent({
   name: 'SpiderDetailTabTasks',
-  components: {
-    ResultList,
-  },
   setup() {
     // route
     const route = useRoute();

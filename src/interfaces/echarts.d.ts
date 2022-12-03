@@ -1,9 +1,9 @@
-type ECharts = echarts.ECharts;
-type EChartOption = echarts.EChartOption;
-type EChartSeries = echarts.EChartOption.Series;
-type EChartYAxis = echarts.EChartOption.YAxis;
-
 export declare global {
+  type ECharts = echarts.ECharts;
+  type EChartOption = echarts.EChartOption;
+  type EChartSeries = echarts.EChartOption.Series;
+  type EChartYAxis = echarts.EChartOption.YAxis;
+
   interface EchartsDataMeta {
     // value key
     key: string;

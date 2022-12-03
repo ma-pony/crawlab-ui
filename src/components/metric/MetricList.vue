@@ -1,7 +1,7 @@
 <template>
   <div class="metric-list">
     <div class="sidebar">
-      <NavSidebar
+      <cl-nav-sidebar
         ref="navSidebarRef"
         type="tree"
         :items="metrics"
@@ -15,10 +15,10 @@
     <div class="content">
       <!--Top-->
       <div class="top">
-        <NavActionBack @click="() => $emit('back')"/>
+        <cl-nav-action-back @click="() => $emit('back')"/>
         <slot name="top-prefix"/>
-        <Form label-width="120px">
-          <FormItem :label="t('components.metric.filters.metricSource')">
+        <cl-form label-width="120px">
+          <cl-form-item :label="t('components.metric.filters.metricSource')">
             <el-select
               :model-value="activeMetricSnapshotKey"
               @change="onMetricSnapshotChange"
@@ -30,14 +30,14 @@
                 :value="op.key"
               />
             </el-select>
-          </FormItem>
-          <FormItem :label="t('components.metric.filters.timeRange')">
-            <DateTimeRangePicker
+          </cl-form-item>
+          <cl-form-item :label="t('components.metric.filters.timeRange')">
+            <cl-date-time-range-picker
               :model-value="dateRange"
               @change="onDateRangeChange"
             />
-          </FormItem>
-          <FormItem :label="t('components.metric.filters.timeUnit')">
+          </cl-form-item>
+          <cl-form-item :label="t('components.metric.filters.timeUnit')">
             <el-select :model-value="duration" @change="onDurationChange">
               <el-option
                 v-for="(op, $index) in durationOptions"
@@ -46,9 +46,9 @@
                 :value="op.value"
               />
             </el-select>
-          </FormItem>
+          </cl-form-item>
           <slot name="top-suffix"/>
-        </Form>
+        </cl-form>
       </div>
       <!--./Top-->
 
@@ -62,13 +62,13 @@
           :key="$index"
           class="metric-chart"
         >
-          <LineChart
+          <cl-line-chart
             height="240px"
             :config="getChartConfig(metric)"
           />
         </div>
       </div>
-      <Empty
+      <cl-empty
         v-else
         :description="t('components.metric.empty.noMetricsSelected')"
       />
@@ -79,16 +79,9 @@
 
 <script lang="ts">
 import {computed, defineComponent, onBeforeMount, onBeforeUnmount, PropType, ref, watch} from 'vue';
-import NavSidebar from '@/components/nav/NavSidebar.vue';
-import {emptyArrayFunc, emptyObjectFunc, voidFunc} from '@/utils/func';
-import LineChart from '@/components/chart/LineChart.vue';
+import {emptyArrayFunc, voidFunc} from '@/utils/func';
 import {cloneArray} from '@/utils/object';
-import DateTimeRangePicker from '@/components/date/DateTimeRangePicker.vue';
-import FormItem from '@/components/form/FormItem.vue';
 import {translate} from '@/utils/i18n';
-import Empty from '@/components/empty/Empty.vue';
-import Form from '@/components/form/Form.vue';
-import NavActionBack from '@/components/nav/NavActionBack.vue';
 import dayjs from 'dayjs';
 import {useStore} from 'vuex';
 
@@ -96,15 +89,6 @@ const t = translate;
 
 export default defineComponent({
   name: 'MetricList',
-  components: {
-    NavActionBack,
-    Form,
-    Empty,
-    FormItem,
-    NavSidebar,
-    DateTimeRangePicker,
-    LineChart,
-  },
   props: {
     metricSnapshots: {
       type: Array as PropType<MetricSnapshot[]>,
@@ -310,17 +294,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables";
-
 .metric-list {
   display: flex;
   height: 100%;
-  background: $white;
+  background: var(--cl-white);
 
   .sidebar {
     height: 100%;
     flex: 0 0;
-    border-right: 1px solid $infoLightColor;
+    border-right: 1px solid var(--cl-info-light-color);
   }
 
   .content {
@@ -331,7 +313,7 @@ export default defineComponent({
     .top {
       margin: 0;
       padding: 10px 20px;
-      border-bottom: 1px solid $infoLightColor;
+      border-bottom: 1px solid var(--cl-info-light-color);
       display: flex;
       align-items: center;
 
@@ -352,7 +334,7 @@ export default defineComponent({
     .chart-list {
       .metric-chart {
         padding: 10px;
-        border-bottom: 1px solid $infoLightColor;
+        border-bottom: 1px solid var(--cl-info-light-color);
       }
     }
   }

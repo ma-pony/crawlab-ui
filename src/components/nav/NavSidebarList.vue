@@ -46,19 +46,17 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables";
-
 .nav-menu {
   list-style: none;
   padding: 0;
   margin: 0;
   border: none;
-  max-height: calc(100% - #{$navSidebarSearchHeight});
+  max-height: calc(100% - var(--cl-nav-sidebar-search-height));
   overflow-y: auto;
-  color: $navSidebarColor;
+  color: var(--cl-nav-sidebar-color);
 
   &.empty {
-    height: $navSidebarItemHeight;
+    height: var(--cl-nav-sidebar-item-height);
     display: flex;
     align-items: center;
     padding-left: 24px;
@@ -67,8 +65,8 @@ export default defineComponent({
 
   .nav-menu-item {
     position: relative;
-    height: $navSidebarItemHeight;
-    line-height: $navSidebarItemHeight;
+    height: var(--cl-nav-sidebar-item-height);
+    line-height: var(--cl-nav-sidebar-item-height);
     padding-left: 24px !important;
 
     &:hover {
@@ -93,11 +91,11 @@ export default defineComponent({
       right: 10px;
 
       .icon {
-        color: $navSidebarItemActionColor;
+        color: var(--cl-nav-sidebar-item-action-color);
         margin-left: 3px;
 
         &:hover {
-          color: $primaryColor;
+          color: var(--cl-primary-color);
         }
       }
     }

@@ -142,7 +142,7 @@ export function createRouter(rootRoutes?: Array<RouteRecordRaw>, routes?: Array<
   }
 
   // history
-  const history = createWebHashHistory(process.env.BASE_URL);
+  const history = createWebHashHistory((import.meta as any).env.BASE_URL);
 
   // router
   const router = createVueRouter({

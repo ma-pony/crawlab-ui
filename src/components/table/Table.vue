@@ -51,10 +51,10 @@
         :class-name="c.className || c.key"
       >
         <template #header="scope">
-          <TableHeader :column="c" :index="scope.$index" @change="onHeaderChange"/>
+          <cl-table-header :column="c" :index="scope.$index" @change="onHeaderChange"/>
         </template>
         <template #default="scope">
-          <TableCell :column="c" :row="scope.row" :row-index="scope.$index"/>
+          <cl-table-cell :column="c" :row="scope.row" :row-index="scope.$index"/>
         </template>
       </el-table-column>
     </el-table>
@@ -62,7 +62,7 @@
 
     <!-- Table Footer-->
     <div v-if="!hideFooter" class="table-footer">
-      <TableActions
+      <cl-table-actions
         :selection="internalSelection"
         :visible-buttons="visibleButtons"
         @delete="onDelete"
@@ -76,7 +76,7 @@
         <template #suffix>
           <slot name="actions-suffix"></slot>
         </template>
-      </TableActions>
+      </cl-table-actions>
       <el-pagination
         v-if="[TABLE_PAGINATION_POSITION_ALL, TABLE_PAGINATION_POSITION_BOTTOM].includes(paginationPosition)"
         :current-page="page"
@@ -91,7 +91,7 @@
     <!-- ./Table Footer-->
 
     <!-- Table Columns Transfer -->
-    <TableColumnsTransfer
+    <cl-table-columns-transfer
       :columns="columns"
       :selected-column-keys="internalSelectedColumnKeys"
       :visible="columnsTransferVisible"
@@ -104,13 +104,9 @@
 
 <script lang="ts">
 import {defineComponent, inject, PropType, ref, SetupContext} from 'vue';
-import TableCell from '@/components/table/TableCell.vue';
-import TableHeader from '@/components/table/TableHeader.vue';
-import TableColumnsTransfer from '@/components/table/TableColumnsTransfer.vue';
 import useColumn from '@/components/table/column';
 import useHeader from '@/components/table/header';
 import useData from '@/components/table/data';
-import TableActions from '@/components/table/TableActions.vue';
 import useAction from '@/components/table/action';
 import usePagination from '@/components/table/pagination';
 import {
@@ -121,12 +117,6 @@ import {
 
 export default defineComponent({
   name: 'Table',
-  components: {
-    TableActions,
-    TableColumnsTransfer,
-    TableCell,
-    TableHeader,
-  },
   props: {
     data: {
       type: Array as PropType<TableData>,
@@ -283,10 +273,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .table {
-  background-color: $containerWhiteBg;
+  background-color: var(--cl-container-white-bg);
 
   .el-table {
     width: 100%;

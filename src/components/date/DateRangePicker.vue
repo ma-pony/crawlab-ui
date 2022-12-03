@@ -1,5 +1,5 @@
 <template>
-  <RangePicker
+  <cl-range-picker
     class-name="date-range-picker"
     type="daterange"
     :model-value="modelValue"
@@ -10,13 +10,12 @@
 
 <script lang="ts">
 import {computed, defineComponent} from 'vue';
-import RangePicker, {rangePickerProps} from '@/components/date/RangePicker.vue';
+import {rangePickerProps} from '@/components/date/RangePicker.vue';
 import {useI18n} from 'vue-i18n';
 import dayjs from 'dayjs';
 
 export default defineComponent({
   name: 'DateRangePicker',
-  components: {RangePicker},
   props: {
     ...rangePickerProps,
   },

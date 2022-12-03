@@ -2,16 +2,16 @@
   <div class="create-dialog-content-batch">
     <el-form class="control-panel" inline>
       <el-form-item>
-        <Button type="primary" @click="onAdd">
+        <cl-button type="primary" @click="onAdd">
           <font-awesome-icon :icon="['fa', 'plus']"/>
           {{ t('components.dialog.batch.add') }}
-        </Button>
+        </cl-button>
       </el-form-item>
       <el-form-item :label="t('components.dialog.batch.editAll')">
-        <Switch v-model="editAll"/>
+        <cl-switch v-model="editAll"/>
       </el-form-item>
     </el-form>
-    <FormTable
+    <cl-form-table
         :data="data"
         :fields="fields"
         @add="onAdd"
@@ -25,19 +25,11 @@
 
 <script lang="ts">
 import {defineComponent, inject, PropType, Ref, ref} from 'vue';
-import FormTable from '@/components/form/FormTable.vue';
 import {emptyArrayFunc} from '@/utils/func';
-import Switch from '@/components/switch/Switch.vue';
-import Button from '@/components/button/Button.vue';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'CreateDialogContentBatch',
-  components: {
-    Button,
-    Switch,
-    FormTable,
-  },
   props: {
     data: {
       type: Array as PropType<TableData>,

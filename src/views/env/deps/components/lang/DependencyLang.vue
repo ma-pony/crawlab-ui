@@ -1,5 +1,5 @@
 <template>
-  <ClListLayout
+  <cl-list-layout
     v-loading="loading"
     class="dependency-list"
     :table-columns="tableColumns"
@@ -24,7 +24,7 @@
             @keyup.enter="onSearch"
             @clear="onSearchClear"
           />
-          <LabelButton
+          <cl-label-button
             class="search-btn"
             :icon="['fa', 'search']"
             :placeholder="t('common.search')"
@@ -45,7 +45,7 @@
               {{ t('views.env.deps.common.status.installable') }}
             </el-radio-button>
           </el-radio-group>
-          <Button
+          <cl-button
             class-name="tasks-btn"
             :type="runningTaskTotal === 0 ? 'primary' : 'warning'"
             @click="() => onDialogOpen('tasks')"
@@ -58,8 +58,8 @@
             {{
               runningTaskTotal === 0 ? t('views.env.deps.task.tasks') : `${t('views.env.deps.task.tasks')} (${runningTaskTotal})`
             }}
-          </Button>
-          <FaIconButton
+          </cl-button>
+          <cl-fa-icon-button
             class-name="update-btn"
             type="primary"
             :tooltip="updateTooltip"
@@ -80,34 +80,34 @@
       </div>
     </template>
     <template #extra>
-      <InstallForm
+      <cl-install-form
         :visible="dialogVisible.install"
         :nodes="allNodes"
         :names="installForm.names"
         @confirm="onInstall"
         @close="() => onDialogClose('install')"
       />
-      <UninstallForm
+      <cl-uninstall-form
         :visible="dialogVisible.uninstall"
         :nodes="uninstallForm.nodes"
         :names="uninstallForm.names"
         @confirm="onUninstall"
         @close="() => onDialogClose('uninstall')"
       />
-      <Dialog
+      <cl-dialog
         :title="t('views.env.deps.task.tasks')"
         :visible="dialogVisible.tasks"
         width="1024px"
         @confirm="() => onDialogClose('tasks')"
         @close="() => onDialogClose('tasks')"
       >
-        <DependencyTaskList
+        <cl-dependency-task-list
           v-if="dialogVisible.tasks"
           :type="lang"
         />
-      </Dialog>
+      </cl-dialog>
     </template>
-  </ClListLayout>
+  </cl-list-layout>
 </template>
 
 <script lang="ts">
@@ -117,17 +117,9 @@ import {Search} from '@element-plus/icons';
 import {useStore} from 'vuex';
 import {translate} from '@/utils';
 import useRequest from '@/services/request';
-import ClListLayout from '@/layouts/content/list/ListLayout.vue';
-import FaIconButton from '@/components/button/FaIconButton.vue';
-import Button from '@/components/button/Button.vue';
-import LabelButton from '@/components/button/LabelButton.vue';
-import Dialog from '@/components/dialog/Dialog.vue';
 import NavLink from '@/components/nav/NavLink.vue';
 import Tag from '@/components/tag/Tag.vue';
 import NodeType from '@/components/node/NodeType.vue';
-import InstallForm from '@/views/env/deps/components/form/InstallForm.vue';
-import UninstallForm from '@/views/env/deps/components/form/UninstallForm.vue';
-import DependencyTaskList from '@/views/env/deps/task/DependencyTaskList.vue';
 
 const t = translate;
 
@@ -155,16 +147,6 @@ interface DependencyLangProps {
 
 export default defineComponent({
   name: 'DependencyLang',
-  components: {
-    ClListLayout,
-    LabelButton,
-    FaIconButton,
-    Button,
-    Dialog,
-    DependencyTaskList,
-    InstallForm,
-    UninstallForm,
-  },
   props: {
     lang: {
       type: String,

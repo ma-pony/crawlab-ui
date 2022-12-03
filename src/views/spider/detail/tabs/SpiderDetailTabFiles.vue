@@ -1,5 +1,5 @@
 <template>
-  <FileEditor
+  <cl-file-editor
     ref="fileEditor"
     :nav-items="navItems"
     :active-nav-item="activeNavItem"
@@ -21,8 +21,6 @@
 
 <script lang="ts">
 import {computed, defineComponent, onBeforeMount, onBeforeUnmount, ref, watch} from 'vue';
-import {useRoute} from 'vue-router';
-import FileEditor from '@/components/file/FileEditor.vue';
 import {useStore} from 'vuex';
 import useSpiderService from '@/services/spider/spiderService';
 import {ElMessage} from 'element-plus';
@@ -31,7 +29,6 @@ import useSpiderDetail from '@/views/spider/detail/useSpiderDetail';
 
 export default defineComponent({
   name: 'SpiderDetailTabFiles',
-  components: {FileEditor},
   setup() {
     // i18n
     const {t} = useI18n();
@@ -62,7 +59,7 @@ export default defineComponent({
     const id = computed<string>(() => activeId.value);
 
     // file editor
-    const fileEditor = ref<typeof FileEditor>();
+    const fileEditor = ref();
 
     // file nav items
     const navItems = computed<FileNavItem[]>(() => state.fileNavItems);

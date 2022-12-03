@@ -21,10 +21,10 @@
       <div class="body">
         <div class="list">
           <div v-if="column.hasSort" class="item sort">
-            <TableHeaderDialogSort :value="internalSort?.d" @change="onSortChange"/>
+            <cl-table-header-dialog-sort :value="internalSort?.d" @change="onSortChange"/>
           </div>
           <div v-if="column.hasFilter" class="item filter">
-            <TableHeaderDialogFilter
+            <cl-table-header-dialog-filter
               :column="column"
               :conditions="conditions"
               :search-string="searchString"
@@ -35,30 +35,30 @@
         </div>
       </div>
       <div class="footer">
-        <Button
+        <cl-button
           plain
           :tooltip="t('common.actions.cancel')"
           type="info"
           @click="onCancel"
         >
           {{ t('common.actions.cancel') }}
-        </Button>
-        <Button
+        </cl-button>
+        <cl-button
           plain
           :tooltip="t('common.actions.clear')"
           type="warning"
           @click="onClear"
         >
           {{ t('common.actions.clear') }}
-        </Button>
-        <Button
+        </cl-button>
+        <cl-button
           :disabled="isApplyDisabled"
           :tooltip="t('common.actions.apply')"
           type="primary"
           @click="onApply"
         >
           {{ t('common.actions.apply') }}
-        </Button>
+        </cl-button>
       </div>
     </div>
   </el-popover>
@@ -66,22 +66,13 @@
 
 <script lang="ts">
 import {computed, defineComponent, PropType, ref, watch} from 'vue';
-import Button from '@/components/button/Button.vue';
-import TableHeaderDialogFilter from '@/components/table/TableHeaderDialogFilter.vue';
-import TableHeaderDialogSort from '@/components/table/TableHeaderDialogSort.vue';
-import variables from '@/styles/variables.scss';
 import {plainClone} from '@/utils/object';
 import {FILTER_OP_NOT_SET} from '@/constants/filter';
-import {ClickOutside} from 'element-plus/lib/directives';
+import {ClickOutside} from 'element-plus';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'TableHeaderFilter',
-  components: {
-    TableHeaderDialogSort,
-    TableHeaderDialogFilter,
-    Button,
-  },
   directives: {
     ClickOutside,
   },
@@ -211,7 +202,6 @@ export default defineComponent({
     });
 
     return {
-      variables,
       internalSort,
       searchString,
       conditions,
@@ -230,8 +220,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .content {
   position: relative;
   min-width: 100%;
@@ -250,10 +238,10 @@ export default defineComponent({
     .title {
       font-size: 16px;
       font-weight: 900;
-      color: $infoMediumColor;
+      color: var(--cl-info-medium-color);
       padding-bottom: 10px;
       margin-bottom: 10px;
-      border-bottom: 1px solid $infoBorderColor;
+      border-bottom: 1px solid var(--cl-info-border-color);
     }
   }
 
@@ -270,7 +258,7 @@ export default defineComponent({
 
       .item {
         padding: 10px 0;
-        border-bottom: 1px solid $infoBorderColor;
+        border-bottom: 1px solid var(--cl-info-border-color);
 
         &:first-child {
           padding-top: 0;

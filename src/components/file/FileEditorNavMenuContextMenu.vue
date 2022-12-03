@@ -1,12 +1,12 @@
 <template>
-  <ContextMenu :clicking="clicking" :placement="placement" :visible="visible" @hide="$emit('hide')">
+  <cl-context-menu :clicking="clicking" :placement="placement" :visible="visible" @hide="$emit('hide')">
     <template #default>
-      <ContextMenuList :items="items" @hide="$emit('hide')"/>
+      <cl-context-menu-list :items="items" @hide="$emit('hide')"/>
     </template>
     <template #reference>
       <slot></slot>
     </template>
-  </ContextMenu>
+  </cl-context-menu>
 </template>
 
 <script lang="ts">
@@ -17,7 +17,6 @@ import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'FileEditorNavMenuContextMenu',
-  components: {ContextMenuList, ContextMenu},
   props: contextMenuDefaultProps,
   emits: [
     'hide',

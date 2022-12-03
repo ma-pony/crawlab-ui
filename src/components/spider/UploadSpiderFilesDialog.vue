@@ -1,5 +1,5 @@
 <template>
-  <Dialog
+  <cl-dialog
     :visible="fileUploadVisible"
     :title="title"
     :confirm-loading="confirmLoading"
@@ -7,7 +7,7 @@
     @close="onUploadClose"
     @confirm="onUploadConfirm"
   >
-    <FileUpload
+    <cl-file-upload
       ref="fileUploadRef"
       :mode="mode"
       :get-input-props="getInputProps"
@@ -15,7 +15,7 @@
       @mode-change="onModeChange"
       @files-change="onFilesChange"
     />
-  </Dialog>
+  </cl-Dialog>
 </template>
 
 <script lang="ts">
@@ -24,8 +24,6 @@ import {useStore} from 'vuex';
 import {ElMessage} from 'element-plus';
 import {FileWithPath} from 'file-selector';
 import {useI18n} from 'vue-i18n';
-import Dialog from '@/components/dialog/Dialog.vue';
-import FileUpload from '@/components/file/FileUpload.vue';
 import {sendEvent} from '@/admin/umeng';
 import useSpiderService from '@/services/spider/spiderService';
 import {getOSPathSeparator} from '@/utils';
@@ -36,10 +34,6 @@ import useSpiderDetail from '@/views/spider/detail/useSpiderDetail';
 
 export default defineComponent({
   name: 'UploadSpiderFilesDialog',
-  components: {
-    Dialog,
-    FileUpload,
-  },
   setup() {
     // i18n
     const {t} = useI18n();
@@ -54,7 +48,7 @@ export default defineComponent({
       spider: state,
     } = store.state as RootStoreState;
 
-    const fileUploadRef = ref<typeof FileUpload>();
+    const fileUploadRef = ref();
 
     const mode = computed(() => state.fileMode);
     const files = computed(() => state.files);
@@ -117,7 +111,7 @@ export default defineComponent({
       if (hasMultiDir.value) {
         return path;
       } else {
-        return path.split(getOSPathSeparator()).filter((_, i) => i > 0).join(getOSPathSeparator());
+        return path.split(getOSPathSeparator()).filter((_: any, i: number) => i > 0).join(getOSPathSeparator());
       }
     };
 

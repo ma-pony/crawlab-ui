@@ -1,6 +1,6 @@
 <template>
   <!--TODO: implement creating node actively later-->
-  <CreateEditDialog
+  <cl-create-edit-dialog
     v-if="false"
     :action-functions="actionFunctions"
     :batch-form-data="formList"
@@ -12,24 +12,18 @@
     :visible="createEditDialogVisible"
   >
     <template #default>
-      <NodeForm/>
+      <cl-node-form/>
     </template>
-  </CreateEditDialog>
+  </cl-create-edit-dialog>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
-import CreateEditDialog from '@/components/dialog/CreateEditDialog.vue';
-import NodeForm from '@/components/node/NodeForm.vue';
 import useNode from '@/components/node/node';
 
 export default defineComponent({
   name: 'CreateEditProjectDialog',
-  components: {
-    CreateEditDialog,
-    NodeForm,
-  },
   setup() {
     // store
     const store = useStore();

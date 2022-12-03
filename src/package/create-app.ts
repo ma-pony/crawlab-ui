@@ -41,8 +41,8 @@ export const getDefaultCreateAppOptions = (): CreateAppOptions => {
 };
 
 export const normalizeOptions = (options: CreateAppOptions): CreateAppOptions => {
-  if (process.env.VUE_APP_INIT_UMENG === 'false' || window.VUE_APP_INIT_UMENG === 'false') options.initUmeng = false;
-  if (process.env.VUE_APP_INIT_BAIDU_TONGJI === 'false' || window.VUE_APP_INIT_BAIDU_TONGJI === 'false') options.initBaiduTongji = false;
+  // if (process.env.VUE_APP_INIT_UMENG === 'false' || window.VUE_APP_INIT_UMENG === 'false') options.initUmeng = false;
+  // if (process.env.VUE_APP_INIT_BAIDU_TONGJI === 'false' || window.VUE_APP_INIT_BAIDU_TONGJI === 'false') options.initBaiduTongji = false;
   return options;
 };
 

@@ -1,17 +1,13 @@
 <template>
   <div class="tag-detail-tab-overview">
-    <TagForm/>
+    <cl-tag-form/>
   </div>
 </template>
 <script lang="ts">
 import {defineComponent} from 'vue';
-import TagForm from '@/components/tag/TagForm.vue';
 
 export default defineComponent({
   name: 'TagDetailTabOverview',
-  components: {
-    TagForm,
-  },
   setup() {
     return {};
   },

@@ -4,11 +4,12 @@ import {
   getDefaultStoreMutations,
   getDefaultStoreState
 } from '@/utils/store';
-import colors from '@/styles/color.scss';
+import {getColors} from '@/utils';
 
 const state = {
   ...getDefaultStoreState<Tag>('tag'),
   newFormFn: () => {
+    const colors = getColors();
     const colorNames = Object.keys(colors);
     const index = Math.floor(Math.random() * colorNames.length);
     const name = colorNames[index];

@@ -37,7 +37,7 @@ import {RuleItem} from 'async-validator';
 import {cloneArray} from '@/utils/object';
 
 export default defineComponent({
-  name: 'FormItem',
+  name: 'ClFormItem',
   props: {
     prop: {
       type: String,
@@ -177,8 +177,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables";
-
 .form-item {
   .el-form-item {
     width: 100%;
@@ -192,7 +190,7 @@ export default defineComponent({
       .form-item-label-text.required {
         &:before {
           content: "*";
-          color: $red;
+          color: var(--cl-red);
           margin-right: 4px;
         }
       }

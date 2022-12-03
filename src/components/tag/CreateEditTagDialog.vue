@@ -1,5 +1,5 @@
 <template>
-  <CreateEditDialog
+  <cl-create-edit-dialog
       :action-functions="actionFunctions"
       :batch-form-data="formList"
       :batch-form-fields="batchFormFields"
@@ -10,24 +10,18 @@
       :visible="createEditDialogVisible"
   >
     <template #default>
-      <TagForm/>
+      <cl-tag-form/>
     </template>
-  </CreateEditDialog>
+  </cl-create-edit-dialog>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
-import CreateEditDialog from '@/components/dialog/CreateEditDialog.vue';
-import TagForm from '@/components/tag/TagForm.vue';
 import useTag from '@/components/tag/tag';
 
 export default defineComponent({
   name: 'CreateEditTagDialog',
-  components: {
-    CreateEditDialog,
-    TagForm,
-  },
   setup() {
     // store
     const store = useStore();

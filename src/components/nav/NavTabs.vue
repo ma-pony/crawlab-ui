@@ -94,8 +94,6 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .nav-tabs {
   display: flex;
   border-bottom: 1px solid #e6e6e6;
@@ -113,15 +111,15 @@ export default defineComponent({
   .el-menu {
     flex: 1 0 auto;
     display: flex;
-    height: $navTabsHeight;
+    height: var(--cl-nav-tabs-height);
     border-bottom: none;
 
     .el-menu-item {
-      height: $navTabsHeight;
-      line-height: $navTabsHeight;
+      height: var(--cl-nav-tabs-height);
+      line-height: var(--cl-nav-tabs-height);
 
       &:hover {
-        color: $primaryColor;
+        color: var(--cl-primary-color);
         background: inherit;
       }
 
@@ -130,7 +128,7 @@ export default defineComponent({
       }
 
       &.emphasis {
-        color: $infoColor;
+        color: var(--cl-info-color);
         border-bottom: none;
       }
     }
@@ -140,7 +138,7 @@ export default defineComponent({
     background: transparent;
     display: flex;
     align-items: center;
-    height: #{$navTabsHeight};
+    height: var(--cl-nav-tabs-height);
   }
 }
 </style>

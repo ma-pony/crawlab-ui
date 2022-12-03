@@ -291,7 +291,7 @@ export const getCodemirrorEditor = (el: HTMLElement, options: EditorConfiguratio
 export const initTheme = async (name?: string) => {
   if (!name) name = 'darcula';
   if (themeCache.has(name)) return;
-  require(`codemirror/theme/${name}.css`);
+  await import(`codemirror/theme/${name}.css`);
   themeCache.add(name);
 };
 

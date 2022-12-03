@@ -1,6 +1,6 @@
 <template>
   <div class="spider-detail-tab-schedules">
-    <ScheduleList no-actions embedded/>
+    <cl-schedule-list no-actions embedded/>
   </div>
 </template>
 <script lang="ts">
@@ -8,13 +8,9 @@ import {computed, defineComponent, onBeforeMount, onBeforeUnmount, watch} from '
 import {useRoute} from 'vue-router';
 import {useStore} from 'vuex';
 import {FILTER_OP_EQUAL} from '@/constants/filter';
-import ScheduleList from '@/views/schedule/list/ScheduleList.vue';
 
 export default defineComponent({
   name: 'SpiderDetailTabSchedules',
-  components: {
-    ScheduleList,
-  },
   setup() {
     // route
     const route = useRoute();

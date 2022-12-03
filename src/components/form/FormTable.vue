@@ -1,6 +1,6 @@
 <template>
   <div class="form-table">
-    <Table
+    <cl-table
         :columns="columns"
         :data="data"
         hide-footer
@@ -11,16 +11,12 @@
 <script lang="ts">
 import {computed, defineComponent, h, inject, PropType, Ref} from 'vue';
 import {emptyArrayFunc} from '@/utils/func';
-import Table from '@/components/table/Table.vue';
 import FormTableField from '@/components/form/FormTableField.vue';
 import {TABLE_COLUMN_NAME_ACTIONS} from '@/constants/table';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'FormTable',
-  components: {
-    Table,
-  },
   props: {
     data: {
       type: Array as PropType<TableData>,

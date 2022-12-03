@@ -1,5 +1,5 @@
 <template>
-  <Tag
+  <cl-tag
     :key="data"
     :icon="data.icon"
     :label="data.label"
@@ -13,12 +13,11 @@
     <template #tooltip>
       <div v-html="data.tooltip"/>
     </template>
-  </Tag>
+  </cl-tag>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, PropType} from 'vue';
-import Tag from '@/components/tag/Tag.vue';
 import {isCancellable} from '@/utils/task';
 import {TASK_STATUS_PENDING} from '@/constants/task';
 import {useI18n} from 'vue-i18n';
@@ -26,9 +25,6 @@ import {voidFunc} from '@/utils';
 
 export default defineComponent({
   name: 'TaskResults',
-  components: {
-    Tag,
-  },
   props: {
     results: {
       type: Number,

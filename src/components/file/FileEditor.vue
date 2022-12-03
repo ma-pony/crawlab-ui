@@ -41,7 +41,7 @@
           </el-tooltip>
         </div>
       </div>
-      <FileEditorNavMenu
+      <cl-file-editor-nav-menu
         :active-item="activeFileItem"
         :default-expand-all="!!fileSearchString"
         :default-expanded-keys="defaultExpandedKeys"
@@ -59,7 +59,7 @@
       />
     </div>
     <div class="file-editor-content">
-      <FileEditorNavTabs
+      <cl-file-editor-nav-tabs
         ref="navTabs"
         :active-tab="activeFileItem"
         :tabs="tabs"
@@ -78,7 +78,7 @@
             </span>
           </el-tooltip>
         </template>
-      </FileEditorNavTabs>
+      </cl-file-editor-nav-tabs>
       <div
         ref="codeMirrorEditor"
         :class="showCodeMirrorEditor ? '' : 'hidden'"
@@ -98,7 +98,7 @@
         {{ t('components.file.editor.empty.placeholder') }}
       </div>
       <template v-if="navTabs && navTabs.showMoreVisible">
-        <FileEditorNavTabsShowMoreContextMenu
+        <cl-file-editor-nav-tabs-show-more-context-menu
           :tabs="tabs"
           :visible="showMoreContextMenuVisible"
           @hide="onShowMoreHide"
@@ -118,13 +118,13 @@
               </span>
             </el-tooltip>
           </div>
-        </FileEditorNavTabsShowMoreContextMenu>
+        </cl-file-editor-nav-tabs-show-more-context-menu>
       </template>
     </div>
   </div>
   <div ref="codeMirrorTemplate" class="code-mirror-template"/>
   <div ref="styleRef" v-html="extraStyle"/>
-  <FileEditorSettingsDialog/>
+  <cl-file-editor-settings-dialog/>
 </template>
 
 <script lang="ts">
@@ -133,7 +133,6 @@ import {Editor, EditorConfiguration, KeyMap} from 'codemirror';
 import {MimeType} from 'codemirror/mode/meta';
 import {useStore} from 'vuex';
 import {getCodemirrorEditor, getCodeMirrorTemplate, initTheme} from '@/utils/codemirror';
-import variables from '@/styles/variables.scss';
 import {FILE_ROOT} from '@/constants/file';
 
 // codemirror mode
@@ -159,12 +158,6 @@ const codeMirrorTabContentCache = new Map<string, string>();
 
 export default defineComponent({
   name: 'FileEditor',
-  components: {
-    FileEditorSettingsDialog,
-    FileEditorNavTabs,
-    FileEditorNavMenu,
-    FileEditorNavTabsShowMoreContextMenu,
-  },
   props: {
     content: {
       type: String,
@@ -274,7 +267,7 @@ export default defineComponent({
   height: 8px;
 }
 .file-editor .file-editor-nav-menu::-webkit-scrollbar-thumb {
-  background-color: ${variables.primaryColor};
+  background-color: var(--cl-primary-color);
   border-radius: 4px;
 }
 .file-editor .file-editor-content .code-mirror-editor .CodeMirror-vscrollbar::-webkit-scrollbar {
@@ -287,7 +280,7 @@ export default defineComponent({
 }
 .file-editor .file-editor-content .code-mirror-editor .CodeMirror-vscrollbar::-webkit-scrollbar-thumb,
 .file-editor .file-editor-content .code-mirror-editor .CodeMirror-hscrollbar::-webkit-scrollbar-thumb {
-  background-color: ${variables.primaryColor};
+  background-color: var(--cl-primary-color);
   border-radius: 4px;
 }
 .file-editor .file-editor-nav-tabs::-webkit-scrollbar {
@@ -335,11 +328,11 @@ export default defineComponent({
       await initTheme(options.value.theme);
     };
 
-    const updateMode = () => {
+    const updateMode = async () => {
       const mode = language.value?.mode;
       if (!mode || codeMirrorModeCache.has(mode)) return;
       // @ts-ignore
-      require(`codemirror/mode/${mode}/${mode}.js`);
+      await import(`codemirror/mode/${mode}/${mode}.js`);
       codeMirrorModeCache.add(mode);
     };
 
@@ -620,7 +613,7 @@ export default defineComponent({
     };
 
     const update = async () => {
-      updateMode();
+      await updateMode();
       await updateTheme();
       updateEditorOptions();
       updateStyle();
@@ -703,7 +696,6 @@ export default defineComponent({
       style,
       files,
       extraStyle,
-      variables,
       onNavItemClick,
       onNavItemDbClick,
       onNavItemDrop,
@@ -734,18 +726,16 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .file-editor {
   height: 100%;
   display: flex;
 
   .nav-menu {
-    flex-basis: $fileEditorNavMenuWidth;
-    min-width: $fileEditorNavMenuWidth;
+    flex-basis: var(--cl-file-editor-nav-menu-width);
+    min-width: var(--cl-file-editor-nav-menu-width);
     display: flex;
     flex-direction: column;
-    transition: all $fileEditorNavMenuCollapseTransitionDuration;
+    transition: all var(--cl-file-editor-nav-menu-collapse-transition-duration);
 
     &.collapsed {
       min-width: 0;
@@ -754,7 +744,7 @@ export default defineComponent({
     }
 
     .nav-menu-top-bar {
-      flex-basis: $fileEditorNavMenuTopBarHeight;
+      flex-basis: var(--cl-file-editor-nav-menu-top-bar-height);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -772,7 +762,7 @@ export default defineComponent({
     position: relative;
     flex: 1;
     display: flex;
-    min-width: calc(100% - #{$fileEditorNavMenuWidth});
+    min-width: calc(100% - var(--cl-file-editor-nav-menu-width));
     flex-direction: column;
 
     .code-mirror-editor {
@@ -802,7 +792,7 @@ export default defineComponent({
       display: flex;
       align-items: center;
       justify-content: center;
-      height: $fileEditorNavTabsHeight;
+      height: var(--cl-file-editor-nav-tabs-height);
     }
   }
 
@@ -818,7 +808,7 @@ export default defineComponent({
 
     &:hover {
       .background {
-        background-color: $fileEditorMaskBg;
+        background-color: var(--cl-file-editor-mask-bg);
         border-radius: 8px;
       }
     }

@@ -4,7 +4,7 @@
     :model-value="visible"
     :title="t('components.table.columnsTransfer.title')">
     <div class="table-columns-transfer-content">
-      <Transfer
+      <cl-transfer
         :data="computedData"
         :titles="[
           t('components.table.columnsTransfer.titles.left'),
@@ -15,26 +15,23 @@
       />
     </div>
     <template #footer>
-      <Button plain type="info" @click="onClose">
+      <cl-button plain type="info" @click="onClose">
         {{ t('common.actions.cancel') }}
-      </Button>
-      <Button @click="onConfirm">
+      </cl-button>
+      <cl-button @click="onConfirm">
         {{ t('common.actions.confirm') }}
-      </Button>
+      </cl-button>
     </template>
   </el-dialog>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, onBeforeMount, ref} from 'vue';
-import Transfer from '@/components/transfer/Transfer.vue';
-import Button from '@/components/button/Button.vue';
-import {DataItem} from 'element-plus/lib/components/transfer';
+import {DataItem} from 'element-plus';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'TableColumnsTransfer',
-  components: {Button, Transfer},
   props: {
     visible: {
       type: Boolean,

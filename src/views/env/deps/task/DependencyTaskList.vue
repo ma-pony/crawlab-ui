@@ -1,5 +1,5 @@
 <template>
-  <ClTable
+  <cl-table
     :columns="tableColumns"
     :data="tableData"
     :page="tablePagination.page"
@@ -8,25 +8,22 @@
     :visible-buttons="['']"
     @pagination-change="onPaginationChange"
   />
-  <Dialog
+  <cl-dialog
     :title="t('views.env.deps.task.form.logs')"
     :visible="dialogVisible.logs"
     width="1200px"
     @confirm="onLogsClose"
     @close="onLogsClose"
   >
-    <LogsView :logs="logs"/>
-  </Dialog>
+    <cl-logs-view :logs="logs"/>
+  </cl-dialog>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, h, onBeforeUnmount, onMounted, ref, watch} from 'vue';
 import {useStore} from 'vuex';
-import LogsView from './LogsView.vue';
 import {translate} from '@/utils';
 import useRequest from '@/services/request';
-import Table from '@/components/table/Table.vue';
-import Dialog from '@/components/dialog/Dialog.vue';
 import TaskAction from '@/views/env/deps/task/TaskAction.vue';
 import NodeType from '@/components/node/NodeType.vue';
 import TaskStatus from '@/components/task/TaskStatus.vue';
@@ -43,11 +40,6 @@ const {
 
 export default defineComponent({
   name: 'DependencyTaskList',
-  components: {
-    ClTable: Table,
-    Dialog,
-    LogsView,
-  },
   props: {
     type: {
       type: String,

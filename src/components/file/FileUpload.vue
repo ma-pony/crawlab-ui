@@ -34,23 +34,23 @@
     </template>
     <template v-else-if="mode === FILE_UPLOAD_MODE_DIR">
       <div class="folder-upload-action-wrapper">
-        <Button
+        <cl-button
           size="large"
           class-name="file-upload-action"
           @click="open"
         >
           <i class="fa fa-folder"></i>
           {{ t('components.file.upload.buttons.folder.clickToSelectFolderToUpload') }}
-        </Button>
+        </cl-button>
         <template v-if="!!dirInfo?.dirName && dirInfo?.fileCount">
-          <Tag
+          <cl-tag
             type="primary"
             class="info-tag"
             :label="dirInfo?.dirName"
             :icon="['fa', 'folder']"
             :tooltip="t('components.file.upload.tooltip.fileName')"
           />
-          <Tag
+          <cl-tag
             type="success"
             class="info-tag"
             :label="dirInfo?.fileCount"
@@ -78,8 +78,6 @@
 import {computed, defineComponent, onBeforeMount, PropType, ref, watch} from 'vue';
 import {FILE_UPLOAD_MODE_DIR, FILE_UPLOAD_MODE_FILES} from '@/constants/file';
 import {ElUpload, UploadFile} from 'element-plus/lib/components/upload/src/upload.type';
-import Button from '@/components/button/Button.vue';
-import Tag from '@/components/tag/Tag.vue';
 import {plainClone} from '@/utils/object';
 import {useI18n} from 'vue-i18n';
 import {UploadFilled} from '@element-plus/icons';
@@ -88,8 +86,6 @@ import {sendEvent} from '@/admin/umeng';
 export default defineComponent({
   name: 'FileUpload',
   components: {
-    Tag,
-    Button,
     UploadFilled,
   },
   props: {
@@ -182,8 +178,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "../../styles/variables";
-
 .file-upload {
   .mode-select {
     margin-bottom: 20px;
@@ -209,7 +203,7 @@ export default defineComponent({
       list-style: none;
       max-height: 400px;
       overflow: auto;
-      border: 1px solid $infoPlainColor;
+      border: 1px solid var(--cl-info-plain-color);
       padding: 10px;
       margin-top: 10px;
 

@@ -1,5 +1,5 @@
 <template>
-  <ClListLayout
+  <cl-list-layout
     class="user-list"
     :action-functions="actionFunctions"
     :nav-actions="navActions"
@@ -13,24 +13,18 @@
   >
     <template #extra>
       <!-- Dialogs (handled by store) -->
-      <CreateEditUserDialog/>
+      <cl--create-edit-user-dialog/>
       <!-- ./Dialogs -->
     </template>
-  </ClListLayout>
+  </cl-list-layout>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import ClListLayout from '@/layouts/content/list/ListLayout.vue';
 import useUserList from './userList';
-import CreateEditUserDialog from '@/components/user/CreateEditUserDialog.vue';
 
 export default defineComponent({
   name: 'UserList',
-  components: {
-    ClListLayout,
-    CreateEditUserDialog,
-  },
   props: {
     noActions: {
       type: Boolean,

@@ -1,5 +1,5 @@
 <template>
-  <Tag
+  <cl-tag
     :type="type"
     :icon="icon"
     :label="label"
@@ -16,13 +16,9 @@ import {
   TASK_MODE_SELECTED_NODES
 } from '@/constants/task';
 import {useI18n} from 'vue-i18n';
-import Tag from '@/components/tag/Tag.vue';
 
 export default defineComponent({
   name: 'TaskMode',
-  components: {
-    Tag,
-  },
   props: {
     mode: {
       type: String,

@@ -1,5 +1,5 @@
 <template>
-  <LinkTag
+  <cl-link-tag
       :label="spider.name"
       :path="path"
       type="primary"
@@ -8,11 +8,9 @@
 
 <script lang="ts">
 import {computed, defineComponent, PropType} from 'vue';
-import LinkTag from '@/components/tag/LinkTag.vue';
 
 export default defineComponent({
   name: 'SpiderTag',
-  components: {LinkTag},
   props: {
     spider: {
       type: Object as PropType<Spider>,

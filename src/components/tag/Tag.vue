@@ -14,7 +14,7 @@
       @mouseenter="$emit('mouseenter')"
       @mouseleave="$emit('mouseleave')"
     >
-      <Icon :icon="icon" :spinning="spinning"/>
+      <cl-icon :icon="icon" :spinning="spinning"/>
       <span>{{ label || tag?.name }}</span>
     </el-tag>
     <template #content>
@@ -25,7 +25,6 @@
 
 <script lang="ts">
 import {computed, defineComponent, onMounted, PropType, ref, watch} from 'vue';
-import Icon from '@/components/icon/Icon.vue';
 import {ElTag} from 'element-plus';
 
 export const tagProps = {
@@ -86,7 +85,6 @@ export const tagProps = {
 
 export default defineComponent({
   name: 'Tag',
-  components: {Icon},
   props: tagProps,
   emits: [
     'click',
@@ -171,16 +169,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables";
-
 .tag {
   cursor: default;
 
   &.disabled {
     cursor: not-allowed;
-    background-color: $disabledBgColor;
-    border-color: $disabledBorderColor;
-    color: $disabledColor;
+    background-color: var(--cl-disabled-bg-color);
+    border-color: var(--cl-disabled-border-color);
+    color: var(--cl-disabled-color);
   }
 
   &.clickable {

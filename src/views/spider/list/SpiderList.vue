@@ -1,5 +1,5 @@
 <template>
-  <ClListLayout
+  <cl-list-layout
     class="spider-list"
     :action-functions="actionFunctions"
     :nav-actions="navActions"
@@ -15,21 +15,17 @@
   >
     <template #extra>
       <!-- Dialogs (handled by store) -->
-      <CreateSpiderDialog/>
-      <RunSpiderDialog/>
-      <UploadSpiderFilesDialog/>
+      <cl-create-spider-dialog/>
+      <cl-run-spider-dialog/>
+      <cl-upload-spider-files-dialog/>
       <!-- ./Dialogs -->
     </template>
-  </ClListLayout>
+  </cl-list-layout>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import CreateSpiderDialog from '@/components/spider/CreateEditSpiderDialog.vue';
-import ClListLayout from '@/layouts/content/list/ListLayout.vue';
 import useSpiderList from '@/views/spider/list/useSpiderList';
-import RunSpiderDialog from '@/components/spider/RunSpiderDialog.vue';
-import UploadSpiderFilesDialog from '@/components/spider/UploadSpiderFilesDialog.vue';
 
 export default defineComponent({
   name: 'SpiderList',
@@ -42,12 +38,6 @@ export default defineComponent({
       type: Boolean,
       required: false
     }
-  },
-  components: {
-    UploadSpiderFilesDialog,
-    RunSpiderDialog,
-    ClListLayout,
-    CreateSpiderDialog,
   },
   setup() {
     const {
@@ -80,15 +70,13 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../../styles/variables.scss";
-
 .spider-list {
   .nav-actions {
     border-bottom: none;
   }
 
   .content {
-    background-color: $containerWhiteBg;
+    background-color: var(--cl-container-white-bg);
   }
 }
 </style>

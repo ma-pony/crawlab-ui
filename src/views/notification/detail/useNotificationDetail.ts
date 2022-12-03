@@ -3,7 +3,7 @@ import useDetail from '@/layouts/content/detail/useDetail';
 import useNotification from '@/components/notification/notification';
 import {useStore} from 'vuex';
 import {translate} from '@/utils';
-import {DataItem} from 'element-plus/lib/components/transfer';
+import {DataItem} from 'element-plus';
 
 const t = translate;
 

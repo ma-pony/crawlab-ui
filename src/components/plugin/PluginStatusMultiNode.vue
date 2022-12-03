@@ -1,19 +1,19 @@
 <template>
   <div class="plugin-status">
-    <Tag
-        v-for="(t, $index) in tags"
-        :key="$index"
-        :icon="t.icon"
-        :label="t.label"
-        :spinning="t.spinning"
-        :type="t.type"
-        :size="size"
-        @click="$emit('click')"
+    <cl-tag
+      v-for="(t, $index) in tags"
+      :key="$index"
+      :icon="t.icon"
+      :label="t.label"
+      :spinning="t.spinning"
+      :type="t.type"
+      :size="size"
+      @click="$emit('click')"
     >
       <template #tooltip>
         <div v-html="t.tooltip"/>
       </template>
-    </Tag>
+    </cl-tag>
   </div>
 </template>
 
@@ -25,7 +25,6 @@ import {
   PLUGIN_STATUS_RUNNING,
   PLUGIN_STATUS_ERROR,
 } from '@/constants/plugin';
-import Tag from '@/components/tag/Tag.vue';
 import {emptyArrayFunc} from '@/utils/func';
 import {useI18n} from 'vue-i18n';
 
@@ -38,9 +37,6 @@ const statusList = [
 
 export default defineComponent({
   name: 'PluginStatusMultiNode',
-  components: {
-    Tag,
-  },
   props: {
     status: {
       type: Array as PropType<PluginStatus[]>,

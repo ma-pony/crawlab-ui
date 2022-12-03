@@ -1,25 +1,23 @@
 <template>
   <div class="draggable-list">
-    <DraggableItem
-        v-for="(item, $index) in orderedItems"
-        :key="item[itemKey] === undefined ? $index : item[itemKey]"
-        :item="item"
-        @d-end="onTabDragEnd"
-        @d-enter="onTabDragEnter"
-        @d-leave="onTabDragLeave"
-        @d-start="onTabDragStart"
+    <cl-draggable-item
+      v-for="(item, $index) in orderedItems"
+      :key="item[itemKey] === undefined ? $index : item[itemKey]"
+      :item="item"
+      @d-end="onTabDragEnd"
+      @d-enter="onTabDragEnter"
+      @d-leave="onTabDragLeave"
+      @d-start="onTabDragStart"
     />
   </div>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, provide, reactive, ref} from 'vue';
-import DraggableItem from '@/components/drag/DraggableItem.vue';
 import {plainClone} from '@/utils/object';
 
 export default defineComponent({
   name: 'DraggableList',
-  components: {DraggableItem},
   props: {
     items: {
       type: Array,

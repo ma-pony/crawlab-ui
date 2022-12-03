@@ -1,7 +1,6 @@
 import {useRoute, useRouter} from 'vue-router';
 import {useStore} from 'vuex';
 import {computed, watch, provide, ref} from 'vue';
-import variables from '@/styles/variables.scss';
 import {plainClone} from '@/utils/object';
 import {getRoutePathByDepth, getTabName} from '@/utils/route';
 import {ElMessage} from 'element-plus';
@@ -52,7 +51,7 @@ const useDetail = <T = BaseModel>(ns: ListStoreNamespace) => {
 
   const contentContainerStyle = computed(() => {
     return {
-      height: `calc(100% - ${variables.navTabsHeight} - 1px${navActions.value ? ' - ' + navActions.value.getHeight() : ''})`,
+      height: `calc(100% - var(--cl-nav-tabs-height) - 1px${navActions.value ? ' - ' + navActions.value.getHeight() : ''})`,
     };
   });
 

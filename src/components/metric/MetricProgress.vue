@@ -14,7 +14,7 @@
           <template #default="{percentage}">
             <div class="label" :style="{color}">
               <span class="label-icon">
-                <Icon :icon="labelIcon"/>
+                <cl-icon :icon="labelIcon"/>
               </span>
               <span class="label-text">{{ label?.key }}</span>
             </div>
@@ -23,7 +23,7 @@
             </div>
             <div class="status" :style="{color}">
               <el-tooltip :content="computedStatus?.label">
-                <Icon :icon="computedStatus?.icon"/>
+                <cl-icon :icon="computedStatus?.icon"/>
               </el-tooltip>
             </div>
           </template>
@@ -37,7 +37,7 @@
           </span>
           <el-tooltip :content="computedStatus?.label">
             <span class="value" :style="{color}">
-              <Icon :icon="computedStatus?.icon"/>
+              <cl-icon :icon="computedStatus?.icon"/>
               {{ format(percentage) }}
             </span>
           </el-tooltip>
@@ -72,13 +72,11 @@
 
 <script lang="ts">
 import {computed, defineComponent, PropType} from 'vue';
-import IconComp from '@/components/icon/Icon.vue';
 import {emptyArrayFunc, emptyObjectFunc} from '@/utils/func';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'MetricProgress',
-  components: {Icon: IconComp},
   props: {
     percentage: {
       type: Number,
@@ -162,8 +160,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables";
-
 .metric-progress {
   display: inline-flex;
   cursor: pointer;
@@ -176,7 +172,7 @@ export default defineComponent({
     margin-bottom: 10px;
     font-size: 16px;
     font-weight: 600;
-    color: $infoMediumColor;
+    color: var(--cl-info-medium-color);
 
     .title {
       margin-right: 10px;

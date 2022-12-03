@@ -1,5 +1,5 @@
 <template>
-  <Dialog
+  <cl-dialog
     :title="t('common.actions.install')"
     :visible="visible"
     width="640px"
@@ -7,9 +7,9 @@
     @confirm="onConfirm"
     @close="onClose"
   >
-    <Form>
-      <FormItem :span="4" :label="t('views.env.deps.dependency.form.name')">
-        <Tag
+    <cl-form>
+      <cl-form-item :span="4" :label="t('views.env.deps.dependency.form.name')">
+        <cl-tag
           v-for="n in names"
           :key="n"
           class="dep-name"
@@ -17,45 +17,33 @@
           :label="n"
           size="small"
         />
-      </FormItem>
-      <FormItem :span="4" :label="t('views.env.deps.dependency.form.mode')">
+      </cl-form-item>
+      <cl-form-item :span="4" :label="t('views.env.deps.dependency.form.mode')">
         <el-select v-model="mode">
           <el-option value="all" :label="t('views.env.deps.dependency.form.allNodes')"/>
           <el-option value="selected-nodes" :label="t('views.env.deps.dependency.form.selectedNodes')"/>
         </el-select>
-      </FormItem>
-      <FormItem :label="t('views.env.deps.dependency.form.upgrade')">
-        <Switch v-model="upgrade"/>
-      </FormItem>
-      <FormItem v-if="mode === 'selected-nodes'" :span="4" :label="t('views.env.deps.dependency.form.selectedNodes')">
+      </cl-form-item>
+      <cl-form-item :label="t('views.env.deps.dependency.form.upgrade')">
+        <cl-switch v-model="upgrade"/>
+      </cl-form-item>
+      <cl-form-item v-if="mode === 'selected-nodes'" :span="4" :label="t('views.env.deps.dependency.form.selectedNodes')">
         <el-select v-model="nodeIds" multiple :placeholder="t('views.env.deps.dependency.form.selectedNodes')">
           <el-option v-for="n in nodes" :key="n.key" :value="n._id" :label="n.name"/>
         </el-select>
-      </FormItem>
-    </Form>
-  </Dialog>
+      </cl-form-item>
+    </cl-form>
+  </cl-dialog>
 </template>
 
 <script lang="ts">
 import {defineComponent, ref} from 'vue';
 import {translate} from '@/utils';
-import Form from '@/components/form/Form.vue';
-import FormItem from '@/components/form/FormItem.vue';
-import Switch from '@/components/switch/Switch.vue';
-import Dialog from '@/components/dialog/Dialog.vue';
-import Tag from '@/components/tag/Tag.vue';
 
 const t = translate;
 
 export default defineComponent({
   name: 'InstallForm',
-  components: {
-    Form,
-    FormItem,
-    Switch,
-    Dialog,
-    Tag,
-  },
   props: {
     visible: {
       type: Boolean,

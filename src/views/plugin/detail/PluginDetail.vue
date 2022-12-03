@@ -1,15 +1,12 @@
 <template>
-  <DetailLayout store-namespace="plugin">
-  </DetailLayout>
+  <cl-detail-layout store-namespace="plugin"/>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import DetailLayout from '@/layouts/content/detail/DetailLayout.vue';
 
 export default defineComponent({
   name: 'PluginDetail',
-  components: {DetailLayout},
   setup(props, {emit}) {
     return {};
   },

@@ -1,21 +1,17 @@
 <template>
   <div class="nav-link" @click="onClick">
-    <IconComp :icon="icon" class="icon"/>
+    <cl-icon :icon="icon" class="icon"/>
     <span class="title">{{ label }}</span>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import IconComp from '@/components/icon/Icon.vue';
 import {useRouter} from 'vue-router';
 import {sendEvent} from '@/admin/umeng';
 
 export default defineComponent({
   name: 'NavLink',
-  components: {
-    IconComp,
-  },
   props: {
     path: {
       type: String,
@@ -66,11 +62,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/color";
-
 .nav-link {
   cursor: pointer;
-  color: $blue;
+  color: var(--cl-blue);
 
   &:hover {
     text-decoration: underline;

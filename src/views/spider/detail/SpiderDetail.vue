@@ -1,39 +1,25 @@
 <template>
-  <DetailLayout store-namespace="spider">
+  <cl-detail-layout store-namespace="spider">
     <template #actions>
-      <SpiderDetailActionsCommon/>
-      <SpiderDetailActionsFiles v-if="activeTabName === 'files'"/>
-      <SpiderDetailActionsGit v-if="activeTabName === 'git'"/>
-      <SpiderDetailActionsData v-if="activeTabName === 'data'"/>
+      <cl-spider-detail-actions-common/>
+      <cl-spider-detail-actions-files v-if="activeTabName === 'files'"/>
+      <cl-spider-detail-actions-git v-if="activeTabName === 'git'"/>
+      <cl-spider-detail-actions-data v-if="activeTabName === 'data'"/>
       <slot name="actions-suffix"/>
     </template>
-  </DetailLayout>
+  </cl-detail-layout>
 
   <!-- Dialogs (handled by store) -->
-  <UploadSpiderFilesDialog/>
+  <cl-upload-spider-files-dialog/>
   <!-- ./Dialogs -->
 </template>
 <script lang="ts">
 import {defineComponent, onBeforeMount, onBeforeUnmount} from 'vue';
 import {useStore} from 'vuex';
-import SpiderDetailActionsFiles from '@/views/spider/detail/actions/SpiderDetailActionsFiles.vue';
-import SpiderDetailActionsCommon from '@/views/spider/detail/actions/SpiderDetailActionsCommon.vue';
-import DetailLayout from '@/layouts/content/detail/DetailLayout.vue';
 import useSpiderDetail from '@/views/spider/detail/useSpiderDetail';
-import SpiderDetailActionsGit from '@/views/spider/detail/actions/SpiderDetailActionsGit.vue';
-import UploadSpiderFilesDialog from '@/components/spider/UploadSpiderFilesDialog.vue';
-import SpiderDetailActionsData from '@/views/spider/detail/actions/SpiderDetailActionsData.vue';
 
 export default defineComponent({
   name: 'SpiderDetail',
-  components: {
-    DetailLayout,
-    SpiderDetailActionsCommon,
-    SpiderDetailActionsFiles,
-    SpiderDetailActionsGit,
-    SpiderDetailActionsData,
-    UploadSpiderFilesDialog,
-  },
   setup() {
     const ns = 'spider';
     const nsGit = 'git';

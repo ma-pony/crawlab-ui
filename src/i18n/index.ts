@@ -10,8 +10,8 @@ export const getI18n = (): LI18n => {
       legacy: false,
       locale: localStorage.getItem('lang') || 'en',
       messages: {
-        en,
-        zh
+        en: en as any,
+        zh: zh as any,
       },
       fallbackLocale: 'en',
       missingWarn: process.env.NODE_ENV === 'development',

@@ -1,6 +1,6 @@
 <template>
   <div class="empty">
-    <ImgEmpty/>
+    <cl-img-empty/>
     <div class="description">
       {{ t(description) }}
     </div>
@@ -14,7 +14,6 @@ import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'Empty',
-  components: {ImgEmpty},
   props: {
     description: {
       type: String,

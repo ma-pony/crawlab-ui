@@ -2,23 +2,23 @@
   <div class="list-layout">
     <div class="content">
       <!-- Nav Actions -->
-      <NavActions v-if="!noActions" ref="navActions" class="nav-actions">
-        <NavActionGroup
+      <cl-nav-actions v-if="!noActions" ref="navActions" class="nav-actions">
+        <cl-nav-action-group
           v-for="(grp, i) in navActions"
           :key="grp.name || i"
         >
-          <NavActionItem
+          <cl-nav-action-item
             v-for="(item, j) in grp.children"
             :key="`${grp.name}-${item.id || j}`"
           >
             <template v-if="item.action === ACTION_FILTER_SEARCH">
-              <FilterInput
+              <cl-filter-input
                 :placeholder="item.placeholder"
                 @change="(value) => item?.onChange(value)"
               />
             </template>
             <template v-else-if="item.action === ACTION_FILTER_SELECT">
-              <FilterSelect
+              <cl-filter-select
                 :label="item.label"
                 :placeholder="item.placeholder"
                 :options="item.options"
@@ -27,7 +27,7 @@
               />
             </template>
             <template v-else>
-              <NavActionButton
+              <cl-nav-action-button
                 v-auth="ACTION_ADD"
                 :id="item.id"
                 :class-name="item.className"
@@ -41,14 +41,14 @@
                 @click="item.onClick"
               />
             </template>
-          </NavActionItem>
-        </NavActionGroup>
+          </cl-nav-action-item>
+        </cl-nav-action-group>
         <slot name="nav-actions-extra"></slot>
-      </NavActions>
+      </cl-nav-actions>
       <!-- ./Nav Actions -->
 
       <!-- Table -->
-      <ClTable
+      <cl-table
         ref="tableRef"
         :key="tableColumnsHash"
         :columns="tableColumns"
@@ -69,7 +69,7 @@
         @header-change="onHeaderChange"
       >
         <template #actions-prefix>
-          <NavActionButton
+          <cl-nav-action-button
             v-for="(btn, $index) in tableActionsPrefix"
             :key="$index"
             :button-type="btn.buttonType"
@@ -83,7 +83,7 @@
           />
         </template>
         <template #actions-suffix>
-          <NavActionButton
+          <cl-nav-action-button
             v-for="(btn, $index) in tableActionsSuffix"
             :key="$index"
             :button-type="btn.buttonType"
@@ -96,7 +96,7 @@
             @click="btn.onClick"
           />
         </template>
-      </ClTable>
+      </cl-table>
       <!-- ./Table -->
     </div>
 
@@ -105,29 +105,24 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, onBeforeMount, PropType, provide, ref, SetupContext, toRefs, watch} from 'vue';
-import NavActionGroup from '@/components/nav/NavActionGroup.vue';
-import NavActionItem from '@/components/nav/NavActionItem.vue';
-import Table from '@/components/table/Table.vue';
-import NavActionButton from '@/components/nav/NavActionButton.vue';
-import NavActions from '@/components/nav/NavActions.vue';
-import FilterSelect from '@/components/filter/FilterSelect.vue';
+import {
+  computed,
+  defineComponent,
+  onBeforeMount,
+  onMounted,
+  PropType,
+  provide,
+  ref,
+  SetupContext,
+  toRefs,
+  watch
+} from 'vue';
 import {emptyArrayFunc, emptyObjectFunc} from '@/utils/func';
 import {getMd5} from '@/utils/hash';
 import {ACTION_ADD, ACTION_FILTER_SEARCH, ACTION_FILTER_SELECT} from '@/constants/action';
-import FilterInput from '@/components/filter/FilterInput.vue';
 
 export default defineComponent({
   name: 'ListLayout',
-  components: {
-    FilterInput,
-    FilterSelect,
-    NavActions,
-    NavActionGroup,
-    NavActionItem,
-    NavActionButton,
-    ClTable: Table,
-  },
   props: {
     navActions: {
       type: Array as PropType<ListActionGroup[]>,
@@ -223,19 +218,9 @@ export default defineComponent({
     'delete',
   ],
   setup(props: ListLayoutProps, {emit}: SetupContext) {
-    const {
-      actionFunctions,
-    } = toRefs(props);
-
-    const {
-      setPagination,
-      getList,
-      onHeaderChange,
-    } = actionFunctions.value;
-
     const tableRef = ref();
 
-    const computedTableRef = computed<typeof Table>(() => tableRef.value);
+    const computedTableRef = computed(() => tableRef.value);
 
     const onSelect = (value: TableData) => {
       emit('select', value);
@@ -250,18 +235,18 @@ export default defineComponent({
     };
 
     const onPaginationChange = (value: TablePagination) => {
-      setPagination(value);
+      props.actionFunctions?.setPagination(value);
     };
 
     // get list when table pagination changes
-    watch(() => props.tablePagination, getList);
+    watch(() => props.tablePagination, props.actionFunctions?.getList);
 
     // get list before mount
-    onBeforeMount(() => {
-      getList();
+    onMounted(() => {
+      props.actionFunctions?.getList();
     });
 
-    provide<ListLayoutActionFunctions>('action-functions', actionFunctions.value);
+    provide<ListLayoutActionFunctions>('action-functions', props.actionFunctions);
 
     const getNavActionButtonDisabled = (btn: ListActionButton) => {
       if (typeof btn.disabled === 'boolean') {
@@ -283,7 +268,7 @@ export default defineComponent({
       tableColumnsHash,
       onSelect,
       onPaginationChange,
-      onHeaderChange,
+      onHeaderChange: props.actionFunctions?.onHeaderChange,
       onEdit,
       onDelete,
       getNavActionButtonDisabled,
@@ -296,11 +281,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../../styles/variables";
-
 .list-layout {
   .nav-actions {
-    background-color: $containerWhiteBg;
+    background-color: var(--cl-container-white-bg);
     border-bottom: none;
 
     .nav-action-group {
@@ -313,7 +296,7 @@ export default defineComponent({
   }
 
   .content {
-    background-color: $containerWhiteBg;
+    background-color: var(--cl-container-white-bg);
   }
 }
 </style>

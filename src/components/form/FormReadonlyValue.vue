@@ -22,10 +22,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables";
-
 .form-readonly-value {
   font-size: 14px;
-  color: $infoColor;
+  color: var(--cl-info-color);
 }
 </style>

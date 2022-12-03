@@ -69,14 +69,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .table-header-dialog-sort {
   .title {
     font-size: 14px;
     font-weight: 900;
     margin-bottom: 10px;
-    color: $infoMediumColor;
+    color: var(--cl-info-medium-color);
     display: flex;
     align-items: center;
 

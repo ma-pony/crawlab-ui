@@ -118,10 +118,9 @@
 import {computed, defineComponent, onMounted, onUnmounted, ref} from 'vue';
 import {isValidUsername} from '@/utils/validate';
 import {useRoute, useRouter} from 'vue-router';
-import logo from '@/assets/js/svg/logo.js';
+import logo from '@/assets/svg/logo';
 import {ElMessage} from 'element-plus';
 import useRequest from '@/services/request';
-import {initPlugins} from '@/utils/plugin';
 import {useStore} from 'vuex';
 import {setGlobalLang} from '@/utils/i18n';
 import {useI18n} from 'vue-i18n';
@@ -279,7 +278,7 @@ export default defineComponent({
       // initialize canvas
       if (window.innerWidth >= 1024) {
         if (!window.initCanvas) {
-          require('@/assets/js/loginCanvas.js');
+          import('@/assets/js/loginCanvas.js');
         } else {
           window.initCanvas();
         }
@@ -314,16 +313,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-@import "../../styles/variables.scss";
-
-$bg: white;
-$dark_gray: #889aa4;
-$light_gray: #aaa;
 .login-container {
   position: fixed;
   height: 100%;
   width: 100%;
-  background-color: $bg;
+  background-color: var(--cl-white);
 
   .login-form {
     background: transparent;
@@ -351,7 +345,7 @@ $light_gray: #aaa;
 
   .svg-container {
     padding: 6px 5px 6px 15px;
-    color: $dark_gray;
+    color: #889aa4;
     vertical-align: middle;
     width: 30px;
     display: inline-block;
@@ -390,7 +384,7 @@ $light_gray: #aaa;
       line-height: 48px;
       margin-left: 20px;
       font-weight: 500;
-      color: $infoMediumColor;
+      color: var(--cl-info-medium-color);
       opacity: 0.8;
 
       .logo-sub-title-block {
@@ -407,7 +401,7 @@ $light_gray: #aaa;
     right: 10px;
     top: 7px;
     font-size: 16px;
-    color: $dark_gray;
+    color: #889aa4;
     cursor: pointer;
     user-select: none;
   }

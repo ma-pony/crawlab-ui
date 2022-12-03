@@ -1,5 +1,5 @@
 <template>
-  <Tag
+  <cl-tag
       :key="data"
       :icon="data.icon"
       :label="data.label"
@@ -24,9 +24,6 @@ import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'NodeStatus',
-  components: {
-    Tag,
-  },
   props: {
     status: {
       type: String as PropType<TaskStatus>,

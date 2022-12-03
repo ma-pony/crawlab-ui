@@ -1,11 +1,11 @@
 <template>
   <div class="public-plugin-content">
     <div class="top">
-      <PublicPluginItem
-          :plugin="plugin"
-          :status="status"
-          :installed="installed"
-          @install="() => $emit('install')"
+      <cl-public-plugin-item
+        :plugin="plugin"
+        :status="status"
+        :installed="installed"
+        @install="() => $emit('install')"
       />
     </div>
     <div class="content">
@@ -34,7 +34,7 @@
           {{ t('components.plugin.install.pushedAt') }}:
         </span>
         <span class="value">
-          <Time :time="info.repo?.pushed_at"/>
+          <cl-time :time="info.repo?.pushed_at"/>
         </span>
       </div>
       <div class="info">
@@ -42,7 +42,7 @@
           {{ t('components.plugin.install.updatedAt') }}:
         </span>
         <span class="value">
-          <Time :time="info.repo?.updated_at"/>
+          <cl-time :time="info.repo?.updated_at"/>
         </span>
       </div>
       <div class="readme" v-html="readme"/>
@@ -54,12 +54,9 @@
 import {computed, defineComponent, PropType} from 'vue';
 import {useI18n} from 'vue-i18n';
 import {Converter} from 'showdown';
-import PublicPluginItem from '@/components/plugin/PublicPluginItem.vue';
-import Time from '@/components/time/Time.vue';
 
 export default defineComponent({
   name: 'PublicPluginContent',
-  components: {PublicPluginItem, Time},
   props: {
     plugin: {
       type: Object as PropType<PublicPlugin>,
@@ -98,8 +95,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "../../styles/variables.scss";
-
 .public-plugin-content {
   .top {
     height: 100px;
@@ -128,7 +123,7 @@ export default defineComponent({
         flex: 1 0 auto;
 
         a {
-          color: $primaryColor;
+          color: var(--cl-primary-color);
 
           &:hover {
             text-decoration: underline;

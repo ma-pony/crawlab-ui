@@ -1,6 +1,7 @@
 export * from './components';
 export * from './directives';
 export * from './layouts';
+export * from './views';
 export * from './router';
 export * from './store';
 export * from './i18n';

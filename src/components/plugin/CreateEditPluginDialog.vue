@@ -1,5 +1,5 @@
 <template>
-  <CreateEditDialog
+  <cl-create-edit-dialog
       width="800px"
       :action-functions="actionFunctions"
       :confirm-disabled="confirmDisabled"
@@ -10,24 +10,18 @@
       no-batch
   >
     <template #default>
-      <PluginForm/>
+      <cl-plugin-form/>
     </template>
-  </CreateEditDialog>
+  </cl-create-edit-dialog>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
-import CreateEditDialog from '@/components/dialog/CreateEditDialog.vue';
-import PluginForm from '@/components/plugin/PluginForm.vue';
 import usePlugin from '@/components/plugin/plugin';
 
 export default defineComponent({
   name: 'CreateEditPluginDialog',
-  components: {
-    CreateEditDialog,
-    PluginForm,
-  },
   setup() {
     // store
     const store = useStore();

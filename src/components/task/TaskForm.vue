@@ -1,7 +1,7 @@
 <template>
-  <Form v-if="form" ref="formRef" :model="form" class="task-form">
+  <cl-form v-if="form" ref="formRef" :model="form" class="task-form">
     <!-- Row -->
-    <FormItem
+    <cl-form-item
       :offset="2"
       :span="2"
       :label="t('components.task.form.spider')"
@@ -21,16 +21,16 @@
           :value="op.value"
         />
       </el-select>
-      <NavLink
+      <cl-nav-link
         v-else
         :label="getSpiderName(form.spider_id)"
         :path="`/spiders/${form.spider_id}`"
       />
-    </FormItem>
+    </cl-form-item>
     <!-- ./Row -->
 
     <!-- Row -->
-    <FormItem
+    <cl-form-item
       v-if="readonly"
       :offset="2"
       :span="2"
@@ -42,23 +42,23 @@
         disabled
         :placeholder="t('common.status.unassigned')"
       />
-      <NavLink
+      <cl-nav-link
         v-else
         :label="getNodeName(form.node_id)"
         :path="`/nodes/${form.node_id}`"
       />
-    </FormItem>
+    </cl-form-item>
     <!-- ./Row -->
 
     <!-- Row -->
-    <FormItem
+    <cl-form-item
       v-if="readonly"
       :span="4"
       :label="t('components.task.form.status')"
       prop="status"
     >
-      <TaskStatus :status="form.status" :error="form.error"/>
-      <Tag
+      <cl-task-status :status="form.status" :error="form.error"/>
+      <cl-tag
         v-if="form.status === 'error'"
         :icon="['fa', 'exclamation']"
         :label="form.error"
@@ -66,7 +66,7 @@
         :tooltip="t('components.task.form.tooltip.taskErrorMessage')"
         type="danger"
       />
-      <Tag
+      <cl-tag
         v-else-if="cancellable"
         :icon="['fa', 'pause']"
         class-name="cancel-btn"
@@ -76,11 +76,11 @@
         type="info"
         @click="onCancel"
       />
-    </FormItem>
+    </cl-form-item>
     <!-- ./Row -->
 
     <!-- Row -->
-    <FormItem
+    <cl-form-item
       :span="2"
       :label="t('components.task.form.command')"
       prop="cmd"
@@ -92,14 +92,14 @@
         v-model="form.cmd"
         :placeholder="t('components.task.form.command')"
       />
-      <Tag
+      <cl-tag
         v-else
         type="plain"
         size="large"
         :label="form.cmd || '-'"
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :span="2"
       :label="t('components.task.form.param')"
       prop="param"
@@ -110,17 +110,17 @@
         v-model="form.param"
         :placeholder="t('components.task.form.param')"
       />
-      <Tag
+      <cl-tag
         v-else
         type="plain"
         size="large"
         :label="form.param || '-'"
       />
-    </FormItem>
+    </cl-form-item>
     <!-- ./Row -->
 
     <!-- Row -->
-    <FormItem
+    <cl-form-item
       :span="2"
       :label="t('components.task.form.mode')"
       prop="mode"
@@ -138,14 +138,14 @@
           :value="op.value"
         />
       </el-select>
-      <Tag
+      <cl-tag
         v-else
         type="plain"
         size="large"
         :label="getModeName(form.mode) || '-'"
       />
-    </FormItem>
-    <FormItem
+    </cl-form-item>
+    <cl-form-item
       :span="2"
       :label="t('components.task.form.priority')"
       prop="priority"
@@ -163,43 +163,43 @@
           :value="op.value"
         />
       </el-select>
-      <TaskPriority
+      <cl-task-priority
         v-else
         :priority="form.priority"
         size="large"
       />
-    </FormItem>
+    </cl-form-item>
     <!-- ./Row -->
 
-    <FormItem
+    <cl-form-item
       v-if="form.mode === TASK_MODE_SELECTED_NODE_TAGS"
       :span="4"
       :label="t('components.task.form.selectedTags')"
       prop="node_tags"
       :required="!readonly"
     >
-      <CheckTagGroup
+      <cl-check-tag-group
         v-locate="'node_tags'"
         v-model="form.node_tags"
         :disabled="isFormItemDisabled('node_tags') || readonly"
         :options="allNodeTags"
       />
-    </FormItem>
+    </cl-form-item>
 
-    <FormItem
+    <cl-form-item
       v-if="[TASK_MODE_SELECTED_NODES, TASK_MODE_SELECTED_NODE_TAGS].includes(form.mode)"
       :span="4"
       :label="t('components.task.form.selectedNodes')"
       required
     >
-      <CheckTagGroup
+      <cl-check-tag-group
         v-locate="'node_ids'"
         v-model="form.node_ids"
         :disabled="(form.mode === TASK_MODE_SELECTED_NODE_TAGS && isFormItemDisabled('node_ids')) || readonly"
         :options="allNodeSelectOptions"
       />
-    </FormItem>
-  </Form>
+    </cl-form-item>
+  </cl-form>
 </template>
 
 <script lang="ts">
@@ -207,22 +207,15 @@ import {computed, defineComponent, watch} from 'vue';
 import {useStore} from 'vuex';
 import useSpider from '@/components/spider/spider';
 import useNode from '@/components/node/node';
-import Form from '@/components/form/Form.vue';
-import FormItem from '@/components/form/FormItem.vue';
-import CheckTagGroup from '@/components/tag/CheckTagGroup.vue';
 import {TASK_MODE_SELECTED_NODE_TAGS, TASK_MODE_SELECTED_NODES} from '@/constants/task';
 import useRequest from '@/services/request';
 import useTask from '@/components/task/task';
-import TaskStatus from '@/components/task/TaskStatus.vue';
-import Tag from '@/components/tag/Tag.vue';
 import {useRouter} from 'vue-router';
 import {isCancellable} from '@/utils/task';
 import {ElMessage, ElMessageBox} from 'element-plus';
 import {isZeroObjectId} from '@/utils/mongo';
 import useTaskDetail from '@/views/task/detail/taskDetail';
 import {useI18n} from 'vue-i18n';
-import NavLink from '@/components/nav/NavLink.vue';
-import TaskPriority from '@/components/task/TaskPriority.vue';
 
 const {
   post,
@@ -230,15 +223,6 @@ const {
 
 export default defineComponent({
   name: 'TaskForm',
-  components: {
-    TaskPriority,
-    NavLink,
-    Tag,
-    TaskStatus,
-    Form,
-    FormItem,
-    CheckTagGroup,
-  },
   props: {
     readonly: {
       type: Boolean,

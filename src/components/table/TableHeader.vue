@@ -2,12 +2,12 @@
   <div class="table-header">
     <span :class="[column.required ? 'required' : '']" class="label">
       <span v-if="column.icon" class="label-icon">
-        <Icon :icon="column.icon"/>
+        <cl-icon :icon="column.icon"/>
       </span>
       {{ column.label }}
     </span>
 
-    <TableHeaderDialog
+    <cl-table-header-dialog
       v-if="hasDialog"
       :action-status-map="actionStatusMap"
       :column="column"
@@ -20,7 +20,7 @@
     >
       <template #reference>
         <div class="actions">
-          <TableHeaderAction
+          <cl-table-header-action
             v-for="{key, tooltip, isHtml, icon, onClick} in actions"
             :key="key + JSON.stringify(icon)"
             :icon="icon"
@@ -31,29 +31,20 @@
           />
         </div>
       </template>
-    </TableHeaderDialog>
+    </cl-table-header-dialog>
   </div>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, PropType, reactive, ref} from 'vue';
-import TableHeaderDialog from '@/components/table/TableHeaderDialog.vue';
-import TableHeaderAction from '@/components/table/TableHeaderAction.vue';
 import {conditionTypesMap} from '@/components/filter/FilterCondition.vue';
 import {ASCENDING, DESCENDING} from '@/constants/sort';
-import variables from '@/styles/variables.scss';
 import {FILTER_OP_NOT_SET} from '@/constants/filter';
-import Icon from '@/components/icon/Icon.vue';
 import {useI18n} from 'vue-i18n';
 import {sendEvent} from '@/admin/umeng';
 
 export default defineComponent({
   name: 'TableHeader',
-  components: {
-    Icon,
-    TableHeaderAction,
-    TableHeaderDialog,
-  },
   props: {
     column: {
       type: Object as PropType<TableColumn>,
@@ -115,14 +106,14 @@ export default defineComponent({
 
         // search string
         if (searchString) {
-          filterTooltip += `<br><span style="color: ${variables.primaryColor}">${t('components.table.header.filter.tooltip.search')}:</span> <span style="color: ${variables.warningColor};">"${searchString}"</span>`;
+          filterTooltip += `<br><span style="color: var(--cl-primary-color)">${t('components.table.header.filter.tooltip.search')}:</span> <span style="color: ${variables.warningColor};">"${searchString}"</span>`;
           filterIsHtml = true;
         }
 
         // filter conditions
         if (conditions && conditions.length > 0) {
           filterTooltip += '<br>' + conditions.filter(d => d.op !== FILTER_OP_NOT_SET)
-            .map(d => `<span style="color: ${variables.primaryColor};margin-right: 5px">${conditionTypesMap[d.op || '']}:</span> <span style="color: ${variables.warningColor};">"${d.value}"</span>`)
+            .map(d => `<span style="color: var(--cl-primary-color);margin-right: 5px">${conditionTypesMap[d.op || '']}:</span> <span style="color: ${variables.warningColor};">"${d.value}"</span>`)
             .join('<br>');
           filterIsHtml = true;
         }
@@ -130,7 +121,7 @@ export default defineComponent({
         // filter items
         if (items && items.length > 0) {
           const itemsStr = items.map(value => filterItemsMap.value.get(value)).join(', ');
-          filterTooltip += `<br><span style="color: ${variables.primaryColor};margin-right: 5px">${t('components.table.header.filter.tooltip.include')}:</span><span style="color: ${variables.warningColor}">` + itemsStr + '</span>';
+          filterTooltip += `<br><span style="color: var(--cl-primary-color);margin-right: 5px">${t('components.table.header.filter.tooltip.include')}:</span><span style="color: ${variables.warningColor}">` + itemsStr + '</span>';
           filterIsHtml = true;
         }
       }
@@ -256,8 +247,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .table-header {
   display: flex;
   position: relative;
@@ -268,12 +257,12 @@ export default defineComponent({
 
     &.required:before {
       content: "*";
-      color: $red;
+      color: var(--cl-red);
       margin-right: 4px;
     }
 
     .label-icon {
-      color: $infoMediumLightColor;
+      color: var(--cl-info-medium-light-color);
       font-size: 10px;
       margin-right: 5px;
     }

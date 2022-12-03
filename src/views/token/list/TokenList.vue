@@ -1,5 +1,5 @@
 <template>
-  <ClListLayout
+  <cl-list-layout
     class="token-list"
     :action-functions="actionFunctions"
     :nav-actions="navActions"
@@ -14,12 +14,11 @@
       <!-- Dialogs (handled by store) -->
       <!-- ./Dialogs -->
     </template>
-  </ClListLayout>
+  </cl-list-layout>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import ClListLayout from '@/layouts/content/list/ListLayout.vue';
 import useTokenList from '@/views/token/list/tokenList';
 
 export default defineComponent({
@@ -33,9 +32,6 @@ export default defineComponent({
       type: Boolean,
       default: false,
     }
-  },
-  components: {
-    ClListLayout,
   },
   setup() {
     return {

@@ -1,5 +1,5 @@
 import {RouteRecordRaw} from 'vue-router';
-import DependencySettings from '@/views/env/deps/DependencySettings.vue';
+import DependencySettings from '@/views/env/deps/setting/DependencySettings.vue';
 import DependencyPython from '@/views/env/deps/python/DependencyPython.vue';
 import DependencyNode from '@/views/env/deps/node/DependencyNode.vue';
 

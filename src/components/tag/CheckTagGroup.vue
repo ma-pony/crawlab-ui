@@ -1,6 +1,6 @@
 <template>
   <div class="check-tag-group">
-    <CheckTag
+    <cl-check-tag
       v-for="op in options"
       :key="{v: op.value, c: checkedMap[op.value]}"
       v-model="checkedMap[op.value]"
@@ -16,13 +16,9 @@
 
 <script lang="ts">
 import {computed, defineComponent, PropType, reactive, watch} from 'vue';
-import CheckTag from '@/components/tag/CheckTag.vue';
 
 export default defineComponent({
   name: 'CheckTagGroup',
-  components: {
-    CheckTag,
-  },
   props: {
     modelValue: {
       type: Array as PropType<string[]>,

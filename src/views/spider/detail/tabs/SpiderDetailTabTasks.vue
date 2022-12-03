@@ -1,6 +1,6 @@
 <template>
   <div class="spider-detail-tab-tasks">
-    <TaskList no-actions embedded/>
+    <cl-task-list no-actions embedded/>
   </div>
 </template>
 <script lang="ts">
@@ -8,13 +8,9 @@ import {computed, defineComponent, onBeforeMount, onBeforeUnmount, watch} from '
 import {useRoute} from 'vue-router';
 import {useStore} from 'vuex';
 import {FILTER_OP_EQUAL} from '@/constants/filter';
-import TaskList from '@/views/task/list/TaskList.vue';
 
 export default defineComponent({
   name: 'SpiderDetailTabTasks',
-  components: {
-    TaskList,
-  },
   setup() {
     // route
     const route = useRoute();

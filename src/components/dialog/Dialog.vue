@@ -12,7 +12,7 @@
     <slot/>
     <template #footer>
       <slot name="prefix"/>
-      <Button
+      <cl-button
         id="cancel-btn"
         class-name="cancel-btn"
         plain
@@ -20,8 +20,8 @@
         @click="onClose"
       >
         {{ t('common.actions.cancel') }}
-      </Button>
-      <Button
+      </cl-button>
+      <cl-button
         id="confirm-btn"
         class-name="confirm-btn"
         :disabled="confirmDisabled"
@@ -30,7 +30,7 @@
         @click="onConfirm"
       >
         {{ t('common.actions.confirm') }}
-      </Button>
+      </cl-button>
       <slot name="suffix"/>
     </template>
   </el-dialog>
@@ -38,12 +38,10 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Button from '@/components/button/Button.vue';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'Dialog',
-  components: {Button},
   props: {
     visible: {
       type: Boolean,

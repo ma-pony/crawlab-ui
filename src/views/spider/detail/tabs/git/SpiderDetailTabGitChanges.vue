@@ -1,6 +1,6 @@
 <template>
   <div class="git-changes">
-    <ClTable
+    <cl-table
       ref="tableRef"
       :data="tableData"
       :columns="tableColumns"
@@ -15,7 +15,6 @@
 <script lang="ts">
 import {computed, defineComponent, h, onBeforeMount, ref, watch} from 'vue';
 import {useStore} from 'vuex';
-import Table from '@/components/table/Table.vue';
 import GitFileStatus from '@/components/git/GitFileStatus.vue';
 import Tag from '@/components/tag/Tag.vue';
 import {useI18n} from 'vue-i18n';
@@ -23,9 +22,6 @@ import useSpiderDetail from '../../useSpiderDetail';
 
 export default defineComponent({
   name: 'SpiderDetailTabGitChanges',
-  components: {
-    ClTable: Table,
-  },
   setup() {
     // i18n
     const {t} = useI18n();

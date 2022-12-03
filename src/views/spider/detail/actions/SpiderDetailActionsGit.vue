@@ -1,18 +1,18 @@
 <template>
-  <NavActionGroup>
-    <NavActionFaIcon
+  <cl-nav-action-group>
+    <cl-nav-action-fa-icon
       :icon="['fa', 'code-branch']"
       :tooltip="t('components.git.actions.title')"
     />
-    <NavActionItem>
-      <FaIconButton
+    <cl-nav-action-item>
+      <cl-fa-icon-button
         :icon="['fa', 'download']"
         :tooltip="t('components.git.actions.tooltip.pull')"
         type="primary"
         :disabled="!gitForm.url || !gitForm.auth_type"
         @click="onClickPull"
       />
-      <FaIconButton
+      <cl-fa-icon-button
         :icon="['fa', 'upload']"
         :tooltip="t('components.git.actions.tooltip.commit')"
         type="success"
@@ -20,7 +20,7 @@
         @click="onClickCommit"
       />
       <div v-if="gitCurrentBranch || gitCurrentBranchLoading" class="branch">
-        <Tag
+        <cl-tag
           v-if="gitCurrentBranchLoading"
           class-name="current-branch-loading"
           type="warning"
@@ -30,7 +30,7 @@
           spinning
           size="large"
         />
-        <Tag
+        <cl-tag
           v-else
           class-name="current-branch"
           type="primary"
@@ -47,41 +47,27 @@
               {{ gitCurrentBranch }}
             </span>
           </template>
-        </Tag>
+        </cl-tag>
       </div>
-      <Switch
+      <cl-switch
         v-model="gitForm.auto_pull"
         :active-text="t('components.git.form.autoPull')"
         :disabled="gitForm.url === '' || gitForm.auth_type === ''"
         @change="onAutoFillChange"
       />
-    </NavActionItem>
-  </NavActionGroup>
+    </cl-nav-action-item>
+  </cl-nav-action-group>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, ref, watch} from 'vue';
-import NavActionGroup from '@/components/nav/NavActionGroup.vue';
-import NavActionItem from '@/components/nav/NavActionItem.vue';
-import FaIconButton from '@/components/button/FaIconButton.vue';
-import NavActionFaIcon from '@/components/nav/NavActionFaIcon.vue';
-import Tag from '@/components/tag/Tag.vue';
 import {useStore} from 'vuex';
 import {useI18n} from 'vue-i18n';
 import useSpiderDetail from '@/views/spider/detail/useSpiderDetail';
-import Switch from '@/components/switch/Switch.vue';
 import {ElMessage} from 'element-plus';
 
 export default defineComponent({
   name: 'SpiderDetailActionsGit',
-  components: {
-    Switch,
-    NavActionFaIcon,
-    NavActionGroup,
-    NavActionItem,
-    FaIconButton,
-    Tag,
-  },
   setup() {
     // i18n
     const {t} = useI18n();
@@ -151,8 +137,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../../../styles/variables.scss";
-
 .branch {
   display: flex;
   align-items: center;

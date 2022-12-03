@@ -27,7 +27,7 @@ const EXPORT_MODULES = [
   // 'services',
   // 'store',
   // 'utils',
-  // 'views',
+  'views',
 ]
 
 const COMPONENT_PREFIX = 'Cl'
@@ -73,6 +73,7 @@ const genIndex = (moduleName) => {
       if ([
         'components',
         'layouts',
+        'views',
       ].includes(moduleName)) return;
 
       // component name

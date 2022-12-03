@@ -1,5 +1,5 @@
 <template>
-  <Tag
+  <cl-tag
     v-if="!iconOnly"
     :key="data"
     :icon="data.icon"
@@ -13,7 +13,7 @@
     <template #tooltip>
       <div v-html="data.tooltip"/>
     </template>
-  </Tag>
+  </cl-tag>
   <div v-else :class="[isValid ? 'valid' : 'invalid']" class="schedule-cron">
     <div class="row">
       <span class="title">
@@ -40,14 +40,12 @@
 
 <script lang="ts">
 import {computed, defineComponent, PropType} from 'vue';
-import Tag from '@/components/tag/Tag.vue';
 import {CronExpression, parseExpression} from 'cron-parser';
 import cronstrue from 'cronstrue/i18n';
 import dayjs from 'dayjs';
-import en from 'dayjs/locale/en';
-import zh from 'dayjs/locale/zh';
+import en from 'dayjs/locale/en.js';
+import zh from 'dayjs/locale/zh.js';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
-import colors from '@/styles/color.scss';
 import {useI18n} from 'vue-i18n';
 import {getI18n} from '@/i18n';
 
@@ -55,9 +53,6 @@ dayjs.extend(localizedFormat);
 
 export default defineComponent({
   name: 'ScheduleCron',
-  components: {
-    Tag,
-  },
   props: {
     cron: {
       type: String,
@@ -127,9 +122,9 @@ export default defineComponent({
       }
     });
 
-    const tooltip = computed<string>(() => `<span class="title">${t('components.schedule.cron.title.cron')}: </span><span style="color: ${colors.blue}">${props.cron}</span><br>
-<span class="title">${t('components.schedule.cron.title.description')}: </span><span style="color: ${colors.orange}">${description.value}</span><br>
-<span class="title">${t('components.schedule.cron.title.next')}: </span><span style="color: ${colors.green}">${next.value}</span>`);
+    const tooltip = computed<string>(() => `<span class="title">${t('components.schedule.cron.title.cron')}: </span><span style="color: var(--cl-blue)">${props.cron}</span><br>
+<span class="title">${t('components.schedule.cron.title.description')}: </span><span style="color: var(--cl-orange)">${description.value}</span><br>
+<span class="title">${t('components.schedule.cron.title.next')}: </span><span style="color: var(--cl-green)">${next.value}</span>`);
 
     const data = computed<TagData>(() => {
       const {cron} = props;
@@ -160,8 +155,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .schedule-cron {
   .row {
     min-height: 20px;
@@ -179,18 +172,18 @@ export default defineComponent({
     }
 
     .description {
-      color: $warningColor;
+      color: var(--cl-warning-color);
     }
 
     .next {
-      color: $successColor;
+      color: var(--cl-success-color);
     }
   }
 
   &.invalid {
     .description,
     .next {
-      color: $infoMediumColor;
+      color: var(--cl-info-medium-color);
     }
   }
 }

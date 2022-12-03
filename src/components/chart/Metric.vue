@@ -67,13 +67,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables";
-
 .metric {
   padding: 10px;
   margin: 20px;
   display: flex;
-  border: 1px solid $infoLightColor;
+  border: 1px solid var(--cl-info-light-color);
   border-radius: 5px;
   position: relative;
 
@@ -92,8 +90,9 @@ export default defineComponent({
     top: 0;
     width: calc(100% - 64px - 10px);
     height: 100%;
-    background-color: white;
-    filter: alpha(0.3);
+    background-color: var(--cl-white);
+    //filter: alpha(0.3);
+    opacity: 0.3;
     z-index: 1;
   }
 

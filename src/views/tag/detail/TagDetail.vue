@@ -1,6 +1,6 @@
 <template>
-  <DetailLayout store-namespace="tag">
-  </DetailLayout>
+  <cl-list-layout store-namespace="tag">
+  </cl-list-layout>
 </template>
 
 <script lang="ts">
@@ -9,7 +9,6 @@ import DetailLayout from '@/layouts/content/detail/DetailLayout.vue';
 
 export default defineComponent({
   name: 'TagDetail',
-  components: {DetailLayout},
   setup(props, {emit}) {
     return {};
   },

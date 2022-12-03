@@ -1,6 +1,6 @@
 <template>
-  <NavActionGroup>
-    <NavActionButton
+  <cl-nav-action-group>
+    <cl-nav-action-button
         :button-type="buttonType"
         :disabled="disabled"
         :icon="icon"
@@ -9,18 +9,15 @@
         type="primary"
         @click="() => $emit('click')"
     />
-  </NavActionGroup>
+  </cl-nav-action-group>
 </template>
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import NavActionGroup from '@/components/nav/NavActionGroup.vue';
-import NavActionButton from '@/components/nav/NavActionButton.vue';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'NavActionBack',
-  components: {NavActionButton, NavActionGroup},
   props: {
     buttonType: {
       type: String as PropType<ButtonType>,

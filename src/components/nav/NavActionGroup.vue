@@ -17,8 +17,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .nav-action-group {
   height: fit-content;
   display: flex;
@@ -32,13 +30,19 @@ export default defineComponent({
     margin-left: 10px;
   }
 
+  &:first-child {
+    .border {
+      display: none;
+    }
+  }
+
   .border {
     position: absolute;
     left: 0;
     top: 10px;
     margin-left: -10px;
     margin-right: 10px;
-    border-left: 1px solid $navActionsGroupBorderColor;
+    border-left: 1px solid var(--cl-nav-actions-group-border-color);
     height: calc(100% - 20px);
   }
 }

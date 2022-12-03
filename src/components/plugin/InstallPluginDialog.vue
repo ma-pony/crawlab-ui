@@ -1,5 +1,5 @@
 <template>
-  <Dialog
+  <cl-dialog
     :title="t('components.plugin.install.title')"
     :visible="activeDialogKey === 'install'"
     width="1200px"
@@ -27,18 +27,17 @@
         {{ noticeContent }}
       </el-alert>
     </div>
-    <InstallPublicPlugin
+    <cl-install-public-plugin
       v-if="installType === PLUGIN_INSTALL_TYPE_PUBLIC"
     />
-    <PluginForm
+    <cl-plugin-form
       v-else
     />
-  </Dialog>
+  </cl-dialog>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, onBeforeUnmount, ref} from 'vue';
-import Dialog from '@/components/dialog/Dialog.vue';
 import {useI18n} from 'vue-i18n';
 import {useStore} from 'vuex';
 import usePlugin from '@/components/plugin/plugin';
@@ -47,17 +46,10 @@ import {
   PLUGIN_INSTALL_TYPE_GIT,
   PLUGIN_INSTALL_TYPE_LOCAL,
 } from '@/constants/plugin';
-import PluginForm from '@/components/plugin/PluginForm.vue';
-import InstallPublicPlugin from '@/components/plugin/InstallPublicPlugin.vue';
 import {sendEvent} from '@/admin/umeng';
 
 export default defineComponent({
   name: 'InstallPluginDialog',
-  components: {
-    InstallPublicPlugin,
-    PluginForm,
-    Dialog,
-  },
   setup() {
     // i18n
     const {t} = useI18n();

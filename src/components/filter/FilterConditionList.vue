@@ -5,20 +5,17 @@
         :key="$index"
         class="filter-condition-item"
     >
-      <FilterCondition :condition="cond" @change="onChange($index, $event)" @delete="onDelete($index)"/>
+      <cl-filter-condition :condition="cond" @change="onChange($index, $event)" @delete="onDelete($index)"/>
     </li>
   </ul>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import FilterCondition, {getDefaultFilterCondition} from '@/components/filter/FilterCondition.vue';
+import {getDefaultFilterCondition} from '@/components/filter/FilterCondition.vue';
 
 export default defineComponent({
   name: 'FilterConditionList',
-  components: {
-    FilterCondition,
-  },
   props: {
     conditions: {
       type: Array,

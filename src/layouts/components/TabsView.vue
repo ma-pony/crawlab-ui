@@ -1,47 +1,39 @@
 <template>
   <div class="tabs-view">
-    <DraggableList
-        class="tab-list"
-        :items="tabs"
-        item-key="id"
-        @d-end="onDragDrop"
+    <cl-draggable-list
+      class="tab-list"
+      :items="tabs"
+      item-key="id"
+      @d-end="onDragDrop"
     >
       <template v-slot="{item}">
-        <Tab
-            v-track="{
+        <cl-tab
+          v-track="{
               code: 'click_tabs_view_click_tab',
               params: {path: item.path}
             }"
-            :tab="item"
+          :tab="item"
         />
       </template>
-    </DraggableList>
+    </cl-draggable-list>
 
-    <!-- Add Tab -->
-    <ActionTab
-        :icon="['fa', 'plus']"
-        class="add-tab"
-        @click="onAddTab"
+    <!-- Add cl-tab -->
+    <cl-action-tab
+      :icon="['fa', 'plus']"
+      class="add-tab"
+      @click="onAddTab"
     />
-    <!-- ./Add Tab -->
+    <!-- ./Add cl-tab -->
   </div>
 </template>
 <script lang="ts">
 import {computed, defineComponent, onMounted, watch} from 'vue';
 import {useStore} from 'vuex';
-import TabComp from '@/components/tab/Tab.vue';
 import {useRoute, useRouter} from 'vue-router';
-import DraggableList from '@/components/drag/DraggableList.vue';
 import {plainClone} from '@/utils/object';
-import ActionTab from '@/components/tab/ActionTab.vue';
 
 export default defineComponent({
   name: 'TabsView',
-  components: {
-    ActionTab,
-    DraggableList,
-    Tab: TabComp,
-  },
   setup() {
     // store
     const storeNameSpace = 'layout';
@@ -57,15 +49,19 @@ export default defineComponent({
     const currentPath = computed(() => route.path);
 
     // tabs
-    const tabs = computed<Tab[]>(() => store.getters[`${storeNameSpace}/tabs`]);
+    const tabs = computed < Tab[] > (() => store.getters[`${storeNameSpace}/tabs`]);
 
-    const addTab = (tab: Tab) => {
+    const addTab = (tab: Tab) =>
+    {
       store.commit(`${storeNameSpace}/addTab`, tab);
-    };
+    }
+    ;
 
-    const setActiveTab = (tab: Tab) => {
+    const setActiveTab = (tab: Tab) =>
+    {
       store.commit(`${storeNameSpace}/setActiveTabId`, tab.id);
-    };
+    }
+    ;
 
     const onAddTab = () => {
       addTab({path: '/'});
@@ -74,9 +70,11 @@ export default defineComponent({
       router.push(newTab.path);
     };
 
-    const onDragDrop = (tabs: Tab[]) => {
+    const onDragDrop = (tabs: Tab[]) =>
+    {
       store.commit(`${storeNameSpace}/setTabs`, tabs);
-    };
+    }
+    ;
 
     const updateTabs = (path: string) => {
       // active tab
@@ -125,12 +123,10 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-@import "../../styles/variables";
-
 .tabs-view {
   padding: 10px 0;
-  border-bottom: 1px solid $tabsViewBorderColor;
-  background-color: $tabsViewBg;
+  border-bottom: 1px solid var(--cl-tabs-view-border-color);
+  background-color: var(--cl-tabs-view-bg);
   display: flex;
 }
 </style>

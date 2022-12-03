@@ -1,11 +1,11 @@
 <template>
   <el-container class="basic-layout">
-    <Sidebar />
+    <cl-sidebar/>
     <el-container :class="sidebarCollapsed ? 'collapsed' : ''" class="container">
-      <Header />
-      <TabsView />
+      <cl-header/>
+      <cl-tabs-view/>
       <div class="container-body">
-        <router-view />
+        <router-view/>
       </div>
     </el-container>
   </el-container>
@@ -13,18 +13,10 @@
 
 <script lang="ts">
 import {computed, defineComponent} from 'vue';
-import Header from './components/Header.vue';
-import Sidebar from './components/Sidebar.vue';
 import {useStore} from 'vuex';
-import TabsView from '@/layouts/components/TabsView.vue';
 
 export default defineComponent({
   name: 'NormalLayout',
-  components: {
-    TabsView,
-    Header,
-    Sidebar,
-  },
   setup() {
     const store = useStore();
     const {layout} = store.state as RootStoreState;
@@ -39,29 +31,27 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/variables.scss";
-
 .basic-layout {
   height: 100vh;
 
   .container {
     position: fixed;
     top: 0;
-    left: $sidebarWidth;
+    left: var(--cl-sidebar-width);
     display: block;
-    width: calc(100vw - #{$sidebarWidth});
+    width: calc(100vw - var(--cl-sidebar-width));
     height: 100vh;
-    transition: left $sidebarCollapseTransitionDuration;
+    transition: left var(--cl-sidebar-collapse-transition-duration);
     z-index: 2;
 
     &.collapsed {
-      left: $sidebarWidthCollapsed;
-      width: calc(100vw - #{$sidebarWidthCollapsed});
+      left: var(--cl-sidebar-width-collapsed);
+      width: calc(100vw - var(--cl-sidebar-width-collapsed));
     }
 
     .container-body {
-      background-color: $containerBg;
-      height: calc(100vh - #{$headerHeight} - #{$tabsViewHeight});
+      background-color: var(--cl-container-bg);
+      height: calc(100vh - var(--cl-header-height) - var(--cl-tabs-view-height));
       overflow: auto;
     }
   }

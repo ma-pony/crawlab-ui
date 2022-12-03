@@ -79,8 +79,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .nav-actions {
   margin: 0;
   padding: 0 10px;
@@ -88,8 +86,8 @@ export default defineComponent({
   display: flex;
   flex-wrap: nowrap;
   height: fit-content;
-  border-bottom: 1px solid $infoBorderColor;
-  transition: all $navActionsCollapseTransitionDuration;
+  border-bottom: 1px solid var(--cl-info-border-color);
+  transition: all var(--cl-nav-actions-collapse-transition-duration);
   overflow-x: auto;
   overflow-y: hidden;
   box-sizing: border-box;

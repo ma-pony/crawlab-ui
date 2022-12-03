@@ -1,12 +1,12 @@
 <template>
-  <Form
+  <cl-form
     v-if="form"
     ref="formRef"
     :model="form"
     :selective="isSelectiveForm"
   >
     <!--Row-->
-    <FormItem
+    <cl-form-item
       :span="4"
       :label="t('components.git.form.remoteUrl')"
       prop="url"
@@ -18,11 +18,11 @@
         class="url"
         @change="onUrlChange"
       />
-    </FormItem>
+    </cl-form-item>
     <!--./Row-->
 
     <!--Row-->
-    <FormItem
+    <cl-form-item
       :span="1"
       :offset="3"
       :label="t('components.git.form.authType')"
@@ -36,12 +36,12 @@
         <el-radio-button label="http">HTTP</el-radio-button>
         <el-radio-button label="ssh">SSH</el-radio-button>
       </el-radio-group>
-    </FormItem>
+    </cl-form-item>
     <!--./Row-->
 
     <template v-if="form.auth_type === 'http'">
       <!--Row-->
-      <FormItem
+      <cl-form-item
         :span="2"
         :offset="2"
         :label="t('components.git.form.username')"
@@ -54,11 +54,11 @@
           class="username"
           @change="onUsernameChange"
         />
-      </FormItem>
+      </cl-form-item>
       <!--./Row-->
 
       <!--Row-->
-      <FormItem
+      <cl-form-item
         :span="2"
         :offset="2"
         :label="t('components.git.form.password')"
@@ -72,13 +72,13 @@
           class="password"
           @change="onPasswordChange"
         />
-      </FormItem>
+      </cl-form-item>
       <!--./Row-->
     </template>
 
     <template v-else-if="form.auth_type === 'ssh'">
       <!--Row-->
-      <FormItem
+      <cl-form-item
         :span="2"
         :offset="2"
         :label="t('components.git.form.username')"
@@ -91,11 +91,11 @@
           class="username"
           @change="onUsernameChange"
         />
-      </FormItem>
+      </cl-form-item>
       <!--./Row-->
 
       <!--Row-->
-      <FormItem
+      <cl-form-item
         :span="4"
         :label="t('components.git.form.privateKey')"
         prop="password"
@@ -109,24 +109,21 @@
           class="password"
           @change="onPasswordChange"
         />
-      </FormItem>
+      </cl-form-item>
       <!--./Row-->
     </template>
-  </Form>
+  </cl-form>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, PropType, watch} from 'vue';
 import {useStore} from 'vuex';
 import useGit from '@/components/git/git';
-import Form from '@/components/form/Form.vue';
-import FormItem from '@/components/form/FormItem.vue';
 import {useI18n} from 'vue-i18n';
 import {emptyArrayFunc} from '@/utils';
 
 export default defineComponent({
   name: 'GitForm',
-  components: {FormItem, Form},
   props: {
     branchSelectOptions: {
       type: Array as PropType<SelectOption[]>,

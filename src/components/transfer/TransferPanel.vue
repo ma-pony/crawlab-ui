@@ -31,7 +31,7 @@
             class="check-list"
             @change="onCheck"
           >
-            <DraggableList :items="items" @d-end="onDragEnd">
+            <cl-draggable-list :items="items" @d-end="onDragEnd">
               <template #default="{item}">
                 <el-checkbox
                   :label="item.key"
@@ -41,12 +41,12 @@
                   {{ item.label }}
                 </el-checkbox>
               </template>
-            </DraggableList>
+            </cl-draggable-list>
           </el-checkbox-group>
         </template>
         <template v-else>
           <div class="empty-wrapper">
-            <Empty class="empty"/>
+            <cl-empty class="empty"/>
           </div>
         </template>
       </div>
@@ -56,18 +56,12 @@
 
 <script lang="ts">
 import {computed, defineComponent, ref, watch} from 'vue';
-import {DataItem, Key} from 'element-plus/lib/components/transfer';
-import Empty from '@/components/empty/Empty.vue';
-import DraggableList from '@/components/drag/DraggableList.vue';
+import {DataItem, Key} from 'element-plus';
 import {Search} from '@element-plus/icons';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'TransferPanel',
-  components: {
-    DraggableList,
-    Empty,
-  },
   props: {
     title: {
       type: String,
@@ -154,8 +148,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .transfer-panel {
   flex: 1;
   min-width: 240px;

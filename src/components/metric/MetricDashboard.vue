@@ -1,6 +1,6 @@
 <template>
   <div class="metric-dashboard">
-    <Table
+    <cl-table
       :data="tableData"
       :columns="tableColumns"
       hide-footer
@@ -11,7 +11,6 @@
 <script lang="ts">
 import {computed, defineComponent, onBeforeUnmount, onBeforeMount, PropType, ref, h} from 'vue';
 import {useI18n} from 'vue-i18n';
-import Table from '@/components/table/Table.vue';
 import MetricTargetType from '@/components/metric/MetricTargetType.vue';
 import NodeStatus from '@/components/node/NodeStatus.vue';
 import MetricTargetName from '@/components/metric/MetricTargetName.vue';
@@ -20,9 +19,6 @@ import {TABLE_COLUMN_NAME_ACTIONS} from '@/constants/table';
 
 export default defineComponent({
   name: 'MetricDashboard',
-  components: {
-    Table,
-  },
   props: {
     metricDataFunc: {
       type: Function as PropType<MetricDashboardDataFunc>,

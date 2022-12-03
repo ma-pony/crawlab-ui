@@ -6,8 +6,8 @@
     @click="onClick"
   >
     <span :key="item?.icon || icon" class="icon">
-      <MenuItemIcon v-if="!icon" :item="item" size="10px"/>
-      <Icon v-else :icon="icon" size="10px"/>
+      <cl-menu-item-icon v-if="!icon" :item="item" size="10px"/>
+      <cl-icon v-else :icon="icon" size="10px"/>
     </span>
     <span v-if="showTitle" class="title">
       {{ t(title) }}
@@ -32,7 +32,6 @@
 
 <script lang="ts">
 import {computed, defineComponent, PropType} from 'vue';
-import MenuItemIcon from '@/components/icon/MenuItemIcon.vue';
 import {useStore} from 'vuex';
 import {getPrimaryPath} from '@/utils/path';
 // import {useI18n} from 'vue-i18n';
@@ -44,8 +43,6 @@ import {Close} from '@element-plus/icons';
 export default defineComponent({
   name: 'Tab',
   components: {
-    Icon,
-    MenuItemIcon,
     Close,
   },
   props: {
@@ -189,24 +186,22 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-@import "../../styles/variables";
-
 .tab {
   display: flex;
   align-items: center;
   padding: 3px 5px;
   //max-width: $tabsViewTabMaxWidth;
-  border: 1px solid $tabsViewTabBorderColor;
+  border: 1px solid var(--cl-tabs-view-tab-border-color);
   cursor: pointer;
-  background-color: $tabsViewTabBg;
+  background-color: var(--cl-tabs-view-bg);
   user-select: none;
-  color: $tabsViewTabColor;
+  color: var(--cl-tabs-view-tab-color);
 
   &.disabled {
     cursor: not-allowed;
-    background-color: $disabledBgColor;
-    border-color: $disabledBorderColor;
-    color: $disabledColor;
+    background-color: var(--cl-disabled-bg-color);
+    border-color: var(--cl-disabled-border-color);
+    color: var(--cl-disabled-color);
   }
 
   &:focus:not(.disabled) {
@@ -223,14 +218,14 @@ export default defineComponent({
 
     .title,
     .icon {
-      color: $tabsViewActiveTabColor;
+      color: var(--cl-primary-color);
     }
   }
 
   &.active {
-    color: $tabsViewActiveTabColor;
-    border-color: $tabsViewActiveTabColor;
-    background-color: $tabsViewActiveTabPlainColor;
+    color: var(--cl-primary-color);
+    border-color: var(--cl-primary-color);
+    background-color: var(--cl-primary-plain-color);
   }
 
   .close-btn,
@@ -246,8 +241,8 @@ export default defineComponent({
     align-items: center;
     margin: 0 3px;
     font-size: 12px;
-    height: $tabsViewTabHeight;
-    line-height: $tabsViewTabHeight;
+    height: var(--cl-tabs-view-tab-height);
+    line-height: var(--cl-tabs-view-tab-height);
   }
 }
 </style>

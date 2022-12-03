@@ -1,5 +1,5 @@
 <template>
-  <ClListLayout
+  <cl-list-layout
     class="plugin-list"
     :action-functions="actionFunctions"
     :nav-actions="navActions"
@@ -10,27 +10,19 @@
   >
     <template #extra>
       <!-- Dialogs (handled by store) -->
-      <InstallPluginDialog v-if="activeDialogKey === 'install'"/>
-      <SettingsPluginDialog v-if="activeDialogKey === 'settings'"/>
+      <cl-install-plugin-dialog v-if="activeDialogKey === 'install'"/>
+      <cl-settings-plugin-dialog v-if="activeDialogKey === 'settings'"/>
       <!-- ./Dialogs -->
     </template>
-  </ClListLayout>
+  </cl-list-layout>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import ClListLayout from '@/layouts/content/list/ListLayout.vue';
 import usePluginList from '@/views/plugin/list/pluginList';
-import InstallPluginDialog from '@/components/plugin/InstallPluginDialog.vue';
-import SettingsPluginDialog from '@/components/plugin/SettingsPluginDialog.vue';
 
 export default defineComponent({
   name: 'PluginList',
-  components: {
-    InstallPluginDialog,
-    SettingsPluginDialog,
-    ClListLayout,
-  },
   setup() {
     return {
       ...usePluginList(),

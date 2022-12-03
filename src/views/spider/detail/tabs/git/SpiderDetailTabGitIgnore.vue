@@ -1,6 +1,6 @@
 <template>
   <div class="git-ignore">
-    <ClTable
+    <cl-table
       :columns="tableColumns"
       :data="tableData"
       height="calc(100% - 1px)"
@@ -12,15 +12,11 @@
 <script lang="ts">
 import {computed, defineComponent, onBeforeMount} from 'vue';
 import {useStore} from 'vuex';
-import Table from '@/components/table/Table.vue';
 import {useI18n} from 'vue-i18n';
 import useSpiderDetail from '../../useSpiderDetail';
 
 export default defineComponent({
   name: 'SpiderDetailTabGitIgnore',
-  components: {
-    ClTable: Table,
-  },
   setup() {
     // i18n
     const {t} = useI18n();

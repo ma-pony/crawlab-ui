@@ -1,7 +1,7 @@
 <template>
   <div class="metric-snapshot">
     <template v-if="snapshot.type === 'node'">
-      <MetricProgress
+      <cl-metric-progress
         type="dashboard"
         :width="80"
         :percentage="snapshot.metrics?.['performance:node:cpu:percent']?.value"
@@ -11,7 +11,7 @@
         :status="status.node.cpu"
         :detail-metrics="getChildMetrics(':node:cpu:')"
       />
-      <MetricProgress
+      <cl-metric-progress
         type="dashboard"
         :width="80"
         :percentage="snapshot.metrics?.['performance:node:mem:used_percent']?.value"
@@ -21,7 +21,7 @@
         :status="status.node.mem"
         :detail-metrics="getChildMetrics(':node:mem:')"
       />
-      <MetricProgress
+      <cl-metric-progress
         type="dashboard"
         :width="80"
         :percentage="snapshot.metrics?.['performance:node:disk:used_percent']?.value"
@@ -31,7 +31,7 @@
         :status="status.node.disk"
         :detail-metrics="getChildMetrics(':node:disk:')"
       />
-      <MetricProgress
+      <cl-metric-progress
         v-if="false"
         type="dashboard"
         :width="80"
@@ -45,7 +45,7 @@
     </template>
 
     <template v-else-if="snapshot.type === 'mongo'">
-      <MetricProgress
+      <cl-metric-progress
         type="dashboard"
         :width="80"
         :percentage="snapshot.metrics?.['performance:mongo:size:fs_used_size_percent']?.value"
@@ -55,7 +55,7 @@
         :status="status.mongo.size"
         :detail-metrics="getChildMetrics(':mongo:size:fs')"
       />
-      <MetricProgress
+      <cl-metric-progress
         type="dashboard"
         :width="80"
         :percentage="snapshot.metrics?.['performance:mongo:size:total_size_percent']?.value"
@@ -76,13 +76,10 @@
 <script lang="ts">
 import {computed, defineComponent, PropType, readonly} from 'vue';
 import {emptyObjectFunc} from '@/utils/func';
-import MetricProgress from '@/components/metric/MetricProgress.vue';
-import variables from '@/styles/variables.scss';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'MetricSnapshot',
-  components: {MetricProgress},
   props: {
     snapshot: {
       type: Object as PropType<MetricSnapshot>,
@@ -113,22 +110,22 @@ export default defineComponent({
 
     const statusItems = readonly<{ [key: string]: MetricProgressStatusData }>({
       danger: {
-        color: variables.dangerColor,
+        color: 'var(--cl-danger-color)',
         icon: ['fa', 'circle-exclamation'],
         label: t('components.metric.status.danger')
       },
       warning: {
-        color: variables.warningColor,
+        color: 'var(--cl-warning-color)',
         icon: ['fa', 'triangle-exclamation'],
         label: t('components.metric.status.warning')
       },
       healthy: {
-        color: variables.successColor,
+        color: 'var(--cl-success-color)',
         icon: ['fa', 'circle-check'],
         label: t('components.metric.status.healthy')
       },
       unknown: {
-        color: variables.infoMediumColor,
+        color: 'var(--cl-info-medium-color)',
         icon: ['fa', 'circle-question'],
         label: t('components.metric.status.unknown')
       },

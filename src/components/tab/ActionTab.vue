@@ -1,6 +1,6 @@
 <template>
   <el-tooltip :content="t('components.tab.newTab')">
-    <Tab
+    <cl-tab
         v-track="{code: 'click_tabs_view_add_tab'}"
         :icon="icon"
         :show-close="false"
@@ -14,12 +14,10 @@
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
 import Icon from '@/components/icon/Icon.vue';
-import Tab from '@/components/tab/Tab.vue';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'ActionTab',
-  components: {Tab},
   props: {
     icon: {
       type: [String, Array] as PropType<Icon>,

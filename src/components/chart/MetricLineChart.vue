@@ -5,19 +5,17 @@
         {{ title }}
       </div>
     </div>
-    <LineChart :config="config"/>
+    <cl-line-chart :config="config"/>
   </div>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent} from 'vue';
 import {lineChartProps} from './LineChart.vue';
-import LineChart from '@/components/chart/LineChart.vue';
 import {plainClone} from '@/utils/object';
 
 export default defineComponent({
   name: 'MetricLineChart',
-  components: {LineChart},
   props: {
     ...lineChartProps,
     metric: {
@@ -55,8 +53,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables";
-
 .metric-line-chart {
   height: 100%;
 
@@ -66,7 +62,7 @@ export default defineComponent({
     .title {
       font-size: 18px;
       font-weight: 600;
-      color: $infoColor;
+      color: var(--cl-info-color);
     }
   }
 }

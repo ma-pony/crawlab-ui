@@ -1,5 +1,5 @@
 <template>
-  <Tag
+  <cl-tag
     class-name="task-status"
     :key="data"
     :icon="data.icon"
@@ -12,7 +12,7 @@
     <template #tooltip>
       <div v-html="data.tooltip"/>
     </template>
-  </Tag>
+  </cl-tag>
 </template>
 
 <script lang="ts">
@@ -25,15 +25,10 @@ import {
   TASK_STATUS_PENDING,
   TASK_STATUS_RUNNING
 } from '@/constants/task';
-import Tag from '@/components/tag/Tag.vue';
-import colors from '@/styles/color.scss';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'TaskStatus',
-  components: {
-    Tag,
-  },
   props: {
     status: {
       type: String as PropType<TaskStatus>,
@@ -83,7 +78,7 @@ export default defineComponent({
         case TASK_STATUS_ERROR:
           return {
             label: t('components.task.status.label.error'),
-            tooltip: `${t('components.task.status.tooltip.error')}<br><span style="color: ${colors.red}">${error}</span>`,
+            tooltip: `${t('components.task.status.tooltip.error')}<br><span style="color: 'var(--cl-red)">${error}</span>`,
             type: 'danger',
             icon: ['fa', 'times'],
           };

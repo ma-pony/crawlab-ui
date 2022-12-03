@@ -15,8 +15,8 @@
     />
     <!-- ./Input -->
 
-    <!-- Button -->
-    <Button
+    <!-- cl-button -->
+    <cl-button
       v-if="buttonLabel"
       disabled
       :tooltip="t('common.status.currentlyUnavailable')"
@@ -28,9 +28,9 @@
     >
       <Icon v-if="buttonIcon" :icon="buttonIcon"/>
       {{ buttonLabel }}
-    </Button>
+    </cl-button>
     <template v-else-if="buttonIcon">
-      <FaIconButton
+      <cl-fa-icon-button
         v-if="isFaIcon"
         :disabled="disabled"
         :icon="buttonIcon"
@@ -39,7 +39,7 @@
         class-name="button"
         @click="onClick"
       />
-      <IconButton
+      <cl-icon-button
         v-else
         :disabled="disabled"
         :icon="buttonIcon"
@@ -49,27 +49,17 @@
         @click="onClick"
       />
     </template>
-    <!-- ./Button -->
+    <!-- ./cl-button -->
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent, onMounted, PropType, ref, watch} from 'vue';
-import Button from '@/components/button/Button.vue';
-import Icon from '@/components/icon/Icon.vue';
-import FaIconButton from '@/components/button/FaIconButton.vue';
 import useIcon from '@/components/icon/icon';
-import IconButton from '@/components/button/IconButton.vue';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'InputWithButton',
-  components: {
-    IconButton,
-    FaIconButton,
-    Icon,
-    Button,
-  },
   props: {
     modelValue: {
       type: String,

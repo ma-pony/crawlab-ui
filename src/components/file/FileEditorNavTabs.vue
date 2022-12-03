@@ -8,13 +8,13 @@
       class="file-editor-nav-tabs"
   >
     <slot name="prefix"></slot>
-    <DraggableList
+    <cl-draggable-list
         item-key="path"
         :items="tabs"
         @d-end="onDragEnd"
     >
       <template v-slot="{item}">
-        <FileEditorNavTabsContextMenu
+        <cl-file-editor-nav-tabs-context-menu
             :clicking="contextMenuClicking"
             :visible="isShowContextMenu(item)"
             @close="onClose(item)"
@@ -32,7 +32,7 @@
               @contextmenu.prevent="onContextMenuShow(item)"
           >
             <span class="icon">
-              <atom-material-icon :is-dir="item.is_dir" :name="item.name"/>
+              <cl-atom-material-icon :is-dir="item.is_dir" :name="item.name"/>
             </span>
             <el-tooltip :content="getTitle(item)" :show-after="500">
               <span class="title">
@@ -46,22 +46,19 @@
             </span>
             <div class="background"/>
           </div>
-        </FileEditorNavTabsContextMenu>
+        </cl-file-editor-nav-tabs-context-menu>
       </template>
-    </DraggableList>
+    </cl-draggable-list>
   </div>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, onMounted, ref, watch} from 'vue';
-import DraggableList from '@/components/drag/DraggableList.vue';
-import AtomMaterialIcon from '@/components/icon/AtomMaterialIcon.vue';
-import FileEditorNavTabsContextMenu from '@/components/file/FileEditorNavTabsContextMenu.vue';
 import {Close} from '@element-plus/icons';
 
 export default defineComponent({
   name: 'FileEditorNavTabs',
-  components: {FileEditorNavTabsContextMenu, AtomMaterialIcon, DraggableList, Close},
+  components: {Close},
   props: {
     activeTab: {
       type: Object,
@@ -196,22 +193,20 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
-
 .file-editor-nav-tabs {
   position: relative;
   display: flex;
   align-items: center;
   overflow: auto;
-  height: $fileEditorNavTabsHeight;
+  height: var(--cl-file-editor-nav-tabs-height);
 
   .file-editor-nav-tab {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: left;
-    height: $fileEditorNavTabsHeight;
-    max-width: $fileEditorNavTabsItemMaxWidth;
+    height: var(--cl-file-editor-nav-tabs-height);
+    max-width: var(--cl-file-editor-nav-tabs-item-max-width);
     white-space: nowrap;
     text-overflow: ellipsis;
     padding: 0 10px;
@@ -222,15 +217,15 @@ export default defineComponent({
 
     &:hover {
       .background {
-        background-color: $fileEditorMaskBg;
+        background-color: var(--cl-file-editor-mask-bg);
       }
     }
 
     &.active {
-      border-bottom: 2px solid $primaryColor;
+      border-bottom: 2px solid var(--cl-primary-color);
 
       .title {
-        color: $fileEditorNavTabsItemActiveColor;
+        color: var(--cl-file-editor-nav-tabs-item-active-color);
       }
     }
 
@@ -252,7 +247,7 @@ export default defineComponent({
       width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
-      color: $fileEditorNavTabsItemColor;
+      color: var(--cl-file-editor-nav-tabs-item-active-color);
       z-index: 1;
     }
 

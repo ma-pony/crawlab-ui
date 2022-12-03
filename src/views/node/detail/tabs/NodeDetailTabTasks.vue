@@ -1,20 +1,16 @@
 <template>
   <div class="node-detail-tab-tasks">
-    <TaskList no-actions embedded/>
+    <cl-task-list no-actions embedded/>
   </div>
 </template>
 <script lang="ts">
 import {computed, defineComponent, onBeforeMount, onBeforeUnmount} from 'vue';
-import TaskList from '@/views/task/list/TaskList.vue';
 import {useStore} from 'vuex';
 import {useRoute} from 'vue-router';
 import {FILTER_OP_EQUAL} from '@/constants/filter';
 
 export default defineComponent({
   name: 'NodeDetailTabTasks',
-  components: {
-    TaskList
-  },
   setup() {
     // route
     const route = useRoute();

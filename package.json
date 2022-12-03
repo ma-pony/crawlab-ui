@@ -1,6 +1,6 @@
 {
   "name": "crawlab-ui",
-  "version": "0.6.0-20",
+  "version": "0.6.0-21",
   "private": false,
   "author": {
     "name": "Marvin Zhang",
@@ -26,9 +26,8 @@
   "module": "./dist/crawlab-ui.esm.min.js",
   "exports": {
     ".": {
-      "import": "./dist/crawlab-ui.esm.js",
-      "require": "./dist/crawlab-ui.cjs.js",
-      "default": "./dist/crawlab-ui.umd.js"
+      "import": "./dist/crawlab-ui.umd.cjs",
+      "default": "./dist/crawlab-ui.umd.cjs"
     }
   },
   "scripts": {

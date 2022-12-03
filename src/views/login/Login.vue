@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <canvas id="canvas"/>
+    <canvas id="canvas" class="login-canvas"/>
     <el-form
       ref="loginFormRef"
       :model="loginForm"
@@ -125,7 +125,6 @@ import {useStore} from 'vuex';
 import {setGlobalLang} from '@/utils/i18n';
 import {useI18n} from 'vue-i18n';
 import {LOCAL_STORAGE_KEY_TOKEN} from '@/constants/localStorage';
-import {initCanvas} from './loginCanvas.js';
 
 const {
   post,
@@ -278,11 +277,7 @@ export default defineComponent({
     onMounted(() => {
       // initialize canvas
       if (window.innerWidth >= 1024) {
-        if (!window.initCanvas) {
-          initCanvas();
-        } else {
-          window.initCanvas();
-        }
+        window?.initCanvas?.();
       } else {
         isShowMobileWarning.value = true;
       }

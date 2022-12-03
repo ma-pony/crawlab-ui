@@ -1,4 +1,4 @@
-export function initCanvas() {
+function initCanvas() {
   let canvas, ctx, circ, nodes, mouse, SENSITIVITY, SIBLINGS_LIMIT, DENSITY, NODES_QTY, ANCHOR_LENGTH, MOUSE_RADIUS,
     TURBULENCE, MOUSE_MOVING_TURBULENCE, MOUSE_ANGLE_TURBULENCE, MOUSE_MOVING_RADIUS, BASE_BRIGHTNESS, RADIUS_DEGRADE,
     SAMPLE_SIZE
@@ -37,7 +37,8 @@ export function initCanvas() {
   circ = 2 * Math.PI
   nodes = []
 
-  canvas = document.querySelector('canvas')
+  canvas = document.querySelector('#canvas')
+  if (!canvas) return;
   resizeWindow()
   ctx = canvas.getContext('2d')
   if (!ctx) {

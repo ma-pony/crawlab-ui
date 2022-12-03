@@ -22,7 +22,6 @@ jobs:
       - name: Initial setup
         run: |
           rm .npmrc
-          rm pnpm-lock.yaml
           npm i -g pnpm
       - name: Install dependencies
         run: pnpm install

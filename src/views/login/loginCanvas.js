@@ -1,4 +1,4 @@
-function initCanvas() {
+export function initCanvas() {
   let canvas, ctx, circ, nodes, mouse, SENSITIVITY, SIBLINGS_LIMIT, DENSITY, NODES_QTY, ANCHOR_LENGTH, MOUSE_RADIUS,
     TURBULENCE, MOUSE_MOVING_TURBULENCE, MOUSE_ANGLE_TURBULENCE, MOUSE_MOVING_RADIUS, BASE_BRIGHTNESS, RADIUS_DEGRADE,
     SAMPLE_SIZE
@@ -255,8 +255,3 @@ function initCanvas() {
 
   window.resetCanvas = reset
 }
-
-(function () {
-  window.initCanvas = initCanvas
-  window.initCanvas()
-}())

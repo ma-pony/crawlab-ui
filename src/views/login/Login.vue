@@ -125,6 +125,7 @@ import {useStore} from 'vuex';
 import {setGlobalLang} from '@/utils/i18n';
 import {useI18n} from 'vue-i18n';
 import {LOCAL_STORAGE_KEY_TOKEN} from '@/constants/localStorage';
+import {initCanvas} from './loginCanvas.js';
 
 const {
   post,
@@ -278,7 +279,7 @@ export default defineComponent({
       // initialize canvas
       if (window.innerWidth >= 1024) {
         if (!window.initCanvas) {
-          import('@/assets/js/loginCanvas.js');
+          initCanvas();
         } else {
           window.initCanvas();
         }

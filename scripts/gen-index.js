@@ -1,6 +1,6 @@
-const path = require('path')
-const fs = require('fs')
-const rd = require('rd')
+import path from 'path'
+import fs from 'fs'
+import rd from 'rd'
 
 const INDEX_COMP_NAME = 'index'
 

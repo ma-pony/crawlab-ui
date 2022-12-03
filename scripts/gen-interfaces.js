@@ -1,7 +1,7 @@
-const path = require('path')
-const fs = require('fs')
-const rd = require('rd')
-const chalk = require('chalk')
+import path from 'path'
+import fs from 'fs'
+import rd from 'rd'
+import chalk from 'chalk'
 
 const genInterfaces = (moduleName) => {
   if (!moduleName) {

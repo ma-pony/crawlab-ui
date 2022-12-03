@@ -1,9 +1,9 @@
-const path = require('path')
-const fs = require('fs')
-const chalk = require('chalk')
-const glob = require('fast-glob')
-const {Project} = require('ts-morph')
-const {epRoot, buildOutput} = require('./paths')
+import path from 'path'
+import fs from 'fs'
+import chalk from 'chalk'
+import glob from 'fast-glob'
+import {Project} from 'ts-morph'
+import {epRoot, buildOutput} from './paths'
 const TSCONFIG_PATH = path.resolve(__dirname, '../tsconfig.json')
 
 const gen = async () => {

@@ -1,7 +1,7 @@
-const path = require('path')
-const fs = require('fs')
-const klawSync = require('klaw-sync')
-const base64Img = require('base64-img')
+import path from 'path'
+import fs from 'fs'
+import klawSync from 'klaw-sync'
+import base64Img from 'base64-img'
 
 const includedFiles = [
   '.svg',

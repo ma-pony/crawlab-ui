@@ -1,9 +1,9 @@
-const path = require('path')
-const fs = require('fs')
-const {Project} = require('ts-morph')
-const vueCompiler = require('@vue/compiler-sfc')
-const klawSync = require('klaw-sync')
-const chalk = require('chalk')
+import path from 'path'
+import fs from 'fs'
+import {Project} from 'ts-morph'
+import vueCompiler from '@vue/compiler-sfc'
+import klawSync from 'klaw-sync'
+import chalk from 'chalk'
 
 const TSCONFIG_PATH = path.resolve(__dirname, '../tsconfig.dts.json')
 const DEMO_RE = /\/demo\/\w+\.vue$/

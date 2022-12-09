@@ -1,5 +1,5 @@
 export const getRequestBaseUrl = (): string => {
-  return window.VUE_APP_API_BASE_URL || 'http://localhost:8000';
+  return process.env.VUE_APP_API_BASE_URL || 'http://localhost:8000';
 };
 
 export const getEmptyResponseWithListData = <T = any>(): ResponseWithListData<T> => {
@@ -10,11 +10,11 @@ export const getEmptyResponseWithListData = <T = any>(): ResponseWithListData<T>
 };
 
 export const downloadURI = (uri: string, name: string) => {
-  const link = document.createElement("a");
+  const link = document.createElement('a');
   link.download = name;
   link.href = uri;
   link.click();
-}
+};
 
 export const downloadData = (data: string, name: string) => {
   const blob = new Blob([data], {});

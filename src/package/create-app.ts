@@ -103,10 +103,10 @@ const createApp = async (options?: CreateAppOptions): Promise<VueApp> => {
   initRequest(router);
 
   // load modules
-  if (options.loadStore) app.use(store);
-  if (options.loadRouter) app.use(router);
   if (options.loadElementPlus) app.use(ElementPlus);
   if (options.loadCrawlabUI) app.use(CrawlabUI);
+  if (options.loadStore) app.use(store);
+  if (options.loadRouter) app.use(router);
   if (options.loadI18n) {
     app.use(getI18n());
     setGlobalLang(window.localStorage.getItem('lang') as Lang || 'en');

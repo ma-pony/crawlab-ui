@@ -2,7 +2,7 @@ import {App} from 'vue';
 
 declare global {
   interface Window {
-    VUE_APP_API_BASE_URL?: string;
+    VITE_APP_API_BASE_URL?: string;
     VUE_APP_INIT_UMENG?: string;
     VUE_APP_INIT_BAIDU_TONGJI?: string;
     initCanvas?: () => void;

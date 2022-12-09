@@ -1,1 +1,8 @@
-declare const VITE_APP_API_BASE_URL: string;
+/// <reference types="vite/client" />
+interface ImportMetaEnv {
+  readonly VITE_APP_API_BASE_URL: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}

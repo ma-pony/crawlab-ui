@@ -1,8 +1,5 @@
 import {RouteRecordRaw} from 'vue-router';
 import {TAB_NAME_OVERVIEW} from '@/constants/tab';
-import TagList from '@/views/tag/list/TagViewList.vue';
-import TagDetail from '@/views/tag/detail/TagDetail.vue';
-import TagDetailTabOverview from '@/views/tag/detail/tabs/TagDetailTabOverview.vue';
 
 const endpoint = 'tags';
 
@@ -10,7 +7,7 @@ export default [
   {
     name: 'TagList',
     path: endpoint,
-    component: TagList
+    component: () => import('@/views/tag/list/TagViewList.vue'),
   },
   {
     name: 'TagDetail',
@@ -18,11 +15,11 @@ export default [
     redirect: to => {
       return {path: to.path + '/overview'};
     },
-    component: TagDetail,
+    component: () => import('@/views/tag/detail/TagDetail.vue'),
     children: [
       {
         path: TAB_NAME_OVERVIEW,
-        component: TagDetailTabOverview
+        component: () => import('@/views/tag/detail/tabs/TagDetailTabOverview.vue'),
       },
     ]
   }

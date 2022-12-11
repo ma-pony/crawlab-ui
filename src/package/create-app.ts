@@ -1,8 +1,8 @@
-import {createApp as createVueApp, App as VueApp} from 'vue';
+import {createApp, App} from 'vue';
 import ElementPlus from 'element-plus';
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
 import {installer as CrawlabUI} from '@/package/index';
-import App from './App.vue';
+import AppComp from './App.vue';
 import {getStore} from '@/store';
 import {getI18n} from '@/i18n';
 import {initBaiduTonji} from '@/admin/baidu';
@@ -46,7 +46,7 @@ export const normalizeOptions = (options: CreateAppOptions): CreateAppOptions =>
   return options;
 };
 
-const createApp = async (options?: CreateAppOptions): Promise<VueApp> => {
+const _createApp = async (options?: CreateAppOptions): Promise<App> => {
   // merge options
   options = {
     ...getDefaultCreateAppOptions(),
@@ -90,7 +90,7 @@ const createApp = async (options?: CreateAppOptions): Promise<VueApp> => {
   initWindowGlobals();
 
   // app
-  const app = createVueApp(App);
+  const app = createApp(AppComp);
 
   // initialize plugins
   // try {
@@ -123,4 +123,4 @@ const createApp = async (options?: CreateAppOptions): Promise<VueApp> => {
   return app;
 };
 
-export default createApp;
+export default _createApp;

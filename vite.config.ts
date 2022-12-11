@@ -78,9 +78,7 @@ export default defineConfig({
     ]
   },
   plugins: [
-    vue({
-      customElement: true,
-    }),
+    vue(),
     dynamicImport(),
   ],
   server: {

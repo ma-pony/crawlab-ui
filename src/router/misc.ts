@@ -1,6 +1,4 @@
 import {RouteRecordRaw} from 'vue-router';
-import Disclaimer from '@/views/misc/Disclaimer.vue';
-import MySettings from '@/views/misc/MySettings.vue';
 
 const endpoint = 'misc';
 
@@ -8,11 +6,11 @@ export default [
   {
     name: 'Disclaimer',
     path: `${endpoint}/disclaimer`,
-    component: Disclaimer,
+    component: () => import('@/views/misc/Disclaimer.vue'),
   },
   {
     name: 'MySettings',
     path: `${endpoint}/my-settings`,
-    component: MySettings,
+    component: () => import('@/views/misc/MySettings.vue'),
   },
 ] as Array<RouteRecordRaw>;

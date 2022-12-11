@@ -35,7 +35,7 @@
     }
   },
   "scripts": {
-    "serve": "vite --debug",
+    "serve": "vite",
     "serve:local": "vite serve --port=8081 --mode local",
     "serve:dist": "serve dist",
     "gen:index": "node ./scripts/gen-index.js",

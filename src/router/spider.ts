@@ -7,22 +7,13 @@ import {
   TAB_NAME_SETTINGS,
   TAB_NAME_TASKS
 } from '@/constants/tab';
-import SpiderList from '@/views/spider/list/SpiderList.vue';
-import SpiderDetail from '@/views/spider/detail/SpiderDetail.vue';
-import SpiderDetailTabOverview from '@/views/spider/detail/tabs/SpiderDetailTabOverview.vue';
-import SpiderDetailTabFiles from '@/views/spider/detail/tabs/SpiderDetailTabFiles.vue';
-import SpiderDetailTabGit from '@/views/spider/detail/tabs/SpiderDetailTabGit.vue';
-import SpiderDetailTabTasks from '@/views/spider/detail/tabs/SpiderDetailTabTasks.vue';
-import SpiderDetailTabSchedules from '@/views/spider/detail/tabs/SpiderDetailTabSchedules.vue';
-import SpiderDetailTabData from '@/views/spider/detail/tabs/SpiderDetailTabData.vue';
-import SpiderDetailTabSettings from '@/views/spider/detail/tabs/SpiderDetailTabSettings.vue';
-import DependencySpiderTab from '@/views/env/deps/spider/DependencySpiderTab.vue';
 
 export default [
   {
     name: 'SpiderList',
     path: 'spiders',
-    component: SpiderList
+    component: () => import('@/views/spider/list/SpiderList.vue'),
+
   },
   {
     name: 'SpiderDetail',
@@ -30,39 +21,41 @@ export default [
     redirect: to => {
       return {path: to.path + '/' + TAB_NAME_OVERVIEW};
     },
-    component: SpiderDetail,
+    component: () => import('@/views/spider/detail/SpiderDetail.vue'),
+
     children: [
       {
         path: TAB_NAME_OVERVIEW,
-        component: SpiderDetailTabOverview
+        component: () => import('@/views/spider/detail/tabs/SpiderDetailTabOverview.vue'),
       },
       {
         path: TAB_NAME_FILES,
-        component: SpiderDetailTabFiles
+        component: () => import('@/views/spider/detail/tabs/SpiderDetailTabFiles.vue'),
       },
       {
         path: TAB_NAME_GIT,
-        component: SpiderDetailTabGit
+        component: () => import('@/views/spider/detail/tabs/SpiderDetailTabGit.vue'),
       },
       {
         path: TAB_NAME_TASKS,
-        component: SpiderDetailTabTasks
+        component: () => import('@/views/spider/detail/tabs/SpiderDetailTabTasks.vue'),
       },
       {
         path: TAB_NAME_SCHEDULES,
-        component: SpiderDetailTabSchedules
+        component: () => import('@/views/spider/detail/tabs/SpiderDetailTabSchedules.vue'),
+
       },
       {
         path: TAB_NAME_DATA,
-        component: SpiderDetailTabData
+        component: () => import('@/views/spider/detail/tabs/SpiderDetailTabData.vue'),
       },
       {
         path: TAB_NAME_SETTINGS,
-        component: SpiderDetailTabSettings
+        component: () => import('@/views/spider/detail/tabs/SpiderDetailTabSettings.vue'),
       },
       {
         path: TAB_NAME_DEPENDENCIES,
-        component: DependencySpiderTab,
+        component: () => import('@/views/env/deps/spider/DependencySpiderTab.vue'),
       },
     ]
   },

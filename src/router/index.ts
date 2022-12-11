@@ -15,7 +15,6 @@ import plugin from '@/router/plugin';
 import misc from '@/router/misc';
 import {initRouterAuth} from '@/router/hooks/auth';
 import {initRouterStats} from '@/router/hooks/stats';
-import NormalLayout from '@/layouts/NormalLayout.vue';
 import {ROUTER_ROOT_NAME_ROOT} from '@/constants/router';
 
 export function getDefaultRoutes(): Array<RouteRecordRaw> {
@@ -25,7 +24,7 @@ export function getDefaultRoutes(): Array<RouteRecordRaw> {
       path: '/',
       redirect: '/home',
       name: ROUTER_ROOT_NAME_ROOT,
-      component: NormalLayout,
+      component: () => import('@/layouts/NormalLayout.vue'),
       children: [
         ...home,
         ...node,

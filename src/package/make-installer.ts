@@ -1,4 +1,4 @@
-import type {App, ComponentOptionsMixin, Plugin} from 'vue';
+import {App, ComponentOptionsMixin, Plugin} from 'vue';
 import ElementPlus from 'element-plus';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {fab} from '@fortawesome/free-brands-svg-icons';

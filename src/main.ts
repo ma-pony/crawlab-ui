@@ -1,4 +1,3 @@
-import 'vue';
 import {createApp} from '@/package';
 // import {getDemoRoutes} from '@/demo/router';
 

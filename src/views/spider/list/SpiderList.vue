@@ -15,7 +15,7 @@
   >
     <template #extra>
       <!-- Dialogs (handled by store) -->
-      <cl-create-spider-dialog/>
+      <cl-create-edit-spider-dialog/>
       <cl-run-spider-dialog/>
       <cl-upload-spider-files-dialog/>
       <!-- ./Dialogs -->

@@ -10,7 +10,7 @@
   >
     <template #extra>
       <!-- Dialogs (handled by store) -->
-      <cl-create-tag-dialog/>
+      <cl-create-edit-tag-dialog/>
       <!-- ./Dialogs -->
     </template>
   </cl-list-layout>

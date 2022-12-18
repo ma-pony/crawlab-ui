@@ -1,9 +1,9 @@
 <template>
   <cl-detail-layout no-sidebar store-namespace="task">
     <template #actions>
-      <cl-task-data-actions-common/>
-      <cl-task-data-actions-logs v-if="activeTabName === 'logs'"/>
-      <cl-task-data-actions-data v-if="activeTabName === 'data'"/>
+      <cl-task-detail-actions-common/>
+      <cl-task-detail-actions-logs v-if="activeTabName === 'logs'"/>
+      <cl-task-detail-actions-data v-if="activeTabName === 'data'"/>
     </template>
   </cl-detail-layout>
 </template>

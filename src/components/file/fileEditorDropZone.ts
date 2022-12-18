@@ -1,17 +1,11 @@
-import {useDropzone} from 'vue3-dropzone';
+import {useDropzone} from 'crawlab-vue3-dropzone';
 
 const useFileEditorDropZone = () => {
-  const onDrop = (acceptedFiles: InputFile[], rejectReasons: FileRejectReason[], event: Event) => {
-    // console.log(acceptedFiles);
-  };
-
   const {
     getRootProps,
     getInputProps,
     open,
-  } = useDropzone({
-    onDrop,
-  });
+  } = useDropzone({});
 
   return {
     getRootProps,

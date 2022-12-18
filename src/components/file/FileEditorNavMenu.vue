@@ -71,7 +71,7 @@ import Node from 'element-plus/lib/components/tree/src/model/node';
 import {DropType} from 'element-plus/lib/components/tree/src/tree.type';
 import {KEY_CONTROL, KEY_META} from '@/constants/keyboard';
 import {ElMessageBox, ElTree} from 'element-plus';
-import {useDropzone} from 'vue3-dropzone';
+import {useDropzone} from 'crawlab-vue3-dropzone';
 import {emptyArrayFunc, emptyObjectFunc} from '@/utils/func';
 import {useI18n} from 'vue-i18n';
 

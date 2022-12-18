@@ -36,6 +36,7 @@ specifiers:
   chalk: ^4.1.2
   codemirror: ^5
   core-js: ^3.6.5
+  crawlab-vue3-dropzone: 3.0.2
   cron-parser: ^3.5.0
   cronstrue: ^1.114.0
   dayjs: ^1.10.5
@@ -70,7 +71,7 @@ specifiers:
   vite-aliases: ^0.9.7
   vite-plugin-dynamic-import: ^1.2.4
   vue: ^3.2.0
-  vue-clipboard3: ^1.0.1
+  vue-clipboard3: ^2.0.0
   vue-debounce: ^4.0.0
   vue-i18n: 9.1.9
   vue-router: 4.0.11
@@ -102,6 +103,7 @@ dependencies:
   axios: registry.npmmirror.com/axios/0.21.4
   codemirror: registry.npmmirror.com/codemirror/5.65.10
   core-js: registry.npmmirror.com/core-js/3.26.1
+  crawlab-vue3-dropzone: registry.npmmirror.com/crawlab-vue3-dropzone/3.0.2_vue@3.2.45
   cron-parser: registry.npmmirror.com/cron-parser/3.5.0
   cronstrue: registry.npmmirror.com/cronstrue/1.125.0
   dayjs: registry.npmmirror.com/dayjs/1.11.6
@@ -120,7 +122,7 @@ dependencies:
   simplemde: registry.npmmirror.com/simplemde/1.11.2
   url-join: registry.npmmirror.com/url-join/4.0.1
   vue: registry.npmmirror.com/vue/3.2.45
-  vue-clipboard3: registry.npmmirror.com/vue-clipboard3/1.0.1
+  vue-clipboard3: registry.npmmirror.com/vue-clipboard3/2.0.0
   vue-debounce: registry.npmmirror.com/vue-debounce/4.0.0_vue@3.2.45
   vue-i18n: registry.npmmirror.com/vue-i18n/9.1.9_vue@3.2.45
   vue-router: registry.npmmirror.com/vue-router/4.0.11_vue@3.2.45
@@ -6470,6 +6472,19 @@ packages:
       yaml: registry.npmmirror.com/yaml/1.10.2
     dev: true
     optional: true
+
+  registry.npmmirror.com/crawlab-vue3-dropzone/3.0.2_vue@3.2.45:
+    resolution: {integrity: sha512-11kwSm62Kq6UwVVwW1e43h0sPbemt8jKi/mq5ZSAIJosF9wx2AZWvPM5tTWE0HEd0Ms4zfPh5auaYfwM5sSpxw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/crawlab-vue3-dropzone/-/crawlab-vue3-dropzone-3.0.2.tgz}
+    id: registry.npmmirror.com/crawlab-vue3-dropzone/3.0.2
+    name: crawlab-vue3-dropzone
+    version: 3.0.2
+    peerDependencies:
+      vue: '>=3.2.45'
+    dependencies:
+      attr-accept: registry.npmmirror.com/attr-accept/2.2.2
+      file-selector: registry.npmmirror.com/file-selector/0.2.4
+      vue: registry.npmmirror.com/vue/3.2.45
+    dev: false
 
   registry.npmmirror.com/create-ecdh/4.0.4:
     resolution: {integrity: sha512-mf+TCx8wWc9VpuxfP2ht0iSISLZnt0JgWlrOKZiNqyUZWnjIaCIVNQArMHnCZKfEYRg6IM7A+NeJoN8gf/Ws0A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/create-ecdh/-/create-ecdh-4.0.4.tgz}
@@ -16853,10 +16868,10 @@ packages:
     version: 1.1.2
     dev: true
 
-  registry.npmmirror.com/vue-clipboard3/1.0.1:
-    resolution: {integrity: sha512-iJ2vrizowfA73W3pcxMAKhYSvfekJrQ3FhbveVe9esS1Vfu+xW3Fgc0UKE8N4Q6DyRtcAoNlef8txmD8tK8dIg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-clipboard3/-/vue-clipboard3-1.0.1.tgz}
+  registry.npmmirror.com/vue-clipboard3/2.0.0:
+    resolution: {integrity: sha512-Q9S7dzWGax7LN5iiSPcu/K1GGm2gcBBlYwmMsUc5/16N6w90cbKow3FnPmPs95sungns4yvd9/+JhbAznECS2A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-clipboard3/-/vue-clipboard3-2.0.0.tgz}
     name: vue-clipboard3
-    version: 1.0.1
+    version: 2.0.0
     dependencies:
       clipboard: registry.npmmirror.com/clipboard/2.0.11
     dev: false

@@ -23,11 +23,11 @@ export default [
       },
       {
         path: TAB_NAME_LOGS,
-        component: () => import('@/views/task/detail/tabs/TaskDetailTabData.vue'),
+        component: () => import('@/views/task/detail/tabs/TaskDetailTabLogs.vue'),
       },
       {
         path: TAB_NAME_DATA,
-        component: () => import('@/views/task/detail/tabs/TaskDetailTabLogs.vue'),
+        component: () => import('@/views/task/detail/tabs/TaskDetailTabData.vue'),
       },
     ]
   },

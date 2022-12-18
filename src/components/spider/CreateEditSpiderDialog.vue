@@ -1,5 +1,5 @@
 <template>
-  <cl-create-edit-diaglog
+  <cl-create-edit-dialog
     :type="activeDialogKey"
     :tab-name="createEditDialogTabName"
     :visible="createEditDialogVisible"
@@ -12,7 +12,7 @@
     <template #default>
       <cl-spider-form/>
     </template>
-  </cl-create-edit-diaglog>
+  </cl-create-edit-dialog>
 </template>
 
 <script lang="ts">

@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import useScheduleList from './scheduleList';
+import useScheduleList from './useScheduleList';
 
 export default defineComponent({
   name: 'ScheduleList',

@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import useUserDetail from '@/views/user/detail/userDetail';
+import useUserDetail from '@/views/user/detail/useUserDetail';
 
 export default defineComponent({
   name: 'UserDetail',

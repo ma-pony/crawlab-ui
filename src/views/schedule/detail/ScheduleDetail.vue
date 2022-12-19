@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import useScheduleDetail from '@/views/schedule/detail/scheduleDetail';
+import useScheduleDetail from '@/views/schedule/detail/useScheduleDetail';
 
 export default defineComponent({
   name: 'ScheduleDetail',

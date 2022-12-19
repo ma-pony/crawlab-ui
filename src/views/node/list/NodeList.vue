@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import useNodeList from '@/views/node/list/nodeList';
+import useNodeList from '@/views/node/list/useNodeList';
 
 export default defineComponent({
   name: 'NodeList',

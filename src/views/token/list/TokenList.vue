@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import useTokenList from '@/views/token/list/tokenList';
+import useTokenList from '@/views/token/list/useTokenList';
 
 export default defineComponent({
   name: 'TokenList',

@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import useUserList from './userList';
+import useUserList from './useUserList';
 
 export default defineComponent({
   name: 'UserList',

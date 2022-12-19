@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import useTaskList from '@/views/task/list/taskList';
+import useTaskList from '@/views/task/list/useTaskList';
 
 export default defineComponent({
   name: 'TaskList',

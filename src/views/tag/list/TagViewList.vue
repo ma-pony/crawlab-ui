@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import useTagList from '@/views/tag/list/tagList';
+import useTagList from '@/views/tag/list/useTagList';
 
 export default defineComponent({
   name: 'TagViewList',

@@ -26,7 +26,7 @@
       class-name="button"
       @click="onClick"
     >
-      <Icon v-if="buttonIcon" :icon="buttonIcon"/>
+      <cl-icon v-if="buttonIcon" :icon="buttonIcon"/>
       {{ buttonLabel }}
     </cl-button>
     <template v-else-if="buttonIcon">

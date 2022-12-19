@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import usePluginList from '@/views/plugin/list/pluginList';
+import usePluginList from '@/views/plugin/list/usePluginList';
 
 export default defineComponent({
   name: 'PluginList',

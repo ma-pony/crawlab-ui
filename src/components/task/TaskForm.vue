@@ -214,7 +214,7 @@ import {useRouter} from 'vue-router';
 import {isCancellable} from '@/utils/task';
 import {ElMessage, ElMessageBox} from 'element-plus';
 import {isZeroObjectId} from '@/utils/mongo';
-import useTaskDetail from '@/views/task/detail/taskDetail';
+import useTaskDetail from '@/views/task/detail/useTaskDetail';
 import {useI18n} from 'vue-i18n';
 
 const {

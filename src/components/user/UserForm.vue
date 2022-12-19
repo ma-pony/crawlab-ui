@@ -85,7 +85,7 @@ import {computed, defineComponent} from 'vue';
 import {useStore} from 'vuex';
 import useUser from '@/components/user/user';
 import {ROLE_ADMIN, ROLE_NORMAL} from '@/constants/user';
-import useUserDetail from '@/views/user/detail/userDetail';
+import useUserDetail from '@/views/user/detail/useUserDetail';
 import {useI18n} from 'vue-i18n';
 
 export default defineComponent({

@@ -38,7 +38,7 @@ import {isCancellable} from '@/utils/task';
 import useTask from '@/components/task/task';
 import {ElMessage, ElMessageBox} from 'element-plus';
 import useRequest from '@/services/request';
-import useTaskDetail from '@/views/task/detail/taskDetail';
+import useTaskDetail from '@/views/task/detail/useTaskDetail';
 import {useRouter} from 'vue-router';
 import {useI18n} from 'vue-i18n';
 

@@ -24,7 +24,7 @@ import {getCodemirrorEditor, initTheme} from '@/utils/codemirror';
 import {useStore} from 'vuex';
 
 // codemirror css
-import useTaskDetail from '@/views/task/detail/taskDetail';
+import useTaskDetail from '@/views/task/detail/useTaskDetail';
 
 export default defineComponent({
   name: 'TaskDetailTabLogs',

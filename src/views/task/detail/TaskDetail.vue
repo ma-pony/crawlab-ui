@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import useTaskDetail from '@/views/task/detail/taskDetail';
+import useTaskDetail from '@/views/task/detail/useTaskDetail';
 
 export default defineComponent({
   name: 'TaskDetail',

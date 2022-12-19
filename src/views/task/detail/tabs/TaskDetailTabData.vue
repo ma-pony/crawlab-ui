@@ -17,7 +17,7 @@
 <script lang="ts">
 import {computed, defineComponent, ref, watch} from 'vue';
 import {useStore} from 'vuex';
-import useTaskDetail from '@/views/task/detail/taskDetail';
+import useTaskDetail from '@/views/task/detail/useTaskDetail';
 
 export default defineComponent({
   name: 'TaskDetailTabOverview',

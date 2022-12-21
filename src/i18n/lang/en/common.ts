@@ -33,6 +33,7 @@ const common: LCommon = {
     update: 'Update',
     save: 'Save',
     change: 'Change',
+    manage: 'Manage',
   },
   messageBox: {
     confirm: {

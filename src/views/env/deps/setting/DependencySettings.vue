@@ -33,9 +33,8 @@ import {translate} from '@/utils';
 import ClNavLink from '@/components/nav/NavLink.vue';
 
 const t = translate;
-const _t = window['_t'];
 
-const endpoint = '/plugin-proxy/dependency/settings';
+const endpoint = '/env/deps/settings';
 
 const {
   getList,
@@ -52,7 +51,7 @@ export default defineComponent({
     const tableColumns = computed(() => [
       {
         key: 'name',
-        label: t('table.columns.name'),
+        label: t('views.env.deps.settings.form.name'),
         icon: ['fa', 'font'],
         width: '150',
         value: (row: any) => h(ClNavLink, {
@@ -79,7 +78,7 @@ export default defineComponent({
       // },
       {
         key: 'description',
-        label: t('settings.table.columns.description'),
+        label: t('views.env.deps.settings.form.description'),
         icon: ['fa', 'comment-alt'],
         width: '1000',
         value: (row: any) => t(row.description),
@@ -93,7 +92,7 @@ export default defineComponent({
           {
             type: 'warning',
             icon: ['fa', 'cog'],
-            tooltip: t('settings.manage'),
+            tooltip: t('common.actions.manage'),
             onClick: (row: any) => {
               form.value = {...row};
               dialogVisible.value = true;

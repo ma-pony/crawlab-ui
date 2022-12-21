@@ -33,6 +33,7 @@ const common: LCommon = {
     update: '更新',
     save: '保存',
     change: '更改',
+    manage: '管理',
   },
   messageBox: {
     confirm: {

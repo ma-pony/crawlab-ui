@@ -46,6 +46,7 @@ export declare global {
       update: string;
       save: string;
       change: string;
+      manage: string;
     };
     messageBox: {
       confirm: {

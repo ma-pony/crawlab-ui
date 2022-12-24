@@ -16,13 +16,6 @@ import {getStatusOptions, isCancellable} from '@/utils/task';
 import TaskResults from '@/components/task/TaskResults.vue';
 import useNode from '@/components/node/node';
 import useSpider from '@/components/spider/spider';
-import {
-  TASK_STATUS_CANCELLED,
-  TASK_STATUS_ERROR,
-  TASK_STATUS_FINISHED,
-  TASK_STATUS_PENDING,
-  TASK_STATUS_RUNNING
-} from '@/constants/task';
 import useTask from '@/components/task/task';
 import {translate} from '@/utils/i18n';
 import {sendEvent} from '@/admin/umeng';
@@ -32,10 +25,14 @@ import {
   ACTION_ADD,
   ACTION_CANCEL,
   ACTION_DELETE,
-  ACTION_FILTER, ACTION_FILTER_SEARCH, ACTION_FILTER_SELECT,
+  ACTION_FILTER,
+  ACTION_FILTER_SEARCH,
+  ACTION_FILTER_SELECT,
   ACTION_RESTART,
   ACTION_VIEW,
-  ACTION_VIEW_LOGS, FILTER_OP_CONTAINS, FILTER_OP_EQUAL
+  ACTION_VIEW_LOGS,
+  FILTER_OP_CONTAINS,
+  FILTER_OP_EQUAL,
 } from '@/constants';
 
 const {

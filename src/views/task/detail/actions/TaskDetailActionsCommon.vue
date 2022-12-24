@@ -29,6 +29,23 @@
       />
     </cl-nav-action-item>
   </cl-nav-action-group>
+  <cl-nav-action-group class="task-detail-actions-common">
+    <cl-nav-action-fa-icon :icon="['fa', 'line-chart']"/>
+    <cl-nav-action-item>
+      <cl-task-results
+        :results="form?.stat?.result_count"
+        :status="form?.status"
+        size="large"
+      />
+      <cl-duration
+        :duration="totalDuration"
+        is-tag
+        size="large"
+        :tooltip="t('views.tasks.table.columns.stat.total_duration')"
+        :icon="totalDurationIcon"
+      />
+    </cl-nav-action-item>
+  </cl-nav-action-group>
 </template>
 
 <script lang="ts">
@@ -41,6 +58,8 @@ import useRequest from '@/services/request';
 import useTaskDetail from '@/views/task/detail/useTaskDetail';
 import {useRouter} from 'vue-router';
 import {useI18n} from 'vue-i18n';
+import {TASK_STATUS_PENDING, TASK_STATUS_RUNNING} from "@/constants";
+import dayjs from 'dayjs';
 
 const {
   post,
@@ -98,12 +117,25 @@ export default defineComponent({
     // cancellable
     const cancellable = computed<boolean>(() => isCancellable(form.value?.status));
 
+    // total duration
+    const getTotalDuration = () => {
+      switch (form.value?.status) {
+        case TASK_STATUS_PENDING:
+        case TASK_STATUS_RUNNING:
+          return dayjs().diff(form.value?.stat?.create_ts, 'ms');
+        default:
+          return form.value?.stat?.total_duration;
+      }
+    };
+    const totalDuration = computed<number>(() => getTotalDuration());
+
     return {
       ...useTask(store),
       onRestart,
       onCancel,
       onDelete,
       cancellable,
+      totalDuration,
       t,
     };
   },
@@ -111,7 +143,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.task-detail-actions-common >>> .task-status {
+.task-detail-actions-common >>> .task-results,
+.task-detail-actions-common >>> .task-status,
+.task-detail-actions-common >>> .duration {
   margin-right: 10px;
 }
 </style>

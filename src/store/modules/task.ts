@@ -17,6 +17,7 @@ const t = translate;
 
 const {
   post,
+  get,
   getList,
 } = useRequest();
 
@@ -104,6 +105,11 @@ const mutations = {
 
 const actions = {
   ...getDefaultStoreActions<Task>('/tasks'),
+  getById: async ({state, commit}: StoreActionContext<TaskStoreState>, id: string) => {
+    const res = await get(`/tasks/${id}`, {stats: true});
+    commit('setForm', res.data);
+    return res;
+  },
   getList: async ({state, commit}: StoreActionContext<TaskStoreState>) => {
     const payload = {
       ...state.tablePagination,

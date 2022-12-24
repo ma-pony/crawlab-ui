@@ -29,7 +29,7 @@ import {
   ACTION_FILTER_SEARCH,
   ACTION_FILTER_SELECT,
   ACTION_RESTART,
-  ACTION_VIEW,
+  ACTION_VIEW, ACTION_VIEW_DATA,
   ACTION_VIEW_LOGS,
   FILTER_OP_CONTAINS,
   FILTER_OP_EQUAL,
@@ -361,7 +361,7 @@ const useTaskList = () => {
       key: TABLE_COLUMN_NAME_ACTIONS,
       label: t('components.table.columns.actions'),
       icon: ['fa', 'tools'],
-      width: '200',
+      width: '240',
       fixed: 'right',
       buttons: (row) => [
         {
@@ -412,6 +412,19 @@ const useTaskList = () => {
             await store.dispatch(`task/getList`);
           },
           action: ACTION_RESTART,
+        },
+        {
+          className: 'view-data-btn',
+          type: 'success',
+          size: 'small',
+          icon: ['fa', 'database'],
+          tooltip: t('common.actions.viewData'),
+          onClick: (row) => {
+            router.push(`/tasks/${row._id}/data`);
+
+            sendEvent('click_task_list_actions_view_data');
+          },
+          action: ACTION_VIEW_DATA,
         },
         isCancellable(row.status) ?
           {

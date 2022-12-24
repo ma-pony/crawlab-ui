@@ -4,4 +4,6 @@ interface ResultListProps {
   noActions?: boolean;
   embedded?: boolean;
   visibleButtons?: BuiltInTableActionButtonName[];
+  filter?: FilterConditionData[] | (() => FilterConditionData[]);
+  displayAllFields: boolean;
 }

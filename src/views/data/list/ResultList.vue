@@ -19,6 +19,7 @@
 import {computed, defineComponent, PropType, watch} from 'vue';
 import {useStore} from 'vuex';
 import {TABLE_ACTION_CUSTOMIZE_COLUMNS} from '@/constants';
+import {emptyArrayFunc} from "@/utils";
 
 export default defineComponent({
   name: 'ResultList',
@@ -46,7 +47,14 @@ export default defineComponent({
           TABLE_ACTION_CUSTOMIZE_COLUMNS,
         ];
       }
-    }
+    },
+    filter: {
+      type: [Array, Function] as PropType<FilterConditionData[] | (() => FilterConditionData[])>,
+      default: emptyArrayFunc,
+    },
+    displayAllFields: {
+      type: Boolean,
+    },
   },
   setup(props: ResultListProps) {
     // store
@@ -65,17 +73,33 @@ export default defineComponent({
     // pagination
     const tablePagination = computed<TablePagination>(() => state.resultTablePagination);
 
+    // default fields
+    const defaultFields = [
+      '_id',
+      '_tid',
+    ];
+
     // columns
     const tableColumns = computed<TableColumns<Result>>(() => {
       const fields = store.getters[`${ns}/resultFields`] as ResultField[];
-      return fields.map(f => {
-        const {key} = f;
-        return {
-          key,
-          label: key,
-          minWidth: '240',
-        };
-      }) as TableColumns<Result>;
+      return fields
+        .filter(f => props.displayAllFields ? true : !defaultFields.includes(f.key as string))
+        .map(f => {
+          const {key} = f;
+          return {
+            key,
+            label: key,
+            minWidth: '240',
+          };
+        }) as TableColumns<Result>;
+    });
+
+    // filter conditions
+    const filterConditions = computed<FilterConditionData[]>(() => {
+      if (typeof props.filter === 'function') {
+        return props.filter() as FilterConditionData[];
+      }
+      return props.filter || [] as FilterConditionData[];
     });
 
     // action functions
@@ -88,6 +112,7 @@ export default defineComponent({
           id,
           params: {
             data_source_id: props.dataSourceId,
+            conditions: filterConditions.value,
             ...tablePagination.value,
           },
         });

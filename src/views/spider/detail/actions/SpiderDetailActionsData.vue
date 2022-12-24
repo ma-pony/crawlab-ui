@@ -1,9 +1,17 @@
 <template>
-  <cl-nav-action-group>
+  <cl-nav-action-group class="spider-detail-actions-data">
     <cl-nav-action-fa-icon
       :icon="['fa', 'database']"
       :tooltip="t('components.spider.actions.data.tooltip.dataActions')"
     />
+    <cl-nav-action-item>
+      <el-tooltip :content="t('components.spider.actions.data.tooltip.displayAllFields')">
+        <cl-switch
+          class="display-all-fields"
+          v-model="displayAllFields"
+        />
+      </el-tooltip>
+    </cl-nav-action-item>
     <cl-nav-action-item
       v-export="colName"
     >
@@ -19,18 +27,19 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from 'vue';
-import {useI18n} from 'vue-i18n';
+import {defineComponent, onBeforeUnmount, ref, watch} from 'vue';
 import {ExportTypeCsv} from '@/constants/export';
 import {useStore} from 'vuex';
+import {translate} from "@/utils";
+
+const t = translate;
 
 export default defineComponent({
   name: 'SpiderDetailActionsData',
   setup() {
-    // i18n
-    const {t} = useI18n();
-
     // store
+    const ns = 'spider';
+    const nsDs = 'dataCollection';
     const store = useStore();
     const {
       spider: spiderState,
@@ -42,15 +51,27 @@ export default defineComponent({
     // export type
     const exportType = ref<ExportType>(ExportTypeCsv);
 
+    // display all fields
+    const displayAllFields = ref<boolean>(spiderState.dataDisplayAllFields);
+    onBeforeUnmount(() => {
+      store.commit(`${nsDs}/setDataDisplayAllFields`, false);
+    });
+    watch(displayAllFields, (val) => {
+      store.commit(`${ns}/setDataDisplayAllFields`, val);
+    });
+
     return {
       exportType,
       colName,
+      displayAllFields,
       t,
     };
   },
 });
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+.spider-detail-actions-data >>> .display-all-fields {
+  margin-right: 10px;
+}
 </style>

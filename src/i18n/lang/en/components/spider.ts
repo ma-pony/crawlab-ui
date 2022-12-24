@@ -22,6 +22,7 @@ const spider: LComponentsSpider = {
       tooltip: {
         dataActions: 'Data Actions',
         export: 'Export',
+        displayAllFields: 'Display All Fields',
       },
     }
   },

@@ -1,66 +1,33 @@
 <template>
   <div class="spider-detail-tab-data">
     <cl-result-list
-      :id="spider.col_id"
-      :data-source-id="spider.data_source_id"
+      :id="form?.col_id"
+      :data-source-id="form?.data_source_id"
+      :display-all-fields="displayAllFields"
       no-actions
       embedded
     />
   </div>
 </template>
 <script lang="ts">
-import {computed, defineComponent, onBeforeMount, onBeforeUnmount} from 'vue';
-import {useRoute} from 'vue-router';
+import {computed, defineComponent} from 'vue';
 import {useStore} from 'vuex';
-import {FILTER_OP_EQUAL} from '@/constants/filter';
 import useSpider from '@/components/spider/spider';
-import useSpiderDetail from '@/views/spider/detail/useSpiderDetail';
 
 export default defineComponent({
   name: 'SpiderDetailTabTasks',
   setup() {
-    // route
-    const route = useRoute();
-
     // store
-    const ns = 'spider';
     const store = useStore();
-
-    // id
-    const id = computed<string>(() => route.params.id as string);
-
     const {
-      form: spider,
-    } = useSpider(store);
+      spider: state,
+    } = store.state;
 
-    const {
-      activeId,
-    } = useSpiderDetail();
-
-    // set table list filter before mount
-    onBeforeMount(() => {
-      // set filter
-      store.commit(`task/setTableListFilter`, [{
-        key: 'spider_id',
-        op: FILTER_OP_EQUAL,
-        value: id.value,
-      }]);
-    });
-
-    // get form data before mount
-    onBeforeMount(async () => {
-      if (!spider.value.col_id) {
-        await store.dispatch(`${ns}/getById`, activeId.value);
-      }
-    });
-
-    onBeforeUnmount(() => {
-      store.commit(`task/resetTableListFilter`);
-      store.commit(`task/resetTableData`);
-    });
+    const displayAllFields = computed<boolean>(() => state.dataDisplayAllFields);
 
     return {
-      spider,
+      ...useSpider(store),
+      displayAllFields,
     };
   },
 });

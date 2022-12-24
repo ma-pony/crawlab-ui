@@ -7,8 +7,6 @@ import {
 import useRequest from '@/services/request';
 import {TAB_NAME_DATA, TAB_NAME_LOGS, TAB_NAME_OVERVIEW} from '@/constants/tab';
 import {Editor} from 'codemirror';
-import {getFieldsFromData} from '@/utils/result';
-import {getDefaultPagination} from '@/utils/pagination';
 import {TASK_MODE_RANDOM} from '@/constants/task';
 import {translate} from '@/utils/i18n';
 
@@ -42,16 +40,10 @@ const state = {
   logTotal: 0,
   logAutoUpdate: false,
   logCodeMirrorEditor: undefined,
-  resultTableData: [],
-  resultTablePagination: getDefaultPagination(),
-  resultTableTotal: 0,
 } as TaskStoreState;
 
 const getters = {
   ...getDefaultStoreGetters<Task>(),
-  resultFields: (state: TaskStoreState) => {
-    return getFieldsFromData(state.resultTableData);
-  },
 } as TaskStoreGetters;
 
 const mutations = {
@@ -83,33 +75,10 @@ const mutations = {
   setLogCodeMirrorEditor: (state: TaskStoreState, cm: Editor) => {
     state.logCodeMirrorEditor = cm;
   },
-  setResultTableData: (state: TaskStoreState, data: Result[]) => {
-    state.resultTableData = data;
-  },
-  resetResultTableData: (state: TaskStoreState) => {
-    state.resultTableData = [];
-  },
-  setResultTablePagination: (state: TaskStoreState, pagination: TablePagination) => {
-    state.resultTablePagination = pagination;
-  },
-  resetResultTablePagination: (state: TaskStoreState) => {
-    state.resultTablePagination = getDefaultPagination();
-  },
-  setResultTableTotal: (state: TaskStoreState, total: number) => {
-    state.resultTableTotal = total;
-  },
-  resetResultTableTotal: (state: TaskStoreState) => {
-    state.resultTableTotal = 0;
-  },
 } as TaskStoreMutations;
 
 const actions = {
   ...getDefaultStoreActions<Task>('/tasks'),
-  getById: async ({state, commit}: StoreActionContext<TaskStoreState>, id: string) => {
-    const res = await get(`/tasks/${id}`, {stats: true});
-    commit('setForm', res.data);
-    return res;
-  },
   getList: async ({state, commit}: StoreActionContext<TaskStoreState>) => {
     const payload = {
       ...state.tablePagination,
@@ -129,13 +98,6 @@ const actions = {
     const res = await getList(`/tasks/${id}/logs`, {page, size});
     commit('setLogContent', res.data?.join('\n'));
     commit('setLogTotal', res.total);
-    return res;
-  },
-  getResultData: async ({state, commit}: StoreActionContext<TaskStoreState>, id: string) => {
-    const {page, size} = state.resultTablePagination;
-    const res = await getList(`/tasks/${id}/data`, {page, size});
-    commit('setResultTableData', res.data || []);
-    commit('setResultTableTotal', res.total);
     return res;
   },
 } as TaskStoreActions;

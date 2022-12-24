@@ -15,6 +15,7 @@ declare global {
     gitRemoteRefs: GitRef[];
     gitRefType: string;
     gitCurrentBranchLoading: boolean;
+    dataDisplayAllFields: boolean;
   }
 
   interface SpiderStoreGetters extends BaseStoreGetters<SpiderStoreState> {
@@ -43,6 +44,7 @@ declare global {
     setGitRefType: StoreMutation<SpiderStoreState, string>;
     resetGitRefType: StoreMutation<SpiderStoreState>;
     setGitCurrentBranchLoading: StoreMutation<SpiderStoreState, boolean>;
+    setDataDisplayAllFields: StoreMutation<SpiderStoreState, boolean>;
   }
 
   interface SpiderStoreActions extends BaseStoreActions<Spider> {

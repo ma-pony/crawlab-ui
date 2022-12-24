@@ -57,6 +57,7 @@ const state = {
   gitRemoteRefs: [],
   gitRefType: GIT_REF_TYPE_BRANCH,
   gitCurrentBranchLoading: false,
+  dataDisplayAllFields: false,
 } as SpiderStoreState;
 
 const getters = {
@@ -142,6 +143,9 @@ const mutations = {
   },
   setGitCurrentBranchLoading: (state: SpiderStoreState, loading: boolean) => {
     state.gitCurrentBranchLoading = loading;
+  },
+  setDataDisplayAllFields: (state: SpiderStoreState, display: boolean) => {
+    state.dataDisplayAllFields = display;
   },
 } as SpiderStoreMutations;
 

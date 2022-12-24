@@ -22,6 +22,7 @@ const spider: LComponentsSpider = {
       tooltip: {
         dataActions: '数据操作',
         export: '导出',
+        displayAllFields: '显示所有字段',
       },
     }
   },

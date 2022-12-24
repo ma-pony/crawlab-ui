@@ -22,6 +22,7 @@ interface LComponentsSpider {
       tooltip: {
         dataActions: string;
         export: string;
+        displayAllFields: string;
       };
     };
   };

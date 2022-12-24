@@ -18,7 +18,7 @@ import {
   ACTION_FILTER_SEARCH, ACTION_FILTER_SELECT,
   ACTION_RUN,
   ACTION_UPLOAD,
-  ACTION_VIEW, FILTER_OP_CONTAINS, FILTER_OP_EQUAL
+  ACTION_VIEW, ACTION_VIEW_DATA, FILTER_OP_CONTAINS, FILTER_OP_EQUAL
 } from '@/constants';
 
 const useSpiderList = () => {
@@ -281,6 +281,19 @@ const useSpiderList = () => {
           },
           className: 'upload-files-btn',
           action: ACTION_UPLOAD,
+        },
+        {
+          type: 'success',
+          size: 'small',
+          icon: ['fa', 'database'],
+          tooltip: t('common.actions.viewData'),
+          onClick: (row) => {
+            router.push(`/spiders/${row._id}/data`);
+
+            sendEvent('click_spider_list_actions_view_data');
+          },
+          className: 'view-data-btn',
+          action: ACTION_VIEW_DATA,
         },
         // {
         //   type: 'info',

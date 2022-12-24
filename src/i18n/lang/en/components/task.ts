@@ -17,6 +17,15 @@ const task: LComponentsTask = {
       customized: 'Customized',
     },
   },
+  actions: {
+    data: {
+      tooltip: {
+        dataActions: 'Data Actions',
+        export: 'Export',
+        displayAllFields: 'Display All Fields',
+      }
+    }
+  },
   status: {
     label: {
       pending: 'Pending',

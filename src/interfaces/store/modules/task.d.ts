@@ -9,6 +9,7 @@ declare global {
     logTotal: number;
     logAutoUpdate: boolean;
     logCodeMirrorEditor?: Editor;
+    dataDisplayAllFields: boolean;
   }
 
   interface TaskStoreGetters extends BaseStoreGetters<TaskStoreState> {
@@ -24,6 +25,7 @@ declare global {
     enableLogAutoUpdate: StoreMutation<TaskStoreState>;
     disableLogAutoUpdate: StoreMutation<TaskStoreState>;
     setLogCodeMirrorEditor: StoreMutation<TaskStoreState, Editor>;
+    setDataDisplayAllFields: StoreMutation<TaskStoreState, boolean>;
   }
 
   interface TaskStoreActions extends BaseStoreActions<Task> {

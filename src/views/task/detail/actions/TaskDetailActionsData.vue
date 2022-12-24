@@ -1,9 +1,17 @@
 <template>
-  <cl-nav-action-group>
+  <cl-nav-action-group class="task-detail-actions-data">
     <cl-nav-action-fa-icon
       :icon="['fa', 'database']"
-      :tooltip="t('components.spider.actions.data.tooltip.dataActions')"
+      :tooltip="t('components.task.actions.data.tooltip.dataActions')"
     />
+    <cl-nav-action-item>
+      <el-tooltip :content="t('components.task.actions.data.tooltip.displayAllFields')">
+        <cl-switch
+          class="display-all-fields"
+          v-model="displayAllFields"
+        />
+      </el-tooltip>
+    </cl-nav-action-item>
     <cl-nav-action-item
       v-export="{
         target,
@@ -12,7 +20,7 @@
     >
       <cl-fa-icon-button
         :icon="['fa', 'download']"
-        :tooltip="t('components.spider.actions.data.tooltip.export')"
+        :tooltip="t('components.task.actions.data.tooltip.export')"
         type="primary"
         id="export-btn"
         class-name="export-btn"
@@ -22,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, ref, watch} from 'vue';
+import {computed, defineComponent, onBeforeUnmount, ref, watch} from 'vue';
 import {useI18n} from 'vue-i18n';
 import {ExportTypeCsv} from '@/constants/export';
 import {useStore} from 'vuex';
@@ -41,6 +49,8 @@ export default defineComponent({
     const {t} = useI18n();
 
     // store
+    const ns = 'task';
+    const nsDs = 'dataCollection';
     const store = useStore();
     const {
       task: taskState,
@@ -70,18 +80,30 @@ export default defineComponent({
     // export type
     const exportType = ref<ExportType>(ExportTypeCsv);
 
+    // display all fields
+    const displayAllFields = ref<boolean>(taskState.dataDisplayAllFields);
+    onBeforeUnmount(() => {
+      store.commit(`${nsDs}/setDataDisplayAllFields`, false);
+    });
+    watch(displayAllFields, (val) => {
+      store.commit(`${ns}/setDataDisplayAllFields`, val);
+    });
+
     return {
       allSpiderDict,
       spider,
       target,
       exportType,
       conditions,
+      displayAllFields,
       t,
     };
   },
 });
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+.task-detail-actions-data >>> .display-all-fields {
+  margin-right: 10px;
+}
 </style>

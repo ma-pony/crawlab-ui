@@ -40,6 +40,7 @@ const state = {
   logTotal: 0,
   logAutoUpdate: false,
   logCodeMirrorEditor: undefined,
+  dataDisplayAllFields: false,
 } as TaskStoreState;
 
 const getters = {
@@ -75,6 +76,9 @@ const mutations = {
   setLogCodeMirrorEditor: (state: TaskStoreState, cm: Editor) => {
     state.logCodeMirrorEditor = cm;
   },
+  setDataDisplayAllFields: (state: TaskStoreState, displayAllFields: boolean) => {
+    state.dataDisplayAllFields = displayAllFields;
+  }
 } as TaskStoreMutations;
 
 const actions = {

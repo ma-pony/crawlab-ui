@@ -17,6 +17,15 @@ interface LComponentsTask {
       customized: string;
     };
   };
+  actions: {
+    data: {
+      tooltip: {
+        dataActions: string;
+        export: string;
+        displayAllFields: string;
+      };
+    };
+  };
   status: {
     label: {
       pending: string;

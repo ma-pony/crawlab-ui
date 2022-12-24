@@ -4,6 +4,7 @@
       :id="form?.spider?.col_id"
       :data-source-id="form?.spider?.data_source_id"
       :filter="filter"
+      :display-all-fields="displayAllFields"
       no-actions
       embedded
     />
@@ -21,6 +22,9 @@ export default defineComponent({
   setup() {
     // store
     const store = useStore();
+    const {
+      task: state,
+    } = store.state;
 
     const {
       activeId,
@@ -36,9 +40,12 @@ export default defineComponent({
       ];
     });
 
+    const displayAllFields = computed<boolean>(() => state.dataDisplayAllFields);
+
     return {
       ...useTask(store),
       filter,
+      displayAllFields,
     };
   },
 });

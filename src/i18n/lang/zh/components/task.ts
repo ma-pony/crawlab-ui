@@ -17,6 +17,15 @@ const task: LComponentsTask = {
       customized: '自定义',
     },
   },
+  actions: {
+    data: {
+      tooltip: {
+        dataActions: '数据操作',
+        export: '导出',
+        displayAllFields: '显示所有字段',
+      }
+    }
+  },
   status: {
     label: {
       pending: '待定',

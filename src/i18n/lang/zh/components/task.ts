@@ -23,6 +23,7 @@ const task: LComponentsTask = {
         dataActions: '数据操作',
         export: '导出',
         displayAllFields: '显示所有字段',
+        inferDataFieldsTypes: '推断数据字段类型',
       }
     }
   },

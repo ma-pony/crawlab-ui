@@ -23,6 +23,7 @@ interface LComponentsTask {
         dataActions: string;
         export: string;
         displayAllFields: string;
+        inferDataFieldsTypes: string;
       };
     };
   };

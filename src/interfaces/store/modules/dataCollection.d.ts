@@ -5,10 +5,14 @@ interface DataCollectionStoreState extends BaseStoreState<DataCollection> {
   resultTableTotal: number;
   resultTablePagination: TablePagination;
   resultTableFilter: FilterConditionData[];
+  resultDialogVisible: boolean;
+  resultDialogContent: any;
+  resultDialogType?: DataFieldType;
+  resultDialogKey: string;
 }
 
 interface DataCollectionStoreGetters extends BaseStoreGetters<DataCollectionStoreState> {
-  resultFields: StoreGetter<DataCollectionStoreState, ResultField[]>;
+  resultFields: StoreGetter<DataCollectionStoreState, DataField[]>;
 }
 
 interface DataCollectionStoreMutations extends BaseStoreMutations<DataCollection> {
@@ -18,6 +22,13 @@ interface DataCollectionStoreMutations extends BaseStoreMutations<DataCollection
   resetResultTablePagination: StoreMutation<DataCollectionStoreState>;
   setResultTableFilter: StoreMutation<DataCollectionStoreState, FilterConditionData[]>;
   resetResultTableFilter: StoreMutation<DataCollectionStoreState>;
+  setResultDialogVisible: StoreMutation<DataCollectionStoreState, boolean>;
+  setResultDialogContent: StoreMutation<DataCollectionStoreState, any>;
+  resetResultDialogContent: StoreMutation<DataCollectionStoreState>;
+  setResultDialogType: StoreMutation<DataCollectionStoreState, DataFieldType>;
+  resetResultDialogType: StoreMutation<DataCollectionStoreState>;
+  setResultDialogKey: StoreMutation<DataCollectionStoreState, string>;
+  resetResultDialogKey: StoreMutation<DataCollectionStoreState>;
 }
 
 interface DataCollectionStoreActions extends BaseStoreActions<DataCollection> {

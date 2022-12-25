@@ -47,6 +47,7 @@ export declare global {
       save: string;
       change: string;
       manage: string;
+      inferDataFieldsTypes: string;
     };
     messageBox: {
       confirm: {
@@ -57,6 +58,7 @@ export declare global {
         install: string;
         start: string;
         deleteSelected: string;
+        proceed: string;
       };
     };
     message: {
@@ -73,6 +75,7 @@ export declare global {
         startUninstall: string;
         enabled: string;
         disabled: string;
+        action: string;
       };
       info: {
         cancel: string;

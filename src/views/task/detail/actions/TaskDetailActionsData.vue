@@ -26,17 +26,28 @@
         class-name="export-btn"
       />
     </cl-nav-action-item>
+    <cl-nav-action-item>
+      <cl-fa-icon-button
+        :icon="['fa', 'table']"
+        :tooltip="t('components.task.actions.data.tooltip.inferDataFieldsTypes')"
+        type="warning"
+        class-name="infer-data-fields-types-btn"
+        @click="onClickInferDataFieldsTypes"
+      />
+    </cl-nav-action-item>
   </cl-nav-action-group>
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, onBeforeUnmount, ref, watch} from 'vue';
+import {computed, defineComponent, ref, watch} from 'vue';
 import {useI18n} from 'vue-i18n';
 import {ExportTypeCsv} from '@/constants/export';
 import {useStore} from 'vuex';
 import useSpider from '@/components/spider/spider';
 import useRequest from '@/services/request';
 import {FILTER_OP_EQUAL} from '@/constants';
+import {inferDataFieldTypes} from "@/utils/dataFields";
+import {ElMessage, ElMessageBox} from "element-plus";
 
 const {
   get,
@@ -50,10 +61,11 @@ export default defineComponent({
 
     // store
     const ns = 'task';
-    const nsDs = 'dataCollection';
+    const nsDc = 'dataCollection';
     const store = useStore();
     const {
       task: taskState,
+      dataCollection: dataCollectionState,
     } = store.state as RootStoreState;
 
     const {
@@ -82,11 +94,36 @@ export default defineComponent({
 
     // display all fields
     const displayAllFields = ref<boolean>(taskState.dataDisplayAllFields);
-    onBeforeUnmount(() => {
-      store.commit(`${nsDs}/setDataDisplayAllFields`, false);
-    });
     watch(displayAllFields, (val) => {
       store.commit(`${ns}/setDataDisplayAllFields`, val);
+    });
+
+    const inferFields = async () => {
+      let fields = store.getters[`${nsDc}/resultFields`] as DataField[];
+      const data = dataCollectionState.resultTableData as Result[];
+      fields = inferDataFieldTypes(fields, data);
+      const form = {
+        ...dataCollectionState.form,
+        fields,
+      };
+      store.commit(`${nsDc}/setForm`, form);
+      await store.dispatch(`${nsDc}/updateById`, {
+        id: form._id,
+        form,
+      });
+      await store.dispatch(`${nsDc}/getById`, form._id);
+    };
+
+    const onClickInferDataFieldsTypes = async () => {
+      await ElMessageBox.confirm(t('common.messageBox.confirm.proceed'), t('common.actions.inferDataFieldsTypes'), {type: 'warning'});
+      await inferFields();
+      await ElMessage.success(t('common.message.success.action'));
+    };
+
+    watch(() => JSON.stringify(dataCollectionState.resultTableData), async () => {
+      if (!dataCollectionState.form?.fields?.length && dataCollectionState.resultTableData?.length) {
+        await inferFields();
+      }
     });
 
     return {
@@ -96,6 +133,7 @@ export default defineComponent({
       exportType,
       conditions,
       displayAllFields,
+      onClickInferDataFieldsTypes,
       t,
     };
   },

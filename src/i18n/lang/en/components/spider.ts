@@ -23,6 +23,7 @@ const spider: LComponentsSpider = {
         dataActions: 'Data Actions',
         export: 'Export',
         displayAllFields: 'Display All Fields',
+        inferDataFieldsTypes: 'Infer Data Fields Types',
       },
     }
   },

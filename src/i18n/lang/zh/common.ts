@@ -34,6 +34,7 @@ const common: LCommon = {
     save: '保存',
     change: '更改',
     manage: '管理',
+    inferDataFieldsTypes: '推断数据字段类型',
   },
   messageBox: {
     confirm: {
@@ -44,6 +45,7 @@ const common: LCommon = {
       install: '您是否确定安装?',
       start: '您是否确定启动?',
       deleteSelected: '您是否确定删除已选项?',
+      proceed: '您是否确定继续?',
     }
   },
   message: {
@@ -60,6 +62,7 @@ const common: LCommon = {
       startUninstall: '开始卸载',
       enabled: '已启用',
       disabled: '已禁用',
+      action: '操作成功',
     },
     info: {
       cancel: '尝试取消',

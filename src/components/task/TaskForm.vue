@@ -299,8 +299,8 @@ export default defineComponent({
     const cancellable = computed<boolean>(() => isCancellable(form.value.status));
 
     const onCancel = async () => {
-      await ElMessageBox.confirm('Are you sure to cancel?', 'Cancel', {type: 'warning'});
-      await ElMessage.info('Attempt to cancel');
+      await ElMessageBox.confirm(t('common.messageBox.confirm.cancel'), t('common.actions.cancel'), {type: 'warning'});
+      await ElMessage.info('common.message.info.cancel');
       try {
         await post(`/tasks/${activeId.value}/cancel`);
       } finally {

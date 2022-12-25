@@ -9,17 +9,18 @@
     :visible-buttons="visibleButtons"
     :embedded="embedded"
     class="result-list"
-  >
-    <template #extra>
-    </template>
-  </cl-list-layout>
+  />
+
+  <cl-result-cell-dialog/>
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, PropType, watch} from 'vue';
+import {computed, defineComponent, h, onBeforeUnmount, PropType, watch} from 'vue';
 import {useStore} from 'vuex';
 import {TABLE_ACTION_CUSTOMIZE_COLUMNS} from '@/constants';
 import {emptyArrayFunc} from "@/utils";
+import ResultCell from "@/components/result/ResultCell.vue";
+import {getDataFieldIconByType} from "@/utils/dataFields";
 
 export default defineComponent({
   name: 'ResultList',
@@ -79,9 +80,26 @@ export default defineComponent({
       '_tid',
     ];
 
+    // data fields
+    const dataFields = computed<DataField[]>(() => state.form?.fields || []);
+
+    // data fields map
+    const dataFieldsMap = computed<Map<string, DataFieldType>>(() => {
+      const map = new Map<string, DataFieldType>();
+      dataFields.value.forEach((field: DataField) => {
+        map.set(field.key as string, field.type);
+      });
+      return map;
+    });
+
+    const getTableColumnIcon = (field: DataField): Icon => {
+      const type = dataFieldsMap.value.get(field.key as string);
+      return getDataFieldIconByType(type);
+    };
+
     // columns
     const tableColumns = computed<TableColumns<Result>>(() => {
-      const fields = store.getters[`${ns}/resultFields`] as ResultField[];
+      const fields = store.getters[`${ns}/resultFields`] as DataField[];
       return fields
         .filter(f => props.displayAllFields ? true : !defaultFields.includes(f.key as string))
         .map(f => {
@@ -90,6 +108,16 @@ export default defineComponent({
             key,
             label: key,
             minWidth: '240',
+            icon: getTableColumnIcon(f),
+            value: (row: Result) => {
+              const value = row[key as string];
+              const type = dataFieldsMap.value.get(key as string);
+              return h(ResultCell, {
+                fieldKey: key,
+                type,
+                value,
+              });
+            },
           };
         }) as TableColumns<Result>;
     });
@@ -135,6 +163,12 @@ export default defineComponent({
     watch(() => props.id, getList);
 
     watch(() => tablePagination.value, getList);
+
+    onBeforeUnmount(() => {
+      store.commit(`${ns}/resetResultTableData`);
+      store.commit(`${ns}/resetResultTablePagination`);
+      store.commit(`${ns}/resetResultTableFilter`);
+    });
 
     return {
       actionFunctions,

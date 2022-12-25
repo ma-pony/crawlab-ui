@@ -4,12 +4,14 @@
     :modal-class="modalClass"
     :before-close="onClose"
     :model-value="visible"
-    :title="title"
     :top="top"
     :width="width"
     :z-index="zIndex"
   >
     <slot/>
+    <template #title>
+      <div v-html="title"/>
+    </template>
     <template #footer>
       <slot name="prefix"/>
       <cl-button

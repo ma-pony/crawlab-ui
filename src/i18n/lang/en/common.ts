@@ -34,6 +34,7 @@ const common: LCommon = {
     save: 'Save',
     change: 'Change',
     manage: 'Manage',
+    inferDataFieldsTypes: 'Infer Data Fields Types',
   },
   messageBox: {
     confirm: {
@@ -44,6 +45,7 @@ const common: LCommon = {
       install: 'Are you sure to install?',
       start: 'Are you sure to start?',
       deleteSelected: 'Are you sure to delete selected items?',
+      proceed: 'Are you sure to proceed?',
     }
   },
   message: {
@@ -60,6 +62,7 @@ const common: LCommon = {
       startUninstall: 'Started uninstallation successfully',
       enabled: 'Enabled successfully',
       disabled: 'Disabled successfully',
+      action: 'Action successfully',
     },
     info: {
       cancel: 'Attempt to cancel',

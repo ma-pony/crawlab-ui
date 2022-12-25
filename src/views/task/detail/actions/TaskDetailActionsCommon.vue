@@ -90,15 +90,15 @@ export default defineComponent({
 
     // restart
     const onRestart = async () => {
-      await ElMessageBox.confirm('Are you sure to restart?', 'Restart', {type: 'warning'});
+      await ElMessageBox.confirm(t('common.messageBox.confirm.restart'), 'Restart', {type: 'warning'});
       await post(`/tasks/${activeId.value}/restart`);
-      await ElMessage.success('Restarted successfully');
+      await ElMessage.success('common.message.success.restart');
       await store.dispatch(`${ns}/getById`, activeId.value);
     };
 
     // cancel
     const onCancel = async () => {
-      await ElMessageBox.confirm('Are you sure to cancel?', 'Cancel', {type: 'warning'});
+      await ElMessageBox.confirm(t('common.messageBox.confirm.cancel'), t('common.actions.cancel'), {type: 'warning'});
       await ElMessage.info('Attempt to cancel');
       await post(`/tasks/${activeId.value}/cancel`);
       await store.dispatch(`${ns}/getById`, activeId.value);
@@ -106,7 +106,7 @@ export default defineComponent({
 
     // delete
     const onDelete = async () => {
-      await ElMessageBox.confirm('Are you sure to delete?', 'Delete', {
+      await ElMessageBox.confirm(t('common.messageBox.confirm.delete'), t('common.actions.delete'), {
         type: 'warning',
         confirmButtonClass: 'el-button--danger'
       });

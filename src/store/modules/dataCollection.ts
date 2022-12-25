@@ -18,6 +18,10 @@ const state = {
   resultTableTotal: 0,
   resultTablePagination: getDefaultPagination(),
   resultTableFilter: [],
+  resultDialogVisible: false,
+  resultDialogContent: '',
+  resultDialogType: undefined,
+  resultDialogKey: '',
 } as DataCollectionStoreState;
 
 const getters = {
@@ -49,6 +53,27 @@ const mutations = {
   },
   resetResultTableFilter: (state: DataCollectionStoreState) => {
     state.resultTableFilter = [];
+  },
+  setResultDialogVisible: (state: DataCollectionStoreState, visible: boolean) => {
+    state.resultDialogVisible = visible;
+  },
+  setResultDialogContent: (state: DataCollectionStoreState, content: string) => {
+    state.resultDialogContent = content;
+  },
+  resetResultDialogContent: (state: DataCollectionStoreState) => {
+    state.resultDialogContent = '';
+  },
+  setResultDialogType: (state: DataCollectionStoreState, type: DataFieldType) => {
+    state.resultDialogType = type;
+  },
+  resetResultDialogType: (state: DataCollectionStoreState) => {
+    state.resultDialogType = undefined;
+  },
+  setResultDialogKey: (state: DataCollectionStoreState, type: string) => {
+    state.resultDialogKey = type;
+  },
+  resetResultDialogKey: (state: DataCollectionStoreState) => {
+    state.resultDialogKey = '';
   },
 } as DataCollectionStoreMutations;
 

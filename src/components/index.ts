@@ -88,6 +88,8 @@ import SettingsPluginDialog from './plugin/SettingsPluginDialog.vue';
 import CreateEditProjectDialog from './project/CreateEditProjectDialog.vue';
 import ProjectForm from './project/ProjectForm.vue';
 import ProjectTag from './project/ProjectTag.vue';
+import ResultCell from './result/ResultCell.vue';
+import ResultCellDialog from './result/ResultCellDialog.vue';
 import CreateEditScheduleDialog from './schedule/CreateEditScheduleDialog.vue';
 import ScheduleCron from './schedule/ScheduleCron.vue';
 import ScheduleForm from './schedule/ScheduleForm.vue';
@@ -223,6 +225,8 @@ export {
   CreateEditProjectDialog as ClCreateEditProjectDialog,
   ProjectForm as ClProjectForm,
   ProjectTag as ClProjectTag,
+  ResultCell as ClResultCell,
+  ResultCellDialog as ClResultCellDialog,
   CreateEditScheduleDialog as ClCreateEditScheduleDialog,
   ScheduleCron as ClScheduleCron,
   ScheduleForm as ClScheduleForm,

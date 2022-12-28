@@ -1,14 +1,14 @@
 <template>
   <cl-create-edit-dialog
-      :action-functions="actionFunctions"
-      :batch-form-data="formList"
-      :batch-form-fields="batchFormFields"
-      :confirm-disabled="confirmDisabled"
-      :confirm-loading="confirmLoading"
-      :form-rules="formRules"
-      :tab-name="createEditDialogTabName"
-      :type="activeDialogKey"
-      :visible="createEditDialogVisible"
+    :action-functions="actionFunctions"
+    :batch-form-data="formList"
+    :batch-form-fields="batchFormFields"
+    :confirm-disabled="confirmDisabled"
+    :confirm-loading="confirmLoading"
+    :form-rules="formRules"
+    :tab-name="createEditDialogTabName"
+    :type="activeDialogKey"
+    :visible="createEditDialogVisible"
   >
     <template #default>
       <cl-user-form/>

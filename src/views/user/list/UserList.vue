@@ -13,7 +13,7 @@
   >
     <template #extra>
       <!-- Dialogs (handled by store) -->
-      <cl--create-edit-user-dialog/>
+      <cl-create-edit-user-dialog/>
       <!-- ./Dialogs -->
     </template>
   </cl-list-layout>

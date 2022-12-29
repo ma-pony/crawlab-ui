@@ -5,6 +5,7 @@ import {
   DATA_FIELD_TYPE_NUMERIC,
   DATA_FIELD_TYPE_URL, DATA_FIELD_TYPE_VIDEO, DATA_FIELD_TYPE_HTML, DATA_FIELD_TYPE_LONG_TEXT
 } from "@/constants/dataFields";
+import {DEDUP_TYPE_IGNORE, DEDUP_TYPE_OVERWRITE} from "@/constants/dedup";
 
 const result: LComponentsResult = {
   form: {
@@ -21,7 +22,22 @@ const result: LComponentsResult = {
     [DATA_FIELD_TYPE_VIDEO]: 'Video',
     [DATA_FIELD_TYPE_HTML]: 'HTML',
     [DATA_FIELD_TYPE_LONG_TEXT]: 'Long Text',
-  }
+  },
+  dedup: {
+    dialog: {
+      fields: {
+        title: 'Deduplication Fields Configuration',
+        placeholder: 'Enter a field name for deduplication',
+      },
+    },
+    labels: {
+      dedupType: 'Deduplication Type',
+    },
+    types: {
+      [DEDUP_TYPE_IGNORE]: 'Ignore',
+      [DEDUP_TYPE_OVERWRITE]: 'Overwrite',
+    },
+  },
 };
 
 export default result;

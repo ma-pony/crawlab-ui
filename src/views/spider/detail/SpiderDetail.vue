@@ -11,6 +11,7 @@
 
   <!-- Dialogs (handled by store) -->
   <cl-upload-spider-files-dialog/>
+  <cl-result-dedup-fields-dialog/>
   <!-- ./Dialogs -->
 </template>
 <script lang="ts">

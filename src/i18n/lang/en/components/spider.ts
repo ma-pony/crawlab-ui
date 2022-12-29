@@ -24,6 +24,11 @@ const spider: LComponentsSpider = {
         export: 'Export',
         displayAllFields: 'Display All Fields',
         inferDataFieldsTypes: 'Infer Data Fields Types',
+        dedup: {
+          enabled: 'Deduplication is enabled',
+          disabled: 'Deduplication id disabled',
+          fields: 'Configure Deduplication Fields',
+        },
       },
     }
   },

@@ -1,5 +1,4 @@
-import useDetail from '@/layouts/content/detail/useDetail';
-import {computed, ref} from 'vue';
+import {watch, computed, ref} from 'vue';
 import {useStore} from 'vuex';
 import useSpiderService from '@/services/spider/spiderService';
 import {useRoute, useRouter} from 'vue-router';
@@ -10,6 +9,7 @@ import {sendEvent} from '@/admin/umeng';
 import {translate} from '@/utils/i18n';
 import Form from '@/components/form/Form.vue';
 import {GIT_REF_TYPE_BRANCH} from '@/constants/git';
+import useDetail from '@/layouts/content/detail/useDetail';
 
 // i18n
 const t = translate;
@@ -33,6 +33,7 @@ const gitLoading = ref({
 
 const useSpiderDetail = () => {
   const ns = 'spider';
+  const nsDc = 'dataCollection';
   const store = useStore();
   const {
     spider: state,
@@ -147,6 +148,12 @@ const useSpiderDetail = () => {
   const gitCurrentBranch = computed<string | undefined>(() => state.gitData?.current_branch);
 
   const gitCurrentBranchLoading = computed<boolean>(() => state.gitCurrentBranchLoading);
+
+  watch(() => state.form?.col_id, (val) => {
+    if (val) {
+      store.dispatch(`${nsDc}/getById`, val);
+    }
+  });
 
   return {
     ...useDetail('spider'),

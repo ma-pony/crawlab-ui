@@ -24,6 +24,11 @@ const spider: LComponentsSpider = {
         export: '导出',
         displayAllFields: '显示所有字段',
         inferDataFieldsTypes: '推断数据字段类型',
+        dedup: {
+          enabled: '已启用去重',
+          disabled: '已禁用去重',
+          fields: '设置去重字段',
+        },
       },
     }
   },

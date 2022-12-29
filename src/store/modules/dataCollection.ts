@@ -22,6 +22,7 @@ const state = {
   resultDialogContent: '',
   resultDialogType: undefined,
   resultDialogKey: '',
+  dedupFieldsDialogVisible: false,
 } as DataCollectionStoreState;
 
 const getters = {
@@ -74,6 +75,9 @@ const mutations = {
   },
   resetResultDialogKey: (state: DataCollectionStoreState) => {
     state.resultDialogKey = '';
+  },
+  setDedupFieldsDialogVisible: (state: DataCollectionStoreState, visible: boolean) => {
+    state.dedupFieldsDialogVisible = visible;
   },
 } as DataCollectionStoreMutations;
 

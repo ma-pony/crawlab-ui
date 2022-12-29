@@ -78,6 +78,7 @@ export default defineComponent({
     const defaultFields = [
       '_id',
       '_tid',
+      '_h',
     ];
 
     // data fields

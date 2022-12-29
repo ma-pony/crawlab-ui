@@ -63,6 +63,7 @@ const common: LCommon = {
       enabled: '已启用',
       disabled: '已禁用',
       action: '操作成功',
+      update: '更新成功',
     },
     info: {
       cancel: '尝试取消',

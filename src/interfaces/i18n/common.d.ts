@@ -76,6 +76,7 @@ export declare global {
         enabled: string;
         disabled: string;
         action: string;
+        update: string;
       };
       info: {
         cancel: string;

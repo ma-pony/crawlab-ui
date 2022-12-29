@@ -1,16 +1,16 @@
 <template>
   <template v-if="icon">
     <font-awesome-icon
-        v-if="isFaIcon"
-        :class="spinning ? 'fa-spin' : ''"
-        :icon="icon"
-        :style="{fontSize}"
-        class="icon"
+      v-if="isFaIcon"
+      :class="spinning ? 'fa-spin' : ''"
+      :icon="icon"
+      :style="{fontSize}"
+      class="icon"
     />
     <i
-        v-else
-        :class="[spinning ? 'fa-spin' : '', icon, 'icon']"
-        :style="{fontSize}"
+      v-else
+      :class="[spinning ? 'fa-spin' : '', icon, 'icon']"
+      :style="{fontSize}"
     />
   </template>
 </template>

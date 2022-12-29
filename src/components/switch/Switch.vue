@@ -2,20 +2,22 @@
   <el-switch
     v-model="internalValue"
     :active-color="activeColor"
-    :active-icon-class="activeIconClass"
+    :active-icon="activeIconComp"
     :active-text="activeText"
     :disabled="disabled"
     :inactive-color="inactiveColor"
-    :inactive-icon-class="inactiveIconClass"
+    :inactive-icon="inactiveIconComp"
     :inactive-text="inactiveText"
     :loading="loading"
     :width="width"
+    :inline-prompt="inlinePrompt"
     @change="onChange"
   />
 </template>
 
 <script lang="ts">
-import {defineComponent, onBeforeMount, ref, watch} from 'vue';
+import {Component, computed, defineComponent, h, onBeforeMount, PropType, ref, watch} from 'vue';
+import Icon from "@/components/icon/Icon.vue";
 
 export default defineComponent({
   name: 'Switch',
@@ -36,13 +38,11 @@ export default defineComponent({
       type: String,
       default: 'var(--cl-info-medium-color)',
     },
-    activeIconClass: {
-      type: String,
-      default: '',
+    activeIcon: {
+      type: [String, Array] as PropType<Icon>,
     },
-    inactiveIconClass: {
-      type: String,
-      default: '',
+    inactiveIcon: {
+      type: [String, Array] as PropType<Icon>,
     },
     activeText: {
       type: String,
@@ -57,6 +57,10 @@ export default defineComponent({
       default: 40,
     },
     loading: {
+      type: Boolean,
+      default: false,
+    },
+    inlinePrompt: {
       type: Boolean,
       default: false,
     },
@@ -82,9 +86,23 @@ export default defineComponent({
       internalValue.value = modelValue;
     });
 
+    const activeIconComp = computed(() => {
+      if (props.activeIcon) {
+        return h(Icon, {icon: props.activeIcon});
+      }
+    });
+
+    const inactiveIconComp = computed(() => {
+      if (props.inactiveIcon) {
+        return h(Icon, {icon: props.inactiveIcon});
+      }
+    });
+
     return {
       internalValue,
       onChange,
+      activeIconComp,
+      inactiveIconComp,
     };
   },
 });

@@ -9,35 +9,22 @@
     />
   </div>
 </template>
-<script lang="ts">
-import {computed, defineComponent, watch} from 'vue';
+<script lang="ts" setup>
+import {computed} from 'vue';
 import {useStore} from 'vuex';
 import useSpider from '@/components/spider/spider';
 
-export default defineComponent({
-  name: 'SpiderDetailTabTasks',
-  setup() {
-    // store
-    const nsDc = 'dataCollection';
-    const store = useStore();
-    const {
-      spider: state,
-    } = store.state;
+// store
+const store = useStore();
+const {
+  spider: state,
+} = store.state;
 
-    const displayAllFields = computed<boolean>(() => state.dataDisplayAllFields);
+const displayAllFields = computed<boolean>(() => state.dataDisplayAllFields);
 
-    watch(() => state.form?.col_id, (val) => {
-      if (val) {
-        store.dispatch(`${nsDc}/getById`, val);
-      }
-    });
-
-    return {
-      ...useSpider(store),
-      displayAllFields,
-    };
-  },
-});
+const {
+  form,
+} = useSpider(store);
 </script>
 
 <style scoped>

@@ -90,6 +90,7 @@ import ProjectForm from './project/ProjectForm.vue';
 import ProjectTag from './project/ProjectTag.vue';
 import ResultCell from './result/ResultCell.vue';
 import ResultCellDialog from './result/ResultCellDialog.vue';
+import ResultDedupFieldsDialog from './result/ResultDedupFieldsDialog.vue';
 import CreateEditScheduleDialog from './schedule/CreateEditScheduleDialog.vue';
 import ScheduleCron from './schedule/ScheduleCron.vue';
 import ScheduleForm from './schedule/ScheduleForm.vue';
@@ -227,6 +228,7 @@ export {
   ProjectTag as ClProjectTag,
   ResultCell as ClResultCell,
   ResultCellDialog as ClResultCellDialog,
+  ResultDedupFieldsDialog as ClResultDedupFieldsDialog,
   CreateEditScheduleDialog as ClCreateEditScheduleDialog,
   ScheduleCron as ClScheduleCron,
   ScheduleForm as ClScheduleForm,

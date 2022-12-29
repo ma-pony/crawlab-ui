@@ -63,6 +63,7 @@ const common: LCommon = {
       enabled: 'Enabled successfully',
       disabled: 'Disabled successfully',
       action: 'Action successfully',
+      update: 'Updated successfully',
     },
     info: {
       cancel: 'Attempt to cancel',

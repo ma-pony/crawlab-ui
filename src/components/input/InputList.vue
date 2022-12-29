@@ -123,6 +123,7 @@ export default defineComponent({
 
   .input-list-item {
     display: flex;
+    align-items: center;
 
     &:not(:first-child) {
       margin-top: 5px;

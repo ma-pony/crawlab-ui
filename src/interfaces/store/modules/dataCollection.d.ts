@@ -9,6 +9,7 @@ interface DataCollectionStoreState extends BaseStoreState<DataCollection> {
   resultDialogContent: any;
   resultDialogType?: DataFieldType;
   resultDialogKey: string;
+  dedupFieldsDialogVisible: boolean;
 }
 
 interface DataCollectionStoreGetters extends BaseStoreGetters<DataCollectionStoreState> {
@@ -29,6 +30,7 @@ interface DataCollectionStoreMutations extends BaseStoreMutations<DataCollection
   resetResultDialogType: StoreMutation<DataCollectionStoreState>;
   setResultDialogKey: StoreMutation<DataCollectionStoreState, string>;
   resetResultDialogKey: StoreMutation<DataCollectionStoreState>;
+  setDedupFieldsDialogVisible: StoreMutation<DataCollectionStoreState, boolean>;
 }
 
 interface DataCollectionStoreActions extends BaseStoreActions<DataCollection> {

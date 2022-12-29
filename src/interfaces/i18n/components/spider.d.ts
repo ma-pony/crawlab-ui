@@ -24,6 +24,11 @@ interface LComponentsSpider {
         export: string;
         displayAllFields: string;
         inferDataFieldsTypes: string;
+        dedup: {
+          enabled: string;
+          disabled: string;
+          fields: string;
+        };
       };
     };
   };

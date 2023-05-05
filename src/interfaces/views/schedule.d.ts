@@ -11,4 +11,5 @@ interface Schedule {
   node_ids?: string[];
   node_tags?: string[];
   enabled?: boolean;
+  priority?: string;
 }

@@ -8,6 +8,7 @@ const schedule: LComponentsSchedule = {
     param: '参数',
     defaultMode: '默认模式',
     enabled: '是否启用',
+    priority: '优先级',
     selectedTags: '指定标签',
     selectedNodes: '指定节点',
     description: '描述',

@@ -8,6 +8,7 @@ const schedule: LComponentsSchedule = {
     param: 'Param',
     defaultMode: 'Default Mode',
     enabled: 'Enabled',
+    priority: 'Priority',
     selectedTags: 'Selected Tags',
     selectedNodes: 'Selected Nodes',
     description: 'Description',

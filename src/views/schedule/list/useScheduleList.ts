@@ -8,6 +8,7 @@ import {useRouter} from 'vue-router';
 import {onListFilterChangeByKey, setupListComponent} from '@/utils/list';
 import TaskMode from '@/components/task/TaskMode.vue';
 import ScheduleCron from '@/components/schedule/ScheduleCron.vue';
+import TaskPriority from '@/components/task/TaskPriority.vue';
 import Switch from '@/components/switch/Switch.vue';
 import useSpider from '@/components/spider/spider';
 import useTask from '@/components/task/task';
@@ -228,6 +229,15 @@ const useScheduleList = () => {
         {label: t('common.control.enabled'), value: true},
         {label: t('common.control.disabled'), value: false},
       ],
+    },
+    {
+      key: 'priority',
+      label: t('views.schedules.table.columns.priority'),
+      icon: ['fa', 'sort-numeric-down'],
+      width: '120',
+      value: (row: Schedule) => {
+        return h(TaskPriority, {priority: row.priority} as TaskPriorityProps);
+      },
     },
     {
       key: 'entry_id',

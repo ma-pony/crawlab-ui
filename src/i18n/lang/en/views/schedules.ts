@@ -6,6 +6,7 @@ const schedules: LViewsSchedules = {
       mode: 'Mode',
       cron: 'Cron Expression',
       enabled: 'Enabled',
+      priority: 'Priority',
       entryId: 'Entry ID',
       description: 'Description',
     }

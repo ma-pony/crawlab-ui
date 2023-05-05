@@ -6,6 +6,7 @@ interface LViewsSchedules {
       mode: string;
       cron: string;
       enabled: string;
+      priority: string;
       entryId: string;
       description: string;
     };

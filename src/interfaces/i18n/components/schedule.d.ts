@@ -8,6 +8,7 @@ interface LComponentsSchedule {
     param: string;
     defaultMode: string;
     enabled: string;
+    priority: string;
     selectedTags: string;
     selectedNodes: string;
     description: string;

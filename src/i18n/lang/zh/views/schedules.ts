@@ -6,6 +6,7 @@ const schedules: LViewsSchedules = {
       mode: '模式',
       cron: 'Cron 表达式',
       enabled: '是否启用',
+      priority: '优先级',
       entryId: 'Entry ID',
       description: '描述',
     }

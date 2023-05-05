@@ -66,6 +66,29 @@
         <cl-schedule-cron :cron="form.cron" icon-only/>
       </div>
     </cl-form-item>
+    <cl-form-item
+      :span="2"
+      :label="t('components.task.form.priority')"
+      prop="priority"
+    >
+      <el-select
+        v-if="!isFormItemDisabled('priority')"
+        v-locate="'priority'"
+        v-model="form.priority"
+      >
+        <el-option
+          v-for="op in priorityOptions"
+          :key="op.value"
+          :label="op.label"
+          :value="op.value"
+        />
+      </el-select>
+      <cl-task-priority
+        v-else
+        :priority="form.priority"
+        size="large"
+      />
+    </cl-form-item>
     <!-- ./Row -->
 
     <!-- Row -->
@@ -188,6 +211,7 @@ import useNode from '@/components/node/node';
 import {ElMessage} from 'element-plus';
 import {useI18n} from 'vue-i18n';
 import {sendEvent} from '@/admin/umeng';
+import useTask from "@/components/task/task";
 
 export default defineComponent({
   name: 'ScheduleForm',
@@ -215,6 +239,12 @@ export default defineComponent({
       form,
     } = useSchedule(store);
 
+    // use task
+    const {
+      priorityOptions
+    } = useTask(store);
+
+
     // on enabled change
     const onEnabledChange = async (value: boolean) => {
       if (value) {
@@ -232,7 +262,7 @@ export default defineComponent({
 
     return {
       ...useSchedule(store),
-
+      priorityOptions,
       allSpiderSelectOptions,
       allNodeSelectOptions,
       allNodeTags,

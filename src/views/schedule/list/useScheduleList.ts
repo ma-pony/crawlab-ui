@@ -62,7 +62,7 @@ const useScheduleList = () => {
   } = useSpider(store);
 
   const {
-    modeOptions,
+    modeOptions, priorityOptions,
   } = useTask(store);
 
   // nav actions
@@ -138,6 +138,14 @@ const useScheduleList = () => {
             {label: t('common.control.disabled'), value: false},
           ],
           onChange: onListFilterChangeByKey(store, ns, 'enabled', FILTER_OP_EQUAL),
+        },
+        {
+          action: ACTION_FILTER_SELECT,
+          id: 'filter-select-priority',
+          className: 'filter-select-priority',
+          label: t('views.tasks.navActionsExtra.filter.select.priority.label'),
+          options: priorityOptions,
+          onChange: onListFilterChangeByKey(store, ns, 'priority', FILTER_OP_EQUAL),
         },
       ]
     }
